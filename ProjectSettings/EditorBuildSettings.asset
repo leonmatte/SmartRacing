@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Seleccion Personaje.unity
     guid: 39358809f8a6bbc4b8dcdd150bd23c98
   - enabled: 1
-    path: Assets/Scenes/Mapa1_10_05.unity
+    path: Assets/Scenes/Mapa2.unity
     guid: d9a16411683880f40bd23d7b6a3e1fe4
   m_configObjects: {}
