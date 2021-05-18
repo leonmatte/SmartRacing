@@ -23,7 +23,7 @@ public class Countdown : MonoBehaviour
 
     IEnumerator CountStart()
     {
-
+        LapTimer.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         CountDown.GetComponent<Text>().text = "3";
         GetReady.Play();

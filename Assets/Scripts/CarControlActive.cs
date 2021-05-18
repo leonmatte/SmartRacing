@@ -10,7 +10,7 @@ public GameObject CarControl;
 
 void Start()
 {
-    CarControl.GetComponent<Car>().enabled = true;
+    CarControl.GetComponent<carControllerVer4>().enabled = true;
 }
 
 }
