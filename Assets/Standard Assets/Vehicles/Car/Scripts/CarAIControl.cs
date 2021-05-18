@@ -65,7 +65,7 @@ namespace UnityStandardAssets.Vehicles.Car
             {
                 // Car should not be moving,
                 // use handbrake to stop
-                m_CarController.Move(0, 0, -1f, -0f);
+                m_CarController.Move(0, 0, -1f, 1f);
             }
             else
             {
