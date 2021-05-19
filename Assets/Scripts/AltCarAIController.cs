@@ -26,6 +26,11 @@ public class AltCarAIController : MonoBehaviour
     private carControllerVer4 m_CarController;    // Reference to actual car controller we are controlling
     private Rigidbody m_Rigidbody;
     private bool wantsToDrift;
+    private RaycastHit hit;
+    private bool reverse;
+    public Transform raycastPoint;
+    public float raycastLength;
+    public LayerMask mask;
     
     // Start is called before the first frame update
     void Awake()
@@ -64,7 +69,17 @@ public class AltCarAIController : MonoBehaviour
                 ? m_BrakeSensitivity
                 : m_AccelSensitivity;
 
-            float accel = Mathf.Clamp((desiredSpeed - m_CarController.speed) * accelBrakeSensitivity, -1, 1);
+            float accel = 0;
+
+            if (Physics.Raycast(raycastPoint.position, transform.forward, out hit, mask))
+            {
+                reverse = true;
+            }
+            else
+            {
+                accel = Mathf.Clamp((desiredSpeed - m_CarController.speed) * accelBrakeSensitivity, -1, 1);
+                reverse = false;
+            }
             
             accel *= (1 - m_AccelWanderAmount) +
                      (Mathf.PerlinNoise(Time.time*m_AccelWanderSpeed, m_RandomPerlin)*m_AccelWanderAmount);
@@ -80,6 +95,7 @@ public class AltCarAIController : MonoBehaviour
             else wantsToDrift = false;
 
             float steer = Mathf.Clamp(targetAngle*m_SteerSensitivity, -1, 1)*Mathf.Sign(m_CarController.speed);
+            if (reverse) steer *= -1;
 
             SendInput(steer, accel);
             
@@ -92,7 +108,7 @@ public class AltCarAIController : MonoBehaviour
 
     private void SendInput(float steer, float accel)
     {
-        m_CarController.GetInputFromAI(steer, accel, false, wantsToDrift, accel > 0, false);
+        m_CarController.GetInputFromAI(steer, accel, false, wantsToDrift, accel > 0, reverse);
         m_CarController.HandleMotor();
         m_CarController.HandleSteering();
         m_CarController.UpdateWheels();
