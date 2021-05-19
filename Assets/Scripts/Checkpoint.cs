@@ -12,7 +12,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.TryGetComponent<BoxCollider>(out BoxCollider player))
         {
-            checkpointTracker.PlayerThroughCheckpoint(this);
+            checkpointTracker.CarThroughCheckpoint(this, other.transform);
         }
     }
 

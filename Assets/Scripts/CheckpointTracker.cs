@@ -5,8 +5,10 @@ using UnityEngine;
 public class CheckpointTracker : MonoBehaviour
 {
 
+    [SerializeField] private List<Transform> carTransformList;
+
     private List<Checkpoint> checkpointList;
-    private int nextCheckpoint;
+    private List<int> nextCheckpointList;
 
     void Awake()
     {
@@ -21,15 +23,20 @@ public class CheckpointTracker : MonoBehaviour
             checkpointList.Add(checkpointObject);
         }
 
-        nextCheckpoint = 0;
+        nextCheckpointList = new List<int>();
+        foreach(Transform carTransform in carTransformList)
+        {
+            nextCheckpointList.Add(0);
+        }
     }
 
-    public void PlayerThroughCheckpoint(Checkpoint checkpoint)
+    public void CarThroughCheckpoint(Checkpoint checkpoint, Transform carTransform)
     {
-        if(checkpointList.IndexOf(checkpoint) == nextCheckpoint)
+        int nextCheckpointIndex = nextCheckpointList[carTransformList.IndexOf(carTransform)];
+        if(checkpointList.IndexOf(checkpoint) == nextCheckpointIndex)
         {
             print("Lessgooo");
-            nextCheckpoint = (nextCheckpoint + 1) % checkpointList.Count;
+            nextCheckpointList[carTransformList.IndexOf(carTransform)] = (nextCheckpointIndex + 1) % checkpointList.Count;
         }
         else
         {
