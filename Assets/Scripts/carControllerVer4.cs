@@ -30,7 +30,7 @@ public class carControllerVer4 : MonoBehaviour
     [SerializeField] public bool isPlayer;
     private int direction = 1;
 
-    [SerializeField] private TextMeshProUGUI speedText;
+    [SerializeField] private TextMeshProUGUI speedText, wrongWayText;
     [SerializeField] private WheelCollider frontLeftWheelCollider;
     [SerializeField] private WheelCollider frontRightWheelCollider;
     [SerializeField] private WheelCollider rearLeftWheelCollider;
@@ -213,4 +213,5 @@ public class carControllerVer4 : MonoBehaviour
         frontLeftWheelCollider.attachedRigidbody.AddForce(-transform.up*m_Downforce*
                                                           frontLeftWheelCollider.attachedRigidbody.velocity.magnitude);
     }
+
 }
