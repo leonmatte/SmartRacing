@@ -29,6 +29,6 @@ public class SelectorPersonaje : MonoBehaviour
     public void Jugar()
     {
         PlayerPrefs.SetInt("personajeSeleccionado", personajeSeleccionado);
-        SceneManager.LoadScene(2, LoadSceneMode.Single);
+        SceneManager.LoadScene(3, LoadSceneMode.Single);
     }
 }

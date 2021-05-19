@@ -6,6 +6,7 @@ using TMPro;
 public class CargarPersonaje : MonoBehaviour
 {
     public GameObject[] personajePrefab;
+    public GameObject[] camaraFollower;
     // public TMP_Text label;
 
     // Start is called before the first frame update
@@ -13,7 +14,14 @@ public class CargarPersonaje : MonoBehaviour
     {
         int personajeSeleccionado = PlayerPrefs.GetInt("personajeSeleccionado");
         GameObject prefab = personajePrefab[personajeSeleccionado];
-        prefab.SetActive(true);
+        GameObject camara = camaraFollower[personajeSeleccionado];
+        camara.SetActive(true);
+
+        //Activa al coche como jugador
+        prefab.GetComponent<carControllerVer4>().isPlayer = true;
+        //Desactiva el script de la IA
+        prefab.GetComponent<AltCarAIController>().enabled = false;
+
         //label.text = prefab.name;
     }
 

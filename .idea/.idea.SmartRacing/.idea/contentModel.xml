@@ -61,7 +61,9 @@
           <e p="Countdown.cs" t="Include" />
           <e p="LapComplete.cs" t="Include" />
           <e p="LapTimeManager.cs" t="Include" />
+          <e p="MenuAjustes.cs" t="Include" />
           <e p="MenuOpciones.cs" t="Include" />
+          <e p="MenuPausa.cs" t="Include" />
           <e p="SelectorPersonaje.cs" t="Include" />
           <e p="TriggerScripts" t="Include">
             <e p="HalfPointTrigger.cs" t="Include" />

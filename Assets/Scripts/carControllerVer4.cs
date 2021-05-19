@@ -27,7 +27,7 @@ public class carControllerVer4 : MonoBehaviour
     [SerializeField] private float velAcceleration;
     [SerializeField] private Vector3 centerOfMass;
     [SerializeField] private float m_Downforce = 100f;
-    [SerializeField] private bool isPlayer;
+    [SerializeField] public bool isPlayer;
     private int direction = 1;
 
     [SerializeField] private TextMeshProUGUI speedText;
