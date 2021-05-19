@@ -13,6 +13,8 @@ public class Checkpoint : MonoBehaviour
         if (other.TryGetComponent<BoxCollider>(out BoxCollider player))
         {
             checkpointTracker.CarThroughCheckpoint(this, other.transform);
+            carControllerVer4 controller = player.transform.parent.GetComponent<carControllerVer4>();
+            controller.SetNextCheckpointPosition(transform.position);
         }
     }
 

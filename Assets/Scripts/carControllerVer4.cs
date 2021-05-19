@@ -18,6 +18,7 @@ public class carControllerVer4 : MonoBehaviour
     private bool isDrifting;
     private bool inputW, inputS;
     private Rigidbody rigidbodyCar;
+    private Vector3 nextCheckpointPosition;
     public int speed;
     
     [SerializeField] public float maxSpeed = 250;
@@ -61,6 +62,13 @@ public class carControllerVer4 : MonoBehaviour
             
             speed = Mathf.RoundToInt(rigidbodyCar.velocity.magnitude * 3.6f);
             speedText.SetText("Velocidad: " + speed + "Km/h");
+
+           
+            //float targetAngle = Mathf.Atan2(nextCheckpointPosition.x, nextCheckpointPosition.z) * Mathf.Rad2Deg;
+            /*float targetAngle = Vector3.SignedAngle(transform.forward, nextCheckpointPosition, Vector3.forward);
+            print(targetAngle);
+
+            if (Mathf.Abs(targetAngle) > 87.5f) print("WRONG WAYYYYY");*/
             
         }
     }
@@ -214,4 +222,9 @@ public class carControllerVer4 : MonoBehaviour
                                                           frontLeftWheelCollider.attachedRigidbody.velocity.magnitude);
     }
 
+    public void SetNextCheckpointPosition(Vector3 position)
+    {
+        this.nextCheckpointPosition = position;
+        print(nextCheckpointPosition);
+    }
 }

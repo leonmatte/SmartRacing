@@ -82,10 +82,9 @@ public class AltCarAIController : MonoBehaviour
             
             Vector3 localTarget = transform.InverseTransformPoint(offsetTargetPos);
             
-            
             float targetAngle = Mathf.Atan2(localTarget.x, localTarget.z)*Mathf.Rad2Deg;
 
-            if (targetAngle > Mathf.Abs(10)) wantsToDrift = true;
+            if (Mathf.Abs(targetAngle) > 10) wantsToDrift = true;
             else wantsToDrift = false;
 
             float steer = Mathf.Clamp(targetAngle*m_SteerSensitivity, -1, 1)*Mathf.Sign(m_CarController.speed);
