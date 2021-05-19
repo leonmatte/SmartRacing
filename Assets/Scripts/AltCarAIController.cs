@@ -26,8 +26,8 @@ public class AltCarAIController : MonoBehaviour
     private carControllerVer4 m_CarController;    // Reference to actual car controller we are controlling
     private Rigidbody m_Rigidbody;
     private bool wantsToDrift;
-    private RaycastHit hit;
-    private bool reverse;
+    private RaycastHit hitF, hitR, hitL;
+    private bool reverse, evadeRight, evadeLeft;
     public Transform raycastPoint;
     public float raycastLength;
     public LayerMask mask;
@@ -71,15 +71,11 @@ public class AltCarAIController : MonoBehaviour
 
             float accel = 0;
 
-            if (Physics.Raycast(raycastPoint.position, transform.forward, out hit, mask))
-            {
-                reverse = true;
-            }
-            else
-            {
-                accel = Mathf.Clamp((desiredSpeed - m_CarController.speed) * accelBrakeSensitivity, -1, 1);
-                reverse = false;
-            }
+            reverse = Physics.Raycast(raycastPoint.position, transform.forward * raycastLength, out hitF, mask);
+            evadeLeft = Physics.Raycast(raycastPoint.position, transform.right * raycastLength, out hitR, mask);
+            evadeRight = Physics.Raycast(raycastPoint.position, -transform.right * raycastLength, out hitL, mask);
+
+            if(!reverse) accel = Mathf.Clamp((desiredSpeed - m_CarController.speed) * accelBrakeSensitivity, -1, 1);
             
             accel *= (1 - m_AccelWanderAmount) +
                      (Mathf.PerlinNoise(Time.time*m_AccelWanderSpeed, m_RandomPerlin)*m_AccelWanderAmount);
@@ -89,13 +85,18 @@ public class AltCarAIController : MonoBehaviour
             
             float targetAngle = Mathf.Atan2(localTarget.x, localTarget.z)*Mathf.Rad2Deg;
 
-            Debug.Log(targetAngle);
-
-            if (targetAngle > Mathf.Abs(15)) wantsToDrift = true;
+            if (targetAngle > Mathf.Abs(10)) wantsToDrift = true;
             else wantsToDrift = false;
 
             float steer = Mathf.Clamp(targetAngle*m_SteerSensitivity, -1, 1)*Mathf.Sign(m_CarController.speed);
             if (reverse) steer *= -1;
+            else if (evadeLeft)
+            {
+                steer -= 0.25f;
+            } else if (evadeRight)
+            {
+                steer += 0.25f;
+            }
 
             SendInput(steer, accel);
             
