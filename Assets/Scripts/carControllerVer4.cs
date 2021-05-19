@@ -59,9 +59,10 @@ public class carControllerVer4 : MonoBehaviour
             UpdateWheels();
             AddDownForce();
             
+            speed = Mathf.RoundToInt(rigidbodyCar.velocity.magnitude * 3.6f);
+            speedText.SetText("Velocidad: " + speed + "Km/h");
+            
         }
-        speed = Mathf.RoundToInt(rigidbodyCar.velocity.magnitude * 3.6f);
-        speedText.SetText("Velocidad: " + speed + "Km/h");
     }
 
 
