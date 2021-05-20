@@ -35,12 +35,12 @@ public class CheckpointTracker : MonoBehaviour
         int nextCheckpointIndex = nextCheckpointList[carTransformList.IndexOf(carTransform)];
         if(checkpointList.IndexOf(checkpoint) == nextCheckpointIndex)
         {
-            print("Lessgooo");
+            print("Lessgooo " + carTransformList.IndexOf(carTransform));
             nextCheckpointList[carTransformList.IndexOf(carTransform)] = (nextCheckpointIndex + 1) % checkpointList.Count;
         }
         else
         {
-            print("whutttt");
+            print("whutttt " + carTransformList.IndexOf(carTransform));
         }
     }
 }

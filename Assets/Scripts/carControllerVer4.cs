@@ -32,7 +32,7 @@ public class carControllerVer4 : MonoBehaviour
     private float topSpeedAux;
 
     public bool isPlayer;
-    private Vector3 nextCheckpointPosition;
+    private Transform lastCheckpointTransform;
 
     [SerializeField] private TextMeshProUGUI speedText;
     [SerializeField] private WheelCollider frontLeftWheelCollider;
@@ -45,7 +45,7 @@ public class carControllerVer4 : MonoBehaviour
     [SerializeField] private Transform frontRightWheeTransform;
     [SerializeField] private Transform rearLeftWheelTransform;
     [SerializeField] private Transform rearRightWheelTransform;
-    
+
     [SerializeField] private static int NoOfGears = 5;
     private int m_GearNum;
     private float m_GearFactor;
@@ -56,6 +56,7 @@ public class carControllerVer4 : MonoBehaviour
 
     private void Start()
     {
+        lastCheckpointTransform = transform;
         rigidbodyCar = GetComponent<Rigidbody>();
         topSpeedAux = topSpeed;
 
@@ -73,9 +74,11 @@ public class carControllerVer4 : MonoBehaviour
             CalculateRevs();
             GearChanging();
             CheckForWheelSpin();
+            HandleReset();
+            HandleWrongWay();
         }
     }
-    
+
     private void GetInput()
     {
         horizontalInput = Input.GetAxis(HORIZONTAL);
@@ -99,11 +102,28 @@ public class carControllerVer4 : MonoBehaviour
         speedText.SetText("Velocidad: " + roundedSpeed + "Km/h");
     }
 
+    private void HandleWrongWay()
+    {
+        float targetAngle = transform.eulerAngles.y - lastCheckpointTransform.eulerAngles.y;
+        if (Mathf.Abs(targetAngle) > 90 && Mathf.Abs(targetAngle) < 270) print("WRONG WAY " + targetAngle);
+    }
+
+    public void HandleReset()
+    {
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            rigidbodyCar.velocity = new Vector3(0, 0, 0);
+            transform.position = lastCheckpointTransform.position - Vector3.up;
+            transform.rotation = lastCheckpointTransform.rotation;
+            print("OW");
+        }
+    }
+
     public void HandleMotor()
     {
 
         RearSpeed();
-        
+
         if(frontLeftWheelCollider.rpm <= 1500f && roundedSpeed < topSpeed)
         {
             frontRightWheelCollider.motorTorque = verticalInput * motorForce * Time.fixedDeltaTime;
@@ -118,7 +138,7 @@ public class carControllerVer4 : MonoBehaviour
             rearLeftWheelCollider.motorTorque = verticalInput * (motorForce / 10) * Time.fixedDeltaTime;
             rearRightWheelCollider.motorTorque = verticalInput * (motorForce / 10) * Time.fixedDeltaTime;
         }
-            
+
         //Si el boton de frenado esta apretado,  el brakeForce es = brakeForce, sino, es 0;
         currentbreakForce = isBreaking ? breakForce : 0f * Time.fixedDeltaTime;
         ApplyBreaking();
@@ -128,11 +148,11 @@ public class carControllerVer4 : MonoBehaviour
 
     private void ApplyDrifting()
     {
-        
+
         //Si el boton de drifting esta pulsado, cambia la adherencia de las ruedas traseras.
         if(isDrifting)
         {
-            
+
             //Cambiamos el stiffness de Sideways Friction de las ruedas traseras para hacer que el coche derrape
             WheelFrictionCurve sFriction = rearLeftWheelCollider.sidewaysFriction;
             sFriction.stiffness = 1.2f;
@@ -156,7 +176,7 @@ public class carControllerVer4 : MonoBehaviour
         //Metodo en caso de querer cambiar la adherencia cuando se pise x terreno.
         //WheelHit hit;
         //if (rearLeftWheelCollider.GetGroundHit(out hit))
-        //{ 
+        //{
         //WheelFrictionCurve fFriction = rearLeftWheelCollider.forwardFriction;
         //fFriction.stiffness = hit.collider.material.staticFriction;
         //rearLeftWheelCollider.forwardFriction = fFriction;
@@ -206,7 +226,7 @@ public class carControllerVer4 : MonoBehaviour
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
     }
-    
+
     public void AddDownForce()
     {
         frontLeftWheelCollider.attachedRigidbody.AddForce(-transform.up*m_Downforce*
@@ -216,12 +236,6 @@ public class carControllerVer4 : MonoBehaviour
     public int GetSpeed()
     {
         return roundedSpeed;
-    }
-    
-    public void SetNextCheckpointPosition(Vector3 position)
-    {
-        this.nextCheckpointPosition = position;
-        print(nextCheckpointPosition);
     }
 
     public void RearSpeed()
@@ -235,7 +249,7 @@ public class carControllerVer4 : MonoBehaviour
             topSpeed = topSpeedAux;
         }
     }
-    
+
     private void GearChanging()
     {
         float f = Mathf.Abs(speed/topSpeedAux);
@@ -252,7 +266,7 @@ public class carControllerVer4 : MonoBehaviour
             m_GearNum++;
         }
     }
-    
+
     private void CalculateGearFactor()
     {
         float f = (1/(float) NoOfGears);
@@ -261,17 +275,17 @@ public class carControllerVer4 : MonoBehaviour
         var targetGearFactor = Mathf.InverseLerp(f*m_GearNum, f*(m_GearNum + 1), Mathf.Abs(roundedSpeed/topSpeedAux));
         m_GearFactor = Mathf.Lerp(m_GearFactor, targetGearFactor, Time.deltaTime*5f);
     }
-    
+
     private static float ULerp(float from, float to, float value)
     {
         return (1.0f - value)*from + value*to;
     }
-    
+
     private static float CurveFactor(float factor)
     {
         return 1 - (1 - factor)*(1 - factor);
     }
-    
+
     private void CalculateRevs()
     {
         // calculate engine revs (for display / sound)
@@ -283,7 +297,7 @@ public class carControllerVer4 : MonoBehaviour
         rpm = revsRangeMin;
         Revs = ULerp(revsRangeMin, revsRangeMax, m_GearFactor);
     }
-    
+
     // checks if the wheels are spinning and is so does three things
     // 1) emits particles
     // 2) plays tiure skidding sounds
@@ -325,7 +339,7 @@ public class carControllerVer4 : MonoBehaviour
             m_WheelEffects[i].EndSkidTrail();
         }
     }
-    
+
     private bool AnySkidSoundPlaying()
     {
         for (int i = 0; i < 4; i++)
@@ -337,5 +351,10 @@ public class carControllerVer4 : MonoBehaviour
         }
         return false;
     }
-    
+
+
+    public void SetLastCheckpointTransform(Transform transform)
+    {
+        lastCheckpointTransform = transform;
+    }
 }

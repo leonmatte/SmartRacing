@@ -14,7 +14,7 @@ public class Checkpoint : MonoBehaviour
         {
             checkpointTracker.CarThroughCheckpoint(this, other.transform);
             carControllerVer4 controller = player.transform.parent.GetComponent<carControllerVer4>();
-            controller.SetNextCheckpointPosition(transform.position);
+            controller.SetLastCheckpointTransform(transform);
         }
     }
 

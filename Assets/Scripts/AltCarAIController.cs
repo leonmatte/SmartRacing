@@ -75,17 +75,27 @@ public class AltCarAIController : MonoBehaviour
             evadeLeft = Physics.Raycast(raycastPoint.position, transform.right * raycastLength, out hitR, mask);
             evadeRight = Physics.Raycast(raycastPoint.position, -transform.right * raycastLength, out hitL, mask);
 
-            if(!reverse) accel = Mathf.Clamp((desiredSpeed - m_CarController.GetSpeed()) * accelBrakeSensitivity, -1, 1);
+            if (!reverse)
+            {
+                accel = Mathf.Clamp((desiredSpeed - m_CarController.GetSpeed()) * accelBrakeSensitivity, -1, 1);
+                accel *= (1 - m_AccelWanderAmount) +
+                     (Mathf.PerlinNoise(Time.time * m_AccelWanderSpeed, m_RandomPerlin) * m_AccelWanderAmount);
+            }
+            else accel = -1;
             
-            
-            accel *= (1 - m_AccelWanderAmount) +
-                     (Mathf.PerlinNoise(Time.time*m_AccelWanderSpeed, m_RandomPerlin)*m_AccelWanderAmount);
             
             Vector3 localTarget = transform.InverseTransformPoint(offsetTargetPos);
             
             float targetAngle = Mathf.Atan2(localTarget.x, localTarget.z)*Mathf.Rad2Deg;
 
-            if (Mathf.Abs(targetAngle) > 10) wantsToDrift = true;
+            if (Mathf.Abs(targetAngle) > 20)
+            {
+                wantsToDrift = true;
+                if(Mathf.Abs(targetAngle) > 30)
+                {
+                    accel -= 1;
+                }
+            }
             else wantsToDrift = false;
 
             float steer = Mathf.Clamp(targetAngle*m_SteerSensitivity, -1, 1)*Mathf.Sign(m_CarController.GetSpeed());
