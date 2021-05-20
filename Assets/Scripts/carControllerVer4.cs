@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http.Headers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class carControllerVer4 : MonoBehaviour
 {
@@ -16,22 +17,19 @@ public class carControllerVer4 : MonoBehaviour
     private float currentbreakForce;
     private bool isBreaking;
     private bool isDrifting;
-    private bool inputW, inputS;
+    private int speed;
     private Rigidbody rigidbodyCar;
-    private Vector3 nextCheckpointPosition;
-    public int speed;
-    
-    [SerializeField] public float maxSpeed = 250;
+
+    [SerializeField] public float maxSpeedIA = 250;
     [SerializeField] private float motorForce;
     [SerializeField] private float breakForce;
     [SerializeField] private float maxSteerAngle;
-    [SerializeField] private float velAcceleration;
-    [SerializeField] private Vector3 centerOfMass;
     [SerializeField] private float m_Downforce = 100f;
-    [SerializeField] public bool isPlayer;
-    private int direction = 1;
+    [SerializeField] private int topSpeed;
+    public bool isPlayer;
+    private Vector3 nextCheckpointPosition;
 
-    [SerializeField] private TextMeshProUGUI speedText, wrongWayText;
+    [SerializeField] private TextMeshProUGUI speedText;
     [SerializeField] private WheelCollider frontLeftWheelCollider;
     [SerializeField] private WheelCollider frontRightWheelCollider;
     [SerializeField] private WheelCollider rearLeftWheelCollider;
@@ -45,9 +43,6 @@ public class carControllerVer4 : MonoBehaviour
     private void Start()
     {
         rigidbodyCar = GetComponent<Rigidbody>();
-        centerOfMass = rigidbodyCar.centerOfMass;
-        rigidbodyCar.centerOfMass = centerOfMass;
-        // rigidbodyCar.inertiaTensor = new Vector3(1000,0,1000);
 
     }
 
@@ -60,28 +55,16 @@ public class carControllerVer4 : MonoBehaviour
             UpdateWheels();
             AddDownForce();
             
-            speed = Mathf.RoundToInt(rigidbodyCar.velocity.magnitude * 3.6f);
-            speedText.SetText("Velocidad: " + speed + "Km/h");
-
-           
-            //float targetAngle = Mathf.Atan2(nextCheckpointPosition.x, nextCheckpointPosition.z) * Mathf.Rad2Deg;
-            /*float targetAngle = Vector3.SignedAngle(transform.forward, nextCheckpointPosition, Vector3.forward);
-            print(targetAngle);
-
-            if (Mathf.Abs(targetAngle) > 87.5f) print("WRONG WAYYYYY");*/
-            
         }
+        
     }
-
-
+    
     private void GetInput()
     {
         horizontalInput = Input.GetAxis(HORIZONTAL);
         verticalInput = Input.GetAxis(VERTICAL);
         isBreaking = Input.GetKey(KeyCode.Space);
         isDrifting = Input.GetKey(KeyCode.LeftShift);
-        inputW = Input.GetKey(KeyCode.W);
-        inputS = Input.GetKey(KeyCode.S);
     }
 
     public void GetInputFromAI(float horizontalInput, float verticalInput, bool isBreaking, bool isDrifting, bool inputW, bool inputS)
@@ -90,49 +73,31 @@ public class carControllerVer4 : MonoBehaviour
         this.verticalInput = verticalInput;
         this.isBreaking = isBreaking;
         this.isDrifting = isDrifting;
-        this.inputW = inputW;
-        this.inputS = inputS;
     }
 
     public void HandleMotor()
     {
-        if (inputW)
-        {
-            if(frontLeftWheelCollider.rpm <= 1500)
+        speed = Mathf.RoundToInt(rigidbodyCar.velocity.magnitude * 3.6f);
+        speedText.SetText("Velocidad: " + speed + "Km/h");
+        
+        if(frontLeftWheelCollider.rpm <= 1500f && speed < topSpeed)
             {
-                frontRightWheelCollider.motorTorque = velAcceleration * direction * motorForce * Time.deltaTime;
-                frontLeftWheelCollider.motorTorque = velAcceleration * direction * motorForce * Time.deltaTime;
-                rearLeftWheelCollider.motorTorque = velAcceleration * direction * motorForce * Time.deltaTime;
-                rearRightWheelCollider.motorTorque = velAcceleration * direction * motorForce * Time.deltaTime;
+                frontRightWheelCollider.motorTorque = verticalInput * motorForce * Time.fixedDeltaTime;
+                frontLeftWheelCollider.motorTorque = verticalInput * motorForce * Time.fixedDeltaTime;
+                rearLeftWheelCollider.motorTorque = verticalInput * motorForce * Time.fixedDeltaTime;
+                rearRightWheelCollider.motorTorque = verticalInput * motorForce * Time.fixedDeltaTime;
             }
             else
             {
-                frontRightWheelCollider.motorTorque = direction * motorForce * Time.deltaTime;
-                frontLeftWheelCollider.motorTorque = direction * motorForce * Time.deltaTime;
-                rearLeftWheelCollider.motorTorque = direction * motorForce * Time.deltaTime;
-                rearRightWheelCollider.motorTorque = direction * motorForce * Time.deltaTime;
+                frontRightWheelCollider.motorTorque = verticalInput * (motorForce / 10) * Time.fixedDeltaTime;
+                frontLeftWheelCollider.motorTorque = verticalInput * (motorForce / 10) * Time.fixedDeltaTime;
+                rearLeftWheelCollider.motorTorque = verticalInput * (motorForce / 10) * Time.fixedDeltaTime;
+                rearRightWheelCollider.motorTorque = verticalInput * (motorForce / 10) * Time.fixedDeltaTime;
             }
             
-        }
-        else if (inputS)
-        {
-           
-            frontRightWheelCollider.motorTorque = velAcceleration * - direction * motorForce * Time.deltaTime;
-            frontLeftWheelCollider.motorTorque = velAcceleration * -direction * motorForce * Time.deltaTime;
-            rearLeftWheelCollider.motorTorque = velAcceleration * -direction * motorForce * Time.deltaTime;
-            rearRightWheelCollider.motorTorque = velAcceleration * -direction * motorForce * Time.deltaTime;
-        }
-        else
-        {
-            frontRightWheelCollider.motorTorque = 0;
-            frontLeftWheelCollider.motorTorque = 0;
-            rearLeftWheelCollider.motorTorque = 0;
-            rearRightWheelCollider.motorTorque = 0;
-        }
         //Si el boton de frenado esta apretado,  el brakeForce es = brakeForce, sino, es 0;
-        currentbreakForce = isBreaking ? breakForce : 0f * Time.deltaTime;
+        currentbreakForce = isBreaking ? breakForce : 0f * Time.fixedDeltaTime;
         ApplyBreaking();
-
         ApplyDrifting();
         
     }
@@ -187,14 +152,16 @@ public class carControllerVer4 : MonoBehaviour
         if (speed < 60)
         {
             maxSteerAngle = 30;
-        }else if (speed > 60 && speed < 120)
+        }
+        else if (speed > 60 && speed < 120)
         {
             maxSteerAngle = 15;
-        }else if (speed > 120)
+        }
+        else if (speed > 120)
         {
             maxSteerAngle = 5;
         }
-            currentSteerAngle = maxSteerAngle * horizontalInput;
+        currentSteerAngle = maxSteerAngle * horizontalInput;
         frontLeftWheelCollider.steerAngle = currentSteerAngle;
         frontRightWheelCollider.steerAngle = currentSteerAngle;
     }
@@ -222,9 +189,15 @@ public class carControllerVer4 : MonoBehaviour
                                                           frontLeftWheelCollider.attachedRigidbody.velocity.magnitude);
     }
 
+    public int GetSpeed()
+    {
+        return speed;
+    }
+    
     public void SetNextCheckpointPosition(Vector3 position)
     {
         this.nextCheckpointPosition = position;
         print(nextCheckpointPosition);
     }
+    
 }

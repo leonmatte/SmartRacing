@@ -52,12 +52,12 @@ public class AltCarAIController : MonoBehaviour
         else
         {
             Vector3 fwd = transform.forward;
-            if (m_Rigidbody.velocity.magnitude > m_CarController.maxSpeed * 0.1f)
+            if (m_Rigidbody.velocity.magnitude > m_CarController.maxSpeedIA * 0.1f)
             {
                 fwd = m_Rigidbody.velocity;
             }
 
-            float desiredSpeed = m_CarController.maxSpeed;
+            float desiredSpeed = m_CarController.maxSpeedIA;
             
             BrakeCondition(fwd, out desiredSpeed);
 
@@ -65,7 +65,7 @@ public class AltCarAIController : MonoBehaviour
 
             offsetTargetPos += m_Target.right * (Mathf.PerlinNoise(Time.time*m_LateralWanderSpeed, m_RandomPerlin) * 2 - 1) * m_LateralWanderDistance;
 
-            float accelBrakeSensitivity = (desiredSpeed < m_CarController.speed)
+            float accelBrakeSensitivity = (desiredSpeed < m_CarController.GetSpeed())
                 ? m_BrakeSensitivity
                 : m_AccelSensitivity;
 
@@ -75,7 +75,7 @@ public class AltCarAIController : MonoBehaviour
             evadeLeft = Physics.Raycast(raycastPoint.position, transform.right * raycastLength, out hitR, mask);
             evadeRight = Physics.Raycast(raycastPoint.position, -transform.right * raycastLength, out hitL, mask);
 
-            if(!reverse) accel = Mathf.Clamp((desiredSpeed - m_CarController.speed) * accelBrakeSensitivity, -1, 1);
+            if(!reverse) accel = Mathf.Clamp((desiredSpeed - m_CarController.GetSpeed()) * accelBrakeSensitivity, -1, 1);
             
             accel *= (1 - m_AccelWanderAmount) +
                      (Mathf.PerlinNoise(Time.time*m_AccelWanderSpeed, m_RandomPerlin)*m_AccelWanderAmount);
@@ -87,7 +87,7 @@ public class AltCarAIController : MonoBehaviour
             if (Mathf.Abs(targetAngle) > 10) wantsToDrift = true;
             else wantsToDrift = false;
 
-            float steer = Mathf.Clamp(targetAngle*m_SteerSensitivity, -1, 1)*Mathf.Sign(m_CarController.speed);
+            float steer = Mathf.Clamp(targetAngle*m_SteerSensitivity, -1, 1)*Mathf.Sign(m_CarController.GetSpeed());
             if (reverse) steer *= -1;
             else if (evadeLeft)
             {
@@ -127,7 +127,7 @@ public class AltCarAIController : MonoBehaviour
         float spinningAngle = m_Rigidbody.angularVelocity.magnitude * m_CautiousAngularVelocityFactor;
         float cautiosnessRequired =
             Mathf.InverseLerp(0, m_CautiousMaxAngle, Mathf.Max(spinningAngle, approachingCornerAngle));
-        desiredSpeed = Mathf.Lerp(m_CarController.maxSpeed, m_CarController.maxSpeed * m_CautiousSpeedFactor,
+        desiredSpeed = Mathf.Lerp(m_CarController.maxSpeedIA, m_CarController.maxSpeedIA * m_CautiousSpeedFactor,
             cautiosnessRequired);
     }
 }

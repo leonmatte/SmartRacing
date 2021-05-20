@@ -57,6 +57,7 @@
           <e p="CarController.cs" t="Include" />
           <e p="carControllerVer4.cs" t="Include" />
           <e p="CargarPersonaje.cs" t="Include" />
+          <e p="Checkpoint.cs" t="Include" />
           <e p="CheckpointTracker.cs" t="Include" />
           <e p="Countdown.cs" t="Include" />
           <e p="LapComplete.cs" t="Include" />
