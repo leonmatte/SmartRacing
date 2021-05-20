@@ -53,6 +53,7 @@
           <e p="AltCarAIController.cs" t="Include" />
           <e p="CameraController.cs" t="Include" />
           <e p="Car.cs" t="Include" />
+          <e p="CarAudio.cs" t="Include" />
           <e p="CarControlActive.cs" t="Include" />
           <e p="CarController.cs" t="Include" />
           <e p="carControllerVer4.cs" t="Include" />
@@ -301,7 +302,6 @@
               <e p="Scripts" t="Include">
                 <e p="BrakeLight.cs" t="Include" />
                 <e p="CarAIControl.cs" t="Include" />
-                <e p="CarAudio.cs" t="Include" />
                 <e p="CarController.cs" t="Include" />
                 <e p="CarSelfRighting.cs" t="Include" />
                 <e p="CarUserControl.cs" t="Include" />

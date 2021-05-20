@@ -19,6 +19,7 @@ public class carControllerVer4 : MonoBehaviour
     private bool isDrifting;
     private int speed;
     private Rigidbody rigidbodyCar;
+    public float rpm;
 
     [SerializeField] public float maxSpeedIA = 250;
     [SerializeField] private float motorForce;
@@ -26,6 +27,8 @@ public class carControllerVer4 : MonoBehaviour
     [SerializeField] private float maxSteerAngle;
     [SerializeField] private float m_Downforce = 100f;
     [SerializeField] private int topSpeed;
+    private int topSpeedAux;
+
     public bool isPlayer;
     private Vector3 nextCheckpointPosition;
 
@@ -39,10 +42,18 @@ public class carControllerVer4 : MonoBehaviour
     [SerializeField] private Transform frontRightWheeTransform;
     [SerializeField] private Transform rearLeftWheelTransform;
     [SerializeField] private Transform rearRightWheelTransform;
+    
+    [SerializeField] private static int NoOfGears = 5;
+    private int m_GearNum;
+    private float m_GearFactor;
+    [SerializeField] private float m_RevRangeBoundary = 1f;
+    public float Revs { get; private set; }
+    public float AccelInput { get; private set; }
 
     private void Start()
     {
         rigidbodyCar = GetComponent<Rigidbody>();
+        topSpeedAux = topSpeed;
 
     }
 
@@ -55,6 +66,8 @@ public class carControllerVer4 : MonoBehaviour
             UpdateWheels();
             AddDownForce();
             ShowSpeed();
+            CalculateRevs();
+            GearChanging();
         }
         
     }
@@ -83,25 +96,30 @@ public class carControllerVer4 : MonoBehaviour
 
     public void HandleMotor()
     {
+
+        AccelInput = verticalInput = Mathf.Clamp(verticalInput, 0, 1);
+        RearSpeed();
+        
         if(frontLeftWheelCollider.rpm <= 1500f && speed < topSpeed)
-            {
-                frontRightWheelCollider.motorTorque = verticalInput * motorForce * Time.fixedDeltaTime;
-                frontLeftWheelCollider.motorTorque = verticalInput * motorForce * Time.fixedDeltaTime;
-                rearLeftWheelCollider.motorTorque = verticalInput * motorForce * Time.fixedDeltaTime;
-                rearRightWheelCollider.motorTorque = verticalInput * motorForce * Time.fixedDeltaTime;
-            }
-            else
-            {
-                frontRightWheelCollider.motorTorque = verticalInput * (motorForce / 10) * Time.fixedDeltaTime;
-                frontLeftWheelCollider.motorTorque = verticalInput * (motorForce / 10) * Time.fixedDeltaTime;
-                rearLeftWheelCollider.motorTorque = verticalInput * (motorForce / 10) * Time.fixedDeltaTime;
-                rearRightWheelCollider.motorTorque = verticalInput * (motorForce / 10) * Time.fixedDeltaTime;
-            }
+        {
+            frontRightWheelCollider.motorTorque = verticalInput * motorForce * Time.fixedDeltaTime;
+            frontLeftWheelCollider.motorTorque = verticalInput * motorForce * Time.fixedDeltaTime;
+            rearLeftWheelCollider.motorTorque = verticalInput * motorForce * Time.fixedDeltaTime;
+            rearRightWheelCollider.motorTorque = verticalInput * motorForce * Time.fixedDeltaTime;
+        }
+        else
+        {
+            frontRightWheelCollider.motorTorque = verticalInput * (motorForce / 10) * Time.fixedDeltaTime;
+            frontLeftWheelCollider.motorTorque = verticalInput * (motorForce / 10) * Time.fixedDeltaTime;
+            rearLeftWheelCollider.motorTorque = verticalInput * (motorForce / 10) * Time.fixedDeltaTime;
+            rearRightWheelCollider.motorTorque = verticalInput * (motorForce / 10) * Time.fixedDeltaTime;
+        }
             
         //Si el boton de frenado esta apretado,  el brakeForce es = brakeForce, sino, es 0;
         currentbreakForce = isBreaking ? breakForce : 0f * Time.fixedDeltaTime;
         ApplyBreaking();
         ApplyDrifting();
+        
         
     }
 
@@ -201,6 +219,65 @@ public class carControllerVer4 : MonoBehaviour
     {
         this.nextCheckpointPosition = position;
         print(nextCheckpointPosition);
+    }
+
+    public void RearSpeed()
+    {
+        if (verticalInput == -1)
+        {
+            topSpeed = 40;
+        }
+        else
+        {
+            topSpeed = topSpeedAux;
+        }
+    }
+    
+    private void GearChanging()
+    {
+        float f = Mathf.Abs(speed/topSpeedAux);
+        float upgearlimit = (1/(float) NoOfGears)*(m_GearNum + 1);
+        float downgearlimit = (1/(float) NoOfGears)*m_GearNum;
+
+        if (m_GearNum > 0 && f < downgearlimit)
+        {
+            m_GearNum--;
+        }
+
+        if (f > upgearlimit && (m_GearNum < (NoOfGears - 1)))
+        {
+            m_GearNum++;
+        }
+    }
+    
+    private void CalculateGearFactor()
+    {
+        float f = (1/(float) NoOfGears);
+        // gear factor is a normalised representation of the current speed within the current gear's range of speeds.
+        // We smooth towards the 'target' gear factor, so that revs don't instantly snap up or down when changing gear.
+        var targetGearFactor = Mathf.InverseLerp(f*m_GearNum, f*(m_GearNum + 1), Mathf.Abs(speed/topSpeedAux));
+        m_GearFactor = Mathf.Lerp(m_GearFactor, targetGearFactor, Time.deltaTime*5f);
+    }
+    
+    private static float ULerp(float from, float to, float value)
+    {
+        return (1.0f - value)*from + value*to;
+    }
+    
+    private static float CurveFactor(float factor)
+    {
+        return 1 - (1 - factor)*(1 - factor);
+    }
+    
+    private void CalculateRevs()
+    {
+        // calculate engine revs (for display / sound)
+        // (this is done in retrospect - revs are not used in force/power calculations)
+        CalculateGearFactor();
+        var gearNumFactor = m_GearNum/(float) NoOfGears;
+        var revsRangeMin = ULerp(0f, m_RevRangeBoundary, CurveFactor(gearNumFactor));
+        var revsRangeMax = ULerp(m_RevRangeBoundary, 1f, gearNumFactor);
+        Revs = ULerp(revsRangeMin, revsRangeMax, m_GearFactor);
     }
     
 }
