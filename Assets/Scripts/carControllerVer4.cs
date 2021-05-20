@@ -97,7 +97,7 @@ public class carControllerVer4 : MonoBehaviour
     public void HandleMotor()
     {
 
-        AccelInput = verticalInput = Mathf.Clamp(verticalInput, 0, 1);
+        
         RearSpeed();
         
         if(frontLeftWheelCollider.rpm <= 1500f && speed < topSpeed)
@@ -119,8 +119,9 @@ public class carControllerVer4 : MonoBehaviour
         currentbreakForce = isBreaking ? breakForce : 0f * Time.fixedDeltaTime;
         ApplyBreaking();
         ApplyDrifting();
-        
-        
+        AccelInput = verticalInput = Mathf.Clamp(verticalInput, 0, 1);
+
+
     }
 
     private void ApplyDrifting()
