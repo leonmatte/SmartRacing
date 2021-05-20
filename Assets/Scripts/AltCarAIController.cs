@@ -77,6 +77,7 @@ public class AltCarAIController : MonoBehaviour
 
             if(!reverse) accel = Mathf.Clamp((desiredSpeed - m_CarController.GetSpeed()) * accelBrakeSensitivity, -1, 1);
             
+            
             accel *= (1 - m_AccelWanderAmount) +
                      (Mathf.PerlinNoise(Time.time*m_AccelWanderSpeed, m_RandomPerlin)*m_AccelWanderAmount);
             
