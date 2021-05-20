@@ -17,6 +17,9 @@ public class CargarPersonaje : MonoBehaviour
         GameObject camara = camaraFollower[personajeSeleccionado];
         camara.SetActive(true);
 
+        //Desactivar el ratón
+        Cursor.visible = false;
+
         //Activa al coche como jugador
         prefab.GetComponent<carControllerVer4>().isPlayer = true;
         //Desactiva el script de la IA

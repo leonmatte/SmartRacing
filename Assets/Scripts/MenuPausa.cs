@@ -11,9 +11,11 @@ public class MenuPausa : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Tab))
+
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             Pause();
+            Cursor.visible = true;
         }
 
         void Pause()
@@ -30,5 +32,7 @@ public class MenuPausa : MonoBehaviour
         PauseMenuUI.SetActive(false);
         Informacion.SetActive(true);
         Time.timeScale = 1f;
+        Cursor.visible = false;
     }
+
 }

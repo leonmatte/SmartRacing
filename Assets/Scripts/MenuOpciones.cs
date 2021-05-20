@@ -41,6 +41,7 @@ public class MenuOpciones : MonoBehaviour
         {
             SceneManager.UnloadSceneAsync(1);
             Time.timeScale = 1f;
+            Cursor.visible = false;
             menu.SetActive(true);
         }
         
