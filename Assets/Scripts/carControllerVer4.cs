@@ -30,7 +30,7 @@ public class carControllerVer4 : MonoBehaviour
     private int topSpeedAux;
 
     public bool isPlayer;
-    private Vector3 nextCheckpointPosition;
+    private Transform lastCheckpointTransform;
 
     [SerializeField] private TextMeshProUGUI speedText;
     [SerializeField] private WheelCollider frontLeftWheelCollider;
@@ -52,6 +52,7 @@ public class carControllerVer4 : MonoBehaviour
 
     private void Start()
     {
+        lastCheckpointTransform = transform;
         rigidbodyCar = GetComponent<Rigidbody>();
         topSpeedAux = topSpeed;
 
@@ -68,6 +69,8 @@ public class carControllerVer4 : MonoBehaviour
             ShowSpeed();
             CalculateRevs();
             GearChanging();
+            HandleReset();
+            HandleWrongWay();
         }
         
     }
@@ -92,6 +95,23 @@ public class carControllerVer4 : MonoBehaviour
     {
         speed = Mathf.RoundToInt(rigidbodyCar.velocity.magnitude * 3.6f);
         speedText.SetText("Velocidad: " + speed + "Km/h");
+    }
+
+    private void HandleWrongWay()
+    {
+        float targetAngle = transform.eulerAngles.y - lastCheckpointTransform.eulerAngles.y;
+        if (Mathf.Abs(targetAngle) > 90 && Mathf.Abs(targetAngle) < 270) print("WRONG WAY " + targetAngle);
+    }
+
+    public void HandleReset()
+    {
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            rigidbodyCar.velocity = new Vector3(0, 0, 0);
+            transform.position = lastCheckpointTransform.position - Vector3.up;
+            transform.rotation = lastCheckpointTransform.rotation;
+            print("OW");
+        }
     }
 
     public void HandleMotor()
@@ -215,12 +235,6 @@ public class carControllerVer4 : MonoBehaviour
     {
         return speed;
     }
-    
-    public void SetNextCheckpointPosition(Vector3 position)
-    {
-        this.nextCheckpointPosition = position;
-        print(nextCheckpointPosition);
-    }
 
     public void RearSpeed()
     {
@@ -280,5 +294,9 @@ public class carControllerVer4 : MonoBehaviour
         var revsRangeMax = ULerp(m_RevRangeBoundary, 1f, gearNumFactor);
         Revs = ULerp(revsRangeMin, revsRangeMax, m_GearFactor);
     }
-    
+
+    public void SetLastCheckpointTransform(Transform transform)
+    {
+        lastCheckpointTransform = transform;
+    }
 }
