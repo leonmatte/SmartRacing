@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c229c73eab51b9478029375e5ca314a, type: 3}
   m_Name: BrushSettings-Default
   m_EditorClassIdentifier: 
-  brushRadiusMin: 0.001
-  brushRadiusMax: 5
-  _radius: 1
+  brushRadiusMin: 1
+  brushRadiusMax: 1000
+  _radius: 22.781
   _falloff: 0.5
   _strength: 1
   _curve:
