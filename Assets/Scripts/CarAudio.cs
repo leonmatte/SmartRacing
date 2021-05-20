@@ -22,7 +22,6 @@ namespace UnityStandardAssets.Vehicles.Car
 
         // For proper crossfading, the clips pitches should all match, with an octave offset between low and high.
 
-
         public enum EngineAudioOptions // Options for the engine audio
         {
             Simple, // Simple style audio

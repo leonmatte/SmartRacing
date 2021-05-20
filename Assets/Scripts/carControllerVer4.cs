@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityStandardAssets.Vehicles.Car;
 
 public class carControllerVer4 : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class carControllerVer4 : MonoBehaviour
     private float currentbreakForce;
     private bool isBreaking;
     private bool isDrifting;
-    private int speed;
+    private int roundedSpeed;
+    private float speed;
     private Rigidbody rigidbodyCar;
     public float rpm;
 
@@ -26,8 +28,8 @@ public class carControllerVer4 : MonoBehaviour
     [SerializeField] private float breakForce;
     [SerializeField] private float maxSteerAngle;
     [SerializeField] private float m_Downforce = 100f;
-    [SerializeField] private int topSpeed;
-    private int topSpeedAux;
+    [SerializeField] private float topSpeed;
+    private float topSpeedAux;
 
     public bool isPlayer;
     private Vector3 nextCheckpointPosition;
@@ -37,6 +39,7 @@ public class carControllerVer4 : MonoBehaviour
     [SerializeField] private WheelCollider frontRightWheelCollider;
     [SerializeField] private WheelCollider rearLeftWheelCollider;
     [SerializeField] private WheelCollider rearRightWheelCollider;
+    [SerializeField] private WheelEffects[] m_WheelEffects = new WheelEffects[4];
 
     [SerializeField] private Transform frontLeftWheelTransform;
     [SerializeField] private Transform frontRightWheeTransform;
@@ -47,6 +50,7 @@ public class carControllerVer4 : MonoBehaviour
     private int m_GearNum;
     private float m_GearFactor;
     [SerializeField] private float m_RevRangeBoundary = 1f;
+    [SerializeField] private float m_SlipLimit;
     public float Revs { get; private set; }
     public float AccelInput { get; private set; }
 
@@ -68,8 +72,8 @@ public class carControllerVer4 : MonoBehaviour
             ShowSpeed();
             CalculateRevs();
             GearChanging();
+            CheckForWheelSpin();
         }
-        
     }
     
     private void GetInput()
@@ -90,17 +94,17 @@ public class carControllerVer4 : MonoBehaviour
 
     private void ShowSpeed()
     {
-        speed = Mathf.RoundToInt(rigidbodyCar.velocity.magnitude * 3.6f);
-        speedText.SetText("Velocidad: " + speed + "Km/h");
+        speed = rigidbodyCar.velocity.magnitude * 3.6f;
+        roundedSpeed = Mathf.RoundToInt(speed);
+        speedText.SetText("Velocidad: " + roundedSpeed + "Km/h");
     }
 
     public void HandleMotor()
     {
 
-        
         RearSpeed();
         
-        if(frontLeftWheelCollider.rpm <= 1500f && speed < topSpeed)
+        if(frontLeftWheelCollider.rpm <= 1500f && roundedSpeed < topSpeed)
         {
             frontRightWheelCollider.motorTorque = verticalInput * motorForce * Time.fixedDeltaTime;
             frontLeftWheelCollider.motorTorque = verticalInput * motorForce * Time.fixedDeltaTime;
@@ -120,8 +124,6 @@ public class carControllerVer4 : MonoBehaviour
         ApplyBreaking();
         ApplyDrifting();
         AccelInput = verticalInput = Mathf.Clamp(verticalInput, 0, 1);
-
-
     }
 
     private void ApplyDrifting()
@@ -171,15 +173,15 @@ public class carControllerVer4 : MonoBehaviour
 
     public void HandleSteering()
     {
-        if (speed < 60)
+        if (roundedSpeed < 60)
         {
             maxSteerAngle = 30;
         }
-        else if (speed > 60 && speed < 120)
+        else if (roundedSpeed > 60 && roundedSpeed < 120)
         {
             maxSteerAngle = 15;
         }
-        else if (speed > 120)
+        else if (roundedSpeed > 120)
         {
             maxSteerAngle = 5;
         }
@@ -213,7 +215,7 @@ public class carControllerVer4 : MonoBehaviour
 
     public int GetSpeed()
     {
-        return speed;
+        return roundedSpeed;
     }
     
     public void SetNextCheckpointPosition(Vector3 position)
@@ -256,7 +258,7 @@ public class carControllerVer4 : MonoBehaviour
         float f = (1/(float) NoOfGears);
         // gear factor is a normalised representation of the current speed within the current gear's range of speeds.
         // We smooth towards the 'target' gear factor, so that revs don't instantly snap up or down when changing gear.
-        var targetGearFactor = Mathf.InverseLerp(f*m_GearNum, f*(m_GearNum + 1), Mathf.Abs(speed/topSpeedAux));
+        var targetGearFactor = Mathf.InverseLerp(f*m_GearNum, f*(m_GearNum + 1), Mathf.Abs(roundedSpeed/topSpeedAux));
         m_GearFactor = Mathf.Lerp(m_GearFactor, targetGearFactor, Time.deltaTime*5f);
     }
     
@@ -278,7 +280,62 @@ public class carControllerVer4 : MonoBehaviour
         var gearNumFactor = m_GearNum/(float) NoOfGears;
         var revsRangeMin = ULerp(0f, m_RevRangeBoundary, CurveFactor(gearNumFactor));
         var revsRangeMax = ULerp(m_RevRangeBoundary, 1f, gearNumFactor);
+        rpm = revsRangeMin;
         Revs = ULerp(revsRangeMin, revsRangeMax, m_GearFactor);
+    }
+    
+    // checks if the wheels are spinning and is so does three things
+    // 1) emits particles
+    // 2) plays tiure skidding sounds
+    // 3) leaves skidmarks on the ground
+    // these effects are controlled through the WheelEffects class
+    private void CheckForWheelSpin()
+    {
+        WheelCollider[] m_WheelColliders = new[]
+            {frontLeftWheelCollider, frontRightWheelCollider, rearLeftWheelCollider, rearRightWheelCollider};
+
+        //WheelEffects [] m_WheelEffects = new []{}
+        // loop through all wheels
+        for (int i = 0; i < 4; i++)
+        {
+            WheelHit wheelHit;
+            m_WheelColliders[i].GetGroundHit(out wheelHit);
+
+            // is the tire slipping above the given threshhold
+            if (Mathf.Abs(wheelHit.forwardSlip) >= m_SlipLimit || Mathf.Abs(wheelHit.sidewaysSlip) >= m_SlipLimit)
+            {
+                //m_WheelEffects[i].EmitTyreSmoke();
+
+                // avoiding all four tires screeching at the same time
+                // if they do it can lead to some strange audio artefacts
+                if (!AnySkidSoundPlaying())
+                {
+                    m_WheelEffects[i].PlayAudio();
+                    m_WheelEffects[i].EmitTyreSmoke();
+                }
+                continue;
+            }
+
+            // if it wasnt slipping stop all the audio
+            if (m_WheelEffects[i].PlayingAudio)
+            {
+                m_WheelEffects[i].StopAudio();
+            }
+            // end the trail generation
+            m_WheelEffects[i].EndSkidTrail();
+        }
+    }
+    
+    private bool AnySkidSoundPlaying()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (m_WheelEffects[i].PlayingAudio)
+            {
+                return true;
+            }
+        }
+        return false;
     }
     
 }
