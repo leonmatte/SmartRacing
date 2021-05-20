@@ -54,7 +54,7 @@ public class carControllerVer4 : MonoBehaviour
             HandleSteering();
             UpdateWheels();
             AddDownForce();
-            
+            ShowSpeed();
         }
         
     }
@@ -75,11 +75,14 @@ public class carControllerVer4 : MonoBehaviour
         this.isDrifting = isDrifting;
     }
 
-    public void HandleMotor()
+    private void ShowSpeed()
     {
         speed = Mathf.RoundToInt(rigidbodyCar.velocity.magnitude * 3.6f);
         speedText.SetText("Velocidad: " + speed + "Km/h");
-        
+    }
+
+    public void HandleMotor()
+    {
         if(frontLeftWheelCollider.rpm <= 1500f && speed < topSpeed)
             {
                 frontRightWheelCollider.motorTorque = verticalInput * motorForce * Time.fixedDeltaTime;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7287,10 +7287,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1019559234}
     - target: {fileID: 2050635434460057965, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
+      propertyPath: topSpeed
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050635434460057965, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
       propertyPath: speedText
       value: 
       objectReference: {fileID: 1097171434}
+    - target: {fileID: 2050635434460057965, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
+      propertyPath: motorForce
+      value: 100000
+      objectReference: {fileID: 0}
     - target: {fileID: 2050635434858028995, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050635435194913623, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -7299,13 +7311,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1019559234}
     - target: {fileID: 2050635435263799285, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
+      propertyPath: topSpeed
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050635435263799285, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
       propertyPath: speedText
       value: 
       objectReference: {fileID: 1097171434}
+    - target: {fileID: 2050635435263799285, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
+      propertyPath: motorForce
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050635435624188674, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
+      propertyPath: topSpeed
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 2050635435624188674, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
       propertyPath: speedText
       value: 
       objectReference: {fileID: 1097171434}
+    - target: {fileID: 2050635435624188674, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
+      propertyPath: motorForce
+      value: 100000
+      objectReference: {fileID: 0}
     - target: {fileID: 2050635435624188701, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
       propertyPath: circuit
       value: 
@@ -7315,9 +7343,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1019559234}
     - target: {fileID: 2050635435632895933, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
+      propertyPath: topSpeed
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050635435632895933, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
       propertyPath: speedText
       value: 
       objectReference: {fileID: 1097171434}
+    - target: {fileID: 2050635435632895933, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
+      propertyPath: motorForce
+      value: 100000
+      objectReference: {fileID: 0}
     - target: {fileID: 2050635435821640519, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -7327,9 +7363,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1019559234}
     - target: {fileID: 2050635435858936982, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
+      propertyPath: topSpeed
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050635435858936982, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
       propertyPath: speedText
       value: 
       objectReference: {fileID: 1097171434}
+    - target: {fileID: 2050635435858936982, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
+      propertyPath: motorForce
+      value: 100000
+      objectReference: {fileID: 0}
     - target: {fileID: 2050635436157506763, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
       propertyPath: m_IsActive
       value: 1
