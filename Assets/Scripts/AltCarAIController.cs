@@ -25,7 +25,7 @@ public class AltCarAIController : MonoBehaviour
     private float m_RandomPerlin;             // A random value for the car to base its wander on (so that AI cars don't all wander in the same pattern)
     private carControllerVer4 m_CarController;    // Reference to actual car controller we are controlling
     private Rigidbody m_Rigidbody;
-    private bool wantsToDrift;
+    private bool wantsToDrift, wantsToBrake;
     private RaycastHit hitF, hitR, hitL;
     private bool reverse, evadeRight, evadeLeft;
     public Transform raycastPoint;
@@ -88,12 +88,19 @@ public class AltCarAIController : MonoBehaviour
             
             float targetAngle = Mathf.Atan2(localTarget.x, localTarget.z)*Mathf.Rad2Deg;
 
-            if (Mathf.Abs(targetAngle) > 20)
+            if (Mathf.Abs(targetAngle) > 15)
             {
                 wantsToDrift = true;
+                if (Mathf.Abs(targetAngle) > 30 && m_CarController.GetSpeed() > 100)
+                {
+                    wantsToBrake = true;
+                }
             }
-            else wantsToDrift = false;
-
+            else
+            {
+                wantsToDrift = false;
+                wantsToBrake = false;
+            }
             float steer = Mathf.Clamp(targetAngle*m_SteerSensitivity, -1, 1)*Mathf.Sign(m_CarController.GetSpeed());
             if (reverse) steer *= -1;
             else if (evadeLeft)
@@ -115,7 +122,7 @@ public class AltCarAIController : MonoBehaviour
 
     private void SendInput(float steer, float accel)
     {
-        m_CarController.GetInputFromAI(steer, accel, false, wantsToDrift, accel > 0, reverse);
+        m_CarController.GetInputFromAI(steer, accel, wantsToBrake, wantsToDrift, accel > 0, reverse);
         m_CarController.HandleMotor();
         m_CarController.HandleSteering();
         m_CarController.UpdateWheels();
