@@ -71,11 +71,11 @@ public class carControllerVer4 : MonoBehaviour
             UpdateWheels();
             AddDownForce();
             ShowSpeed();
+            HandleReset();
+            HandleWrongWay();
             CalculateRevs();
             GearChanging();
             CheckForWheelSpin();
-            HandleReset();
-            HandleWrongWay();
         }
     }
 
@@ -113,7 +113,7 @@ public class carControllerVer4 : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl))
         {
             rigidbodyCar.velocity = new Vector3(0, 0, 0);
-            transform.position = lastCheckpointTransform.position - Vector3.up;
+            transform.position = lastCheckpointTransform.position - 8 * Vector3.up;
             transform.rotation = lastCheckpointTransform.rotation;
             print("OW");
         }

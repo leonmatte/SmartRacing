@@ -91,10 +91,6 @@ public class AltCarAIController : MonoBehaviour
             if (Mathf.Abs(targetAngle) > 20)
             {
                 wantsToDrift = true;
-                if(Mathf.Abs(targetAngle) > 30)
-                {
-                    accel -= 1;
-                }
             }
             else wantsToDrift = false;
 
