@@ -40,9 +40,6 @@ public class MenuOpciones : MonoBehaviour
         else if(SceneManager.GetActiveScene().name == "Mapa2")
         {
             SceneManager.UnloadSceneAsync(1);
-            Time.timeScale = 1f;
-            Cursor.visible = false;
-            menu.SetActive(true);
         }
         
     }
