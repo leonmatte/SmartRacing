@@ -20,8 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="809b70c0-c4a8-4d9b-b879-c460cbed4acb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.polybrush/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.polybrush/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa3.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa4.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa4.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AltCarAIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AltCarAIController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +41,7 @@
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Scripts/carControllerVer4.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AltCarAIController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1siHAKdwkUy3a2kQxyGnho5gGo1" />
@@ -97,6 +101,7 @@
       <workItem from="1621516155609" duration="1710000" />
       <workItem from="1621538750438" duration="8172000" />
       <workItem from="1621762236129" duration="175000" />
+      <workItem from="1621767041935" duration="1146000" />
     </task>
     <servers />
   </component>

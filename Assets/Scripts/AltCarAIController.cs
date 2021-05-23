@@ -21,6 +21,7 @@ public class AltCarAIController : MonoBehaviour
     [SerializeField] private Transform m_Target;                                              // 'target' the target object to aim for.
     [SerializeField] private bool m_StopWhenTargetReached;                                    // should we stop driving when we reach the target?
     [SerializeField] private float m_ReachTargetThreshold = 2;
+    [SerializeField] private int driftAngleThreshold, driftSpeedThreshold, brakeAngleThreshold, brakeSpeedThreshold;
         
     private float m_RandomPerlin;             // A random value for the car to base its wander on (so that AI cars don't all wander in the same pattern)
     private carControllerVer4 m_CarController;    // Reference to actual car controller we are controlling
@@ -88,10 +89,10 @@ public class AltCarAIController : MonoBehaviour
             
             float targetAngle = Mathf.Atan2(localTarget.x, localTarget.z)*Mathf.Rad2Deg;
 
-            if (Mathf.Abs(targetAngle) > 15)
+            if (Mathf.Abs(targetAngle) > driftAngleThreshold && m_CarController.GetSpeed() > driftSpeedThreshold)
             {
                 wantsToDrift = true;
-                if (Mathf.Abs(targetAngle) > 30 && m_CarController.GetSpeed() > 100)
+                if (Mathf.Abs(targetAngle) > brakeAngleThreshold && m_CarController.GetSpeed() > brakeSpeedThreshold)
                 {
                     wantsToBrake = true;
                 }
