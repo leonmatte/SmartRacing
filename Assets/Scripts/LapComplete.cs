@@ -22,7 +22,7 @@ public class LapComplete : MonoBehaviour
 
 	void OnTriggerEnter()
 	{
-		VueltasHechas++;
+		VueltasHechas += 1;
 		if (LapTimeManager.SecondCount <= 9)
 		{
 			SecondDisplay.GetComponent<TMP_Text>().text = "0" + LapTimeManager.SecondCount + ".";
@@ -46,10 +46,10 @@ public class LapComplete : MonoBehaviour
 		LapTimeManager.MinuteCount = 0;
 		LapTimeManager.SecondCount = 0;
 		LapTimeManager.MilliCount = 0;
-		LapCounter.GetComponent<TMP_Text>().text = "" + VueltasHechas;
+		LapCounter.GetComponent<Text>().text = "" + VueltasHechas;
 
-		HalfLapTrig.SetActive(true);
 		LapCompleteTrig.SetActive(false);
+		HalfLapTrig.SetActive(true);
 	}
 
 }
