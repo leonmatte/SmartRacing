@@ -25,6 +25,12 @@ public class MenuPausa : MonoBehaviour
             DireccionContraria.SetActive(false);
             Informacion.SetActive(false);
             Time.timeScale = 0f;
+            //Parar audios
+            AudioSource[] audios = FindObjectsOfType<AudioSource>();
+            foreach (AudioSource a in audios)
+            {
+                a.Pause();
+            }
         }
 
     }
@@ -35,6 +41,12 @@ public class MenuPausa : MonoBehaviour
         Informacion.SetActive(true);
         Time.timeScale = 1f;
         Cursor.visible = false;
+        //Iniciar audios
+        AudioSource[] audios = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource a in audios)
+        {
+            a.Play();
+        }
     }
 
 }
