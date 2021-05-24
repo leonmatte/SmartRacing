@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System;
 using UnityEngine.UI;
 
 public class LapTimeManager : MonoBehaviour
@@ -15,12 +17,11 @@ public class LapTimeManager : MonoBehaviour
     public GameObject SecondBox;
     public GameObject MilliBox;
 
-
 	void Update()
 	{
 		MilliCount += Time.deltaTime * 10;
 		MilliDisplay = MilliCount.ToString("F0");
-		MilliBox.GetComponent<Text>().text = "" + MilliDisplay;
+		MilliBox.GetComponent<TMP_Text>().text = "" + MilliDisplay;
 
 		if (MilliCount >= 10)
 		{
@@ -30,11 +31,11 @@ public class LapTimeManager : MonoBehaviour
 
 		if (SecondCount <= 9)
 		{
-			SecondBox.GetComponent<Text>().text = "0" + SecondCount + ".";
+			SecondBox.GetComponent<TMP_Text>().text = "0" + SecondCount + ".";
 		}
 		else
 		{
-			SecondBox.GetComponent<Text>().text = "" + SecondCount + ".";
+			SecondBox.GetComponent<TMP_Text>().text = "" + SecondCount + ".";
 		}
 
 		if (SecondCount >= 60)
@@ -45,11 +46,11 @@ public class LapTimeManager : MonoBehaviour
 
 		if (MinuteCount <= 9)
 		{
-			MinuteBox.GetComponent<Text>().text = "0" + MinuteCount + ":";
+			MinuteBox.GetComponent<TMP_Text>().text = "0" + MinuteCount + ":";
 		}
 		else
 		{
-			MinuteBox.GetComponent<Text>().text = "" + MinuteCount + ":";
+			MinuteBox.GetComponent<TMP_Text>().text = "" + MinuteCount + ":";
 		}
 
 	}

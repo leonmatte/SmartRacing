@@ -11,20 +11,23 @@ public class Countdown : MonoBehaviour
     public AudioSource GetReady;
     public AudioSource GoAudio;
     public GameObject LapTimer;
-    public GameObject CarUserControl;
+    public GameObject[] ai_cars = new GameObject[3];
 
     void Start()
     {
         StartCoroutine(CountStart());
-        CarUserControl.GetComponent<CarUserControl>().enabled = false;
-
+        ai_cars[0].GetComponent<AltCarAIController>().enabled = false;
+        ai_cars[1].GetComponent<AltCarAIController>().enabled = false;
+        ai_cars[2].GetComponent<AltCarAIController>().enabled = false;
+        ai_cars[3].GetComponent<AltCarAIController>().enabled = false;
+        LapTimer.SetActive(false);
     }
 
 
     IEnumerator CountStart()
     {
-        LapTimer.SetActive(false);
-        yield return new WaitForSeconds(0.5f);
+
+        yield return new WaitForSeconds(0.3f);
         CountDown.GetComponent<Text>().text = "3";
         GetReady.Play();
         CountDown.SetActive(true);
@@ -42,8 +45,11 @@ public class Countdown : MonoBehaviour
         CountDown.SetActive(false);
         GoAudio.Play();
         LapTimer.SetActive(true);
-        CarUserControl.GetComponent<CarUserControl>().enabled = true;
-
+        GameObject.FindGameObjectWithTag("Player").GetComponent<carControllerVer4>().enabled = true;
+        ai_cars[0].GetComponent<AltCarAIController>().enabled = true;
+        ai_cars[1].GetComponent<AltCarAIController>().enabled = true;
+        ai_cars[2].GetComponent<AltCarAIController>().enabled = true;
+        ai_cars[3].GetComponent<AltCarAIController>().enabled = true;
     }
 
 
