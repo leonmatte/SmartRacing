@@ -107,7 +107,7 @@ public class carControllerVer4 : MonoBehaviour
     private void HandleWrongWay()
     {
         float targetAngle = transform.eulerAngles.y - lastCheckpointTransform.eulerAngles.y;
-        if (Mathf.Abs(targetAngle) > 90 && Mathf.Abs(targetAngle) < 270)
+        if (Mathf.Abs(targetAngle) > 135 && Mathf.Abs(targetAngle) < 225)
         {
             print("WRONG WAY " + targetAngle);
             direccionContraria.SetActive(true);
@@ -123,7 +123,7 @@ public class carControllerVer4 : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl))
         {
             rigidbodyCar.velocity = new Vector3(0, 0, 0);
-            transform.position = lastCheckpointTransform.position - 8 * Vector3.up;
+            transform.position = lastCheckpointTransform.position - 3 * Vector3.up;
             transform.rotation = lastCheckpointTransform.rotation;
             print("OW");
         }

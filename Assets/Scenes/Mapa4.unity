@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.8734932, g: 0.8377037, b: 0.7957108, a: 1}
+  m_IndirectSpecularColor: {r: 0.8734932, g: 0.83770365, b: 0.7957108, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17438,6 +17438,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8617208363371006553, guid: f918f6757107ca440ad54e6bf617204d, type: 3}
   m_PrefabInstance: {fileID: 607597501}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &628947292 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8542809835757040024, guid: 8c05b19e49697df4db3ab105ea8b4020, type: 3}
+  m_PrefabInstance: {fileID: 848381743}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &648323650
 PrefabInstance:
@@ -39255,7 +39260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carTransformList:
-  - {fileID: 0}
+  - {fileID: 628947292}
   - {fileID: 1651586323}
   - {fileID: 48804846}
   - {fileID: 320983089}
