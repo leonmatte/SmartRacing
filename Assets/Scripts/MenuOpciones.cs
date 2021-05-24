@@ -23,6 +23,12 @@ public class MenuOpciones : MonoBehaviour
         //Volver al menú principal
         SceneManager.LoadScene(0, LoadSceneMode.Single);
         Time.timeScale = 1f;
+        //Iniciar audios
+        AudioSource[] audios = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource a in audios)
+        {
+            a.Play();
+        }
     }
 
     public void CargarOpciones()
