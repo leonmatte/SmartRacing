@@ -7,6 +7,7 @@ public class MenuPausa : MonoBehaviour
 {
     public GameObject PauseMenuUI;
     public GameObject Informacion;
+    public GameObject DireccionContraria;
 
     // Update is called once per frame
     void Update()
@@ -21,6 +22,7 @@ public class MenuPausa : MonoBehaviour
         void Pause()
         {
             PauseMenuUI.SetActive(true);
+            DireccionContraria.SetActive(false);
             Informacion.SetActive(false);
             Time.timeScale = 0f;
         }

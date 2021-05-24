@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SelectorPersonaje : MonoBehaviour
 {
@@ -26,9 +25,8 @@ public class SelectorPersonaje : MonoBehaviour
         personajes[personajeSeleccionado].SetActive(true);
     }
 
-    public void Jugar()
+    public void PersonajeSeleccionado()
     {
         PlayerPrefs.SetInt("personajeSeleccionado", personajeSeleccionado);
-        SceneManager.LoadScene(3, LoadSceneMode.Single);
     }
 }

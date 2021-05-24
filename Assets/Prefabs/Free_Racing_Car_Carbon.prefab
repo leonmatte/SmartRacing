@@ -1318,6 +1318,8 @@ GameObject:
   - component: {fileID: 4515842207890374757}
   - component: {fileID: 4515842207890374754}
   - component: {fileID: 4515842207890374755}
+  - component: {fileID: 510993663905754781}
+  - component: {fileID: 2217618053295982621}
   m_Layer: 0
   m_Name: Free_Racing_Car_Carbon
   m_TagString: Untagged
@@ -1415,6 +1417,7 @@ MonoBehaviour:
   rearRightWheelTransform: {fileID: 4515842207424441148}
   m_RevRangeBoundary: 1
   m_SlipLimit: 0
+  direccionContraria: {fileID: 0}
 --- !u!114 &4515842207890374755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1441,11 +1444,60 @@ MonoBehaviour:
   m_Target: {fileID: 4515842206185130238}
   m_StopWhenTargetReached: 0
   m_ReachTargetThreshold: 2
+  driftAngleThreshold: 0
+  driftSpeedThreshold: 0
+  brakeAngleThreshold: 0
+  brakeSpeedThreshold: 0
   raycastPoint: {fileID: 4515842206181929468}
   raycastLength: 0.5
   mask:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &510993663905754781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4515842207890374753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f68526996401d5f4083ae6013bc3562c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  circuit: {fileID: 0}
+  lookAheadForTargetOffset: 30
+  lookAheadForTargetFactor: 0.1
+  lookAheadForSpeedOffset: 10
+  lookAheadForSpeedFactor: 0.2
+  progressStyle: 0
+  pointToPointThreshold: 4
+  target: {fileID: 4515842206185130238}
+--- !u!114 &2217618053295982621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4515842207890374753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fa55eb64c5cea4aa3c71ae19c434bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engineSoundStyle: 1
+  lowAccelClip: {fileID: 8300000, guid: c4d8928c75c21af43998193f0f038429, type: 3}
+  lowDecelClip: {fileID: 8300000, guid: 5699dddcce16c4543b95951c4ce0e092, type: 3}
+  highAccelClip: {fileID: 8300000, guid: 03e3bd08a6e70684dbe299a3e185fdd2, type: 3}
+  highDecelClip: {fileID: 8300000, guid: 03bf91d88fce91c41995d27de63cc967, type: 3}
+  pitchMultiplier: 1
+  lowPitchMin: 1
+  lowPitchMax: 6
+  highPitchMultiplier: 0.25
+  maxRolloffDistance: 500
+  dopplerLevel: 1
+  useDoppler: 1
+  camera: {fileID: 4515842206236590552}
 --- !u!1 &4515842207931999857
 GameObject:
   m_ObjectHideFlags: 0

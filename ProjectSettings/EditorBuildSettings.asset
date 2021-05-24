@@ -12,9 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu Opciones.unity
     guid: 4e6c9f84ad04acc41a65280a4ae510d1
   - enabled: 1
-    path: Assets/Scenes/Seleccion Personaje.unity
+    path: Assets/Scenes/Seleccion personaje-circuito.unity
     guid: 39358809f8a6bbc4b8dcdd150bd23c98
   - enabled: 1
+    path: Assets/Scenes/Mapa1.unity
+    guid: 6a6ee14ec57efdd4188d97bd0bc58d0b
+  - enabled: 1
     path: Assets/Scenes/Mapa2.unity
-    guid: a3803b6318ccd754e913f05c898ca9c5
+    guid: 2b070b4b84beb5a4c9ea34e1939d1164
+  - enabled: 1
+    path: Assets/Scenes/Mapa3.unity
+    guid: eac82a3852d1b9d49b3c7eea9ab009b0
+  - enabled: 1
+    path: Assets/Scenes/Mapa4.unity
+    guid: 96ab54b59bce7e64cab77157678ef0d7
   m_configObjects: {}
