@@ -369,9 +369,4 @@ public class carControllerVer4 : MonoBehaviour
     {
         lastCheckpointTransform = transform;
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        other.SendMessage("Crash");
-    }
 }

@@ -21,7 +21,7 @@ namespace UnityStandardAssets.Vehicles.Car
         // highDecelClip : Thenengine at high revs, with throttle at minimum (i.e. engine-braking at very high speed)
 
         // For proper crossfading, the clips pitches should all match, with an octave offset between low and high.
-
+        
         public enum EngineAudioOptions // Options for the engine audio
         {
             Simple, // Simple style audio
@@ -29,7 +29,8 @@ namespace UnityStandardAssets.Vehicles.Car
         }
 
         public EngineAudioOptions engineSoundStyle = EngineAudioOptions.FourChannel;// Set the default audio options to be four channel
-        public AudioClip crash;
+        public AudioClip crashClipStrong;
+        public AudioClip crashClipSoft;
         public AudioClip lowAccelClip;                                              // Audio clip for low acceleration
         public AudioClip lowDecelClip;                                              // Audio clip for low deceleration
         public AudioClip highAccelClip;                                             // Audio clip for high acceleration
@@ -42,7 +43,8 @@ namespace UnityStandardAssets.Vehicles.Car
         public float dopplerLevel = 1;                                              // The mount of doppler effect used in the audio
         public bool useDoppler = true;                                              // Toggle for using doppler
         public Camera camera;
-
+        private Rigidbody rigidbodyCar;
+        
         private AudioSource m_Crash;
         private AudioSource m_LowAccel; // Source for the low acceleration sounds
         private AudioSource m_LowDecel; // Source for the low deceleration sounds
@@ -51,6 +53,12 @@ namespace UnityStandardAssets.Vehicles.Car
         private bool m_StartedSound; // flag for knowing if we have started sounds
         private carControllerVer4 m_CarController; // Reference to car we are controlling
 
+        
+        private void Start()
+        {
+            rigidbodyCar = GetComponent<Rigidbody>();
+            m_Crash = gameObject.AddComponent<AudioSource>();
+        }
 
         private void StartSound()
         {
@@ -183,10 +191,22 @@ namespace UnityStandardAssets.Vehicles.Car
             return (1.0f - value)*from + value*to;
         }
 
-        public void Crash()
-        {
-            m_Crash.Play();
 
+        private void OnCollisionEnter(Collision other)
+        {
+            if (!m_Crash.isPlaying)
+            {
+                if (m_CarController.GetSpeed() >= 150)
+                {
+                    m_Crash.clip = crashClipStrong;
+                    m_Crash.Play();    
+                }
+                else
+                {
+                    m_Crash.clip = crashClipSoft;
+                    m_Crash.Play();  
+                }
+            }
         }
     }
 }
