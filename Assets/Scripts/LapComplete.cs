@@ -20,28 +20,45 @@ public class LapComplete : MonoBehaviour
 	public GameObject LapCounter;
 	public int VueltasHechas;
 
+	public GameObject[] Cars = new GameObject[4];
+
+	public String[] car_scores = new string[4];
+
+	public String car_score;
+
+
 	void OnTriggerEnter()
 	{
 		VueltasHechas += 1;
 		if (LapTimeManager.SecondCount <= 9)
 		{
 			SecondDisplay.GetComponent<TMP_Text>().text = "0" + LapTimeManager.SecondCount + ".";
+			String seconds = "0"+LapTimeManager.SecondCount+".";
+			car_score.Insert(1, seconds);
+			Debug.Log(car_score);
 		}
 		else
 		{
 			SecondDisplay.GetComponent<TMP_Text>().text = "" + LapTimeManager.SecondCount + ".";
+			//car_score += "" + LapTimeManager.SecondCount + ".";
 		}
 
 		if (LapTimeManager.MinuteCount <= 9)
 		{
 			MinuteDisplay.GetComponent<TMP_Text>().text = "0" + LapTimeManager.MinuteCount + ".";
+		//	car_score += "0" + LapTimeManager.MinuteCount + ".";
 		}
 		else
 		{
 			MinuteDisplay.GetComponent<TMP_Text>().text = "" + LapTimeManager.MinuteCount + ".";
+			//car_score += "" + LapTimeManager.MinuteCount + ".";
 		}
 
+		Debug.Log(VueltasHechas);
+		Debug.Log(car_score);
+
 		MilliDisplay.GetComponent<TMP_Text>().text = "" + LapTimeManager.MilliCount;
+		//car_score = "" + LapTimeManager.MilliCount.ToString;
 
 		LapTimeManager.MinuteCount = 0;
 		LapTimeManager.SecondCount = 0;
