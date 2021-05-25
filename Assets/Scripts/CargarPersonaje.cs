@@ -17,7 +17,7 @@ public class CargarPersonaje : MonoBehaviour
         GameObject camara = camaraFollower[personajeSeleccionado];
         camara.SetActive(true);
 
-        //Desactivar el ratón
+        //Desactivar el ratï¿½n
         Cursor.visible = false;
 
         //Activa al coche como jugador

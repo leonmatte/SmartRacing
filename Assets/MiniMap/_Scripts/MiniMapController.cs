@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -23,6 +24,13 @@ public class MiniMapController : MonoBehaviour {
 
 	[Tooltip("The target which the minimap will be following")]
 	public Transform target;
+	public GameObject[] cocheSeleccionado;
+	private void Start()
+	{
+		int personajeSeleccionado = PlayerPrefs.GetInt("personajeSeleccionado");
+		target = cocheSeleccionado[personajeSeleccionado].transform;
+	}
+	
 	//UI related variables
 	[Tooltip("Set which layers to show in the minimap")]
 	public LayerMask minimapLayers;
