@@ -12,6 +12,7 @@ public class Audios : MonoBehaviour
     private void Start()
     {
         gameObject.AddComponent<AudioSource>();
+        source.clip = clip;
         btn.onClick.AddListener(reproducir);
     }
     public void reproducir()

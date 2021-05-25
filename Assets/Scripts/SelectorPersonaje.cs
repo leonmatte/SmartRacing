@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SelectorPersonaje : MonoBehaviour
 {
@@ -28,5 +29,16 @@ public class SelectorPersonaje : MonoBehaviour
     public void PersonajeSeleccionado()
     {
         PlayerPrefs.SetInt("personajeSeleccionado", personajeSeleccionado);
+    }
+
+    public void VolverAlMenu()
+    {
+        StartCoroutine(EsperarCambioEscena(0.3f, 0));
+    }
+
+    public IEnumerator EsperarCambioEscena(float tiempo, int escena)
+    {
+        yield return new WaitForSeconds(tiempo);
+        SceneManager.LoadScene(escena, LoadSceneMode.Single);
     }
 }
