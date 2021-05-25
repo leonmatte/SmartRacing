@@ -14,6 +14,11 @@ public class CambioEscenas : MonoBehaviour
         StartCoroutine(EsperarCambioEscena(0.3f, 0));
     }
 
+    public void SeleccionMapa()
+    {
+        StartCoroutine(EsperarCambioEscena(0.3f, 8));
+    }
+
     public IEnumerator EsperarCambioEscena(float tiempo, int escena)
     {
         yield return new WaitForSeconds(tiempo);

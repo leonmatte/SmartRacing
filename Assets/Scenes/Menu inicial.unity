@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e921bf11e0a83e447be275410fa8ea82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: ed3b0c7a6dcb4ba46b23bb9719a36010, type: 3}
+  clip: {fileID: 8300000, guid: 499d9adffae1e5846b9e0f903c69459e, type: 3}
 --- !u!1 &811472021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,6 +1121,7 @@ GameObject:
   - component: {fileID: 1365464910}
   - component: {fileID: 1365464909}
   - component: {fileID: 1365464913}
+  - component: {fileID: 1365464914}
   m_Layer: 5
   m_Name: MenuPrincipal
   m_TagString: Untagged
@@ -1223,6 +1224,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 938335118}
+--- !u!114 &1365464914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365464908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d01f90f40461042966ada0c2256fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1574620223
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,9 +1332,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1365464913}
-        m_TargetAssemblyTypeName: MenuOpciones, Assembly-CSharp
-        m_MethodName: SeleccionarPersonaje
+      - m_Target: {fileID: 1365464914}
+        m_TargetAssemblyTypeName: CambioEscenas, Assembly-CSharp
+        m_MethodName: SeleccionModoDeJuego
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1381,7 +1394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e921bf11e0a83e447be275410fa8ea82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: ed3b0c7a6dcb4ba46b23bb9719a36010, type: 3}
+  clip: {fileID: 8300000, guid: 499d9adffae1e5846b9e0f903c69459e, type: 3}
 --- !u!1 &1887672369
 GameObject:
   m_ObjectHideFlags: 0
@@ -1606,4 +1619,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e921bf11e0a83e447be275410fa8ea82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: ed3b0c7a6dcb4ba46b23bb9719a36010, type: 3}
+  clip: {fileID: 8300000, guid: 499d9adffae1e5846b9e0f903c69459e, type: 3}
