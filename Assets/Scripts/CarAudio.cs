@@ -29,6 +29,7 @@ namespace UnityStandardAssets.Vehicles.Car
         }
 
         public EngineAudioOptions engineSoundStyle = EngineAudioOptions.FourChannel;// Set the default audio options to be four channel
+        public AudioClip crash;
         public AudioClip lowAccelClip;                                              // Audio clip for low acceleration
         public AudioClip lowDecelClip;                                              // Audio clip for low deceleration
         public AudioClip highAccelClip;                                             // Audio clip for high acceleration
@@ -42,6 +43,7 @@ namespace UnityStandardAssets.Vehicles.Car
         public bool useDoppler = true;                                              // Toggle for using doppler
         public Camera camera;
 
+        private AudioSource m_Crash;
         private AudioSource m_LowAccel; // Source for the low acceleration sounds
         private AudioSource m_LowDecel; // Source for the low deceleration sounds
         private AudioSource m_HighAccel; // Source for the high acceleration sounds
@@ -179,6 +181,12 @@ namespace UnityStandardAssets.Vehicles.Car
         private static float ULerp(float from, float to, float value)
         {
             return (1.0f - value)*from + value*to;
+        }
+
+        public void Crash()
+        {
+            m_Crash.Play();
+
         }
     }
 }

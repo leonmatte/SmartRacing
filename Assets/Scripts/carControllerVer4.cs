@@ -364,10 +364,14 @@ public class carControllerVer4 : MonoBehaviour
         }
         return false;
     }
-
-
+    
     public void SetLastCheckpointTransform(Transform transform)
     {
         lastCheckpointTransform = transform;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        other.SendMessage("Crash");
     }
 }
