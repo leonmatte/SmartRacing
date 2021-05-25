@@ -20,18 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="809b70c0-c4a8-4d9b-b879-c460cbed4acb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/contentModel.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.SmartRacing/riderModule.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MiniMap/_Prefabs/minMapMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MiniMap/_Prefabs/minMapMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MiniMap/_Scripts/MiniMapController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MiniMap/_Scripts/MiniMapController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CargarPersonaje.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CargarPersonaje.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Free_Racing_Car_Blue.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Free_Racing_Car_Blue.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Free_Racing_Car_Carbon.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Free_Racing_Car_Carbon.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Free_Racing_Car_Gray.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Free_Racing_Car_Gray.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Free_Racing_Car_Red.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Free_Racing_Car_Red.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Free_Racing_Car_Yellow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Free_Racing_Car_Yellow.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Personajes.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Personajes.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SkidTrail.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SkidTrail.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/carControllerVer4.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/carControllerVer4.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.polybrush/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.polybrush/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,14 +42,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CarAudio.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CheckpointTracker.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CarAudio.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9BAEBF9A-F865-4167-8FD1-5BFDBF5F26EB/f3/e8b875c3/Mathf.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/CargarPersonaje.cs" />
         <option value="$PROJECT_DIR$/Assets/MiniMap/_Scripts/MiniMapController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/carControllerVer4.cs" />
       </list>
     </option>
   </component>

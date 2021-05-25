@@ -21,7 +21,6 @@ public class carControllerVer4 : MonoBehaviour
     private int roundedSpeed;
     private float speed;
     private Rigidbody rigidbodyCar;
-    public float rpm;
     public int lapCounter;
 
     [SerializeField] public float maxSpeedIA = 250;
@@ -41,7 +40,7 @@ public class carControllerVer4 : MonoBehaviour
     [SerializeField] private WheelCollider frontRightWheelCollider;
     [SerializeField] private WheelCollider rearLeftWheelCollider;
     [SerializeField] private WheelCollider rearRightWheelCollider;
-    [SerializeField] private WheelEffects[] m_WheelEffects = new WheelEffects[4];
+    [SerializeField] private WheelEffects[] m_WheelEffects = new WheelEffects[2];
 
     [SerializeField] private Transform frontLeftWheelTransform;
     [SerializeField] private Transform frontRightWheeTransform;
@@ -312,7 +311,6 @@ public class carControllerVer4 : MonoBehaviour
         var gearNumFactor = m_GearNum/(float) NoOfGears;
         var revsRangeMin = ULerp(0f, m_RevRangeBoundary, CurveFactor(gearNumFactor));
         var revsRangeMax = ULerp(m_RevRangeBoundary, 1f, gearNumFactor);
-        rpm = revsRangeMin;
         Revs = ULerp(revsRangeMin, revsRangeMax, m_GearFactor);
     }
 
@@ -323,28 +321,25 @@ public class carControllerVer4 : MonoBehaviour
     // these effects are controlled through the WheelEffects class
     private void CheckForWheelSpin()
     {
-        WheelCollider[] m_WheelColliders = new[]
-            {frontLeftWheelCollider, frontRightWheelCollider, rearLeftWheelCollider, rearRightWheelCollider};
-
-        //WheelEffects [] m_WheelEffects = new []{}
+        WheelCollider[] m_WheelColliders = {rearLeftWheelCollider, rearRightWheelCollider};
+        
         // loop through all wheels
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 2; i++)
         {
             WheelHit wheelHit;
             m_WheelColliders[i].GetGroundHit(out wheelHit);
 
             // is the tire slipping above the given threshhold
-            if (Mathf.Abs(wheelHit.forwardSlip) >= m_SlipLimit || Mathf.Abs(wheelHit.sidewaysSlip) >= m_SlipLimit)
+            if (isDrifting)
             {
-                //m_WheelEffects[i].EmitTyreSmoke();
-
                 // avoiding all four tires screeching at the same time
                 // if they do it can lead to some strange audio artefacts
                 if (!AnySkidSoundPlaying())
                 {
                     m_WheelEffects[i].PlayAudio();
-                    m_WheelEffects[i].EmitTyreSmoke();
+                    
                 }
+                m_WheelEffects[i].EmitTyreSmoke();
                 continue;
             }
 
@@ -360,7 +355,7 @@ public class carControllerVer4 : MonoBehaviour
 
     private bool AnySkidSoundPlaying()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 2; i++)
         {
             if (m_WheelEffects[i].PlayingAudio)
             {
