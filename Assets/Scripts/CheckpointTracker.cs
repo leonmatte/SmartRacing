@@ -7,6 +7,7 @@ public class CheckpointTracker : MonoBehaviour
 
     [SerializeField] private List<Transform> carTransformList;
     [SerializeField] private List<carControllerVer4> controllerList;
+    private int positions;
 
     private List<Checkpoint> checkpointList;
     private List<int> nextCheckpointList;
@@ -16,6 +17,16 @@ public class CheckpointTracker : MonoBehaviour
         Transform checkpointsTransform = transform.Find("Checkpoints");
 
         checkpointList = new List<Checkpoint>();
+
+        positions = 0;
+
+        foreach (carControllerVer4 controller in controllerList)
+        {
+            if (controller.isPlayer)
+            {
+                // Implementar LapCounter UI
+            }
+        }
 
         foreach (Transform checkpoint in checkpointsTransform)
         {
@@ -34,17 +45,22 @@ public class CheckpointTracker : MonoBehaviour
     public void CarThroughCheckpoint(Checkpoint checkpoint, Transform carTransform)
     {
         int nextCheckpointIndex = nextCheckpointList[carTransformList.IndexOf(carTransform)];
-        if(checkpointList.IndexOf(checkpoint) == nextCheckpointIndex)
+        if(checkpointList.IndexOf(checkpoint) == nextCheckpointIndex) // Si el coche pasa por el checkpoint que le toca
         {
-            if (nextCheckpointIndex == 0)
+            if (nextCheckpointIndex == 0) // Si el checkpoint es el primero
             {
-                controllerList[carTransformList.IndexOf(carTransform)].lapCounter++;
+                controllerList[carTransformList.IndexOf(carTransform)].lapCounter++; // Siguiente vuelta
                 print("Coche: " + carTransformList.IndexOf(carTransform) + ", vuelta: " +
                       controllerList[carTransformList.IndexOf(carTransform)].lapCounter);
-                if (controllerList[carTransformList.IndexOf(carTransform)].lapCounter > 3)
+                if (controllerList[carTransformList.IndexOf(carTransform)].lapCounter > 3) // Si el coche ha completado las tres vueltas
                 {
-                    controllerList[carTransformList.IndexOf(carTransform)].driving = false;
-                    print("GAME OVERRRRR");
+                    controllerList[carTransformList.IndexOf(carTransform)].driving = false; // El coche deja de correr
+                    positions++; // Otro coche más ha terminado la carrera
+                    
+                    if (controllerList[carTransformList.IndexOf(carTransform)].isPlayer) // Si el coche que ha terminado la carrera es el jugador
+                    {
+                        print("HAS QUEDADO EL " + positions); // Se muestra la posición en que ha terminado
+                    }
                 }
                     
             }
