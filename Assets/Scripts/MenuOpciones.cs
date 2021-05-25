@@ -43,11 +43,23 @@ public class MenuOpciones : MonoBehaviour
         {
             SceneManager.LoadScene(0, LoadSceneMode.Single);
         }
-        else if(SceneManager.GetActiveScene().name == "Mapa2")
+        else if(SceneManager.GetActiveScene().name == "Mapa1")
         {
             SceneManager.UnloadSceneAsync(1);
         }
-        
+        else if (SceneManager.GetActiveScene().name == "Mapa2")
+        {
+            SceneManager.UnloadSceneAsync(1);
+        }
+        else if (SceneManager.GetActiveScene().name == "Mapa3")
+        {
+            SceneManager.UnloadSceneAsync(1);
+        }
+        else if (SceneManager.GetActiveScene().name == "Mapa4")
+        {
+            SceneManager.UnloadSceneAsync(1);
+        }
+
     }
 
 }
