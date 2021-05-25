@@ -18,14 +18,14 @@ public class LapComplete : MonoBehaviour
 	public GameObject LapTimeBox;
 
 	public GameObject LapCounter;
-	public int VueltasHechas;
-
-	public GameObject[] Cars = new GameObject[4];
-
-	public String[] car_scores = new string[4];
 
 	public String car_score;
+	public int VueltasHechas;
 
+	void Awake()
+    {
+		VueltasHechas = 0;
+    }
 
 	void OnTriggerEnter()
 	{
@@ -63,7 +63,7 @@ public class LapComplete : MonoBehaviour
 		LapTimeManager.MinuteCount = 0;
 		LapTimeManager.SecondCount = 0;
 		LapTimeManager.MilliCount = 0;
-		LapCounter.GetComponent<Text>().text = "" + VueltasHechas;
+		LapCounter.GetComponent<TMP_Text>().text = "" + VueltasHechas;
 
 		LapCompleteTrig.SetActive(false);
 		HalfLapTrig.SetActive(true);
