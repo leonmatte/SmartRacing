@@ -22,6 +22,7 @@ public class carControllerVer4 : MonoBehaviour
     private float speed;
     private Rigidbody rigidbodyCar;
     public float rpm;
+    public int lapCounter;
 
     [SerializeField] public float maxSpeedIA = 250;
     [SerializeField] private float motorForce;
@@ -31,6 +32,7 @@ public class carControllerVer4 : MonoBehaviour
     [SerializeField] private float topSpeed;
     private float topSpeedAux;
 
+    public bool driving;
     public bool isPlayer;
     private Transform lastCheckpointTransform;
 
@@ -61,7 +63,8 @@ public class carControllerVer4 : MonoBehaviour
         lastCheckpointTransform = transform;
         rigidbodyCar = GetComponent<Rigidbody>();
         topSpeedAux = topSpeed;
-
+        lapCounter = 0;
+        driving = true;
     }
 
     private void FixedUpdate()
@@ -83,18 +86,23 @@ public class carControllerVer4 : MonoBehaviour
 
     private void GetInput()
     {
-        horizontalInput = Input.GetAxis(HORIZONTAL);
-        verticalInput = Input.GetAxis(VERTICAL);
-        isBreaking = Input.GetKey(KeyCode.Space);
-        isDrifting = Input.GetKey(KeyCode.LeftShift);
+        if(driving){ 
+            horizontalInput = Input.GetAxis(HORIZONTAL);
+            verticalInput = Input.GetAxis(VERTICAL);
+            isBreaking = Input.GetKey(KeyCode.Space);
+            isDrifting = Input.GetKey(KeyCode.LeftShift);
+        }
     }
 
     public void GetInputFromAI(float horizontalInput, float verticalInput, bool isBreaking, bool isDrifting, bool inputW, bool inputS)
     {
-        this.horizontalInput = horizontalInput;
-        this.verticalInput = verticalInput;
-        this.isBreaking = isBreaking;
-        this.isDrifting = isDrifting;
+        if (driving)
+        {
+            this.horizontalInput = horizontalInput;
+            this.verticalInput = verticalInput;
+            this.isBreaking = isBreaking;
+            this.isDrifting = isDrifting;
+        }
     }
 
     private void ShowSpeed()
@@ -109,7 +117,7 @@ public class carControllerVer4 : MonoBehaviour
         float targetAngle = transform.eulerAngles.y - lastCheckpointTransform.eulerAngles.y;
         if (Mathf.Abs(targetAngle) > 135 && Mathf.Abs(targetAngle) < 225)
         {
-            print("WRONG WAY " + targetAngle);
+            //print("WRONG WAY " + targetAngle);
             direccionContraria.SetActive(true);
         }
         else 

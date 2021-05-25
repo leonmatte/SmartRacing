@@ -6,6 +6,7 @@ public class CheckpointTracker : MonoBehaviour
 {
 
     [SerializeField] private List<Transform> carTransformList;
+    [SerializeField] private List<carControllerVer4> controllerList;
 
     private List<Checkpoint> checkpointList;
     private List<int> nextCheckpointList;
@@ -35,8 +36,21 @@ public class CheckpointTracker : MonoBehaviour
         int nextCheckpointIndex = nextCheckpointList[carTransformList.IndexOf(carTransform)];
         if(checkpointList.IndexOf(checkpoint) == nextCheckpointIndex)
         {
+            if (nextCheckpointIndex == 0)
+            {
+                controllerList[carTransformList.IndexOf(carTransform)].lapCounter++;
+                print("Coche: " + carTransformList.IndexOf(carTransform) + ", vuelta: " +
+                      controllerList[carTransformList.IndexOf(carTransform)].lapCounter);
+                if (controllerList[carTransformList.IndexOf(carTransform)].lapCounter > 3)
+                {
+                    controllerList[carTransformList.IndexOf(carTransform)].driving = false;
+                    print("GAME OVERRRRR");
+                }
+                    
+            }
             print("Lessgooo " + carTransformList.IndexOf(carTransform));
             nextCheckpointList[carTransformList.IndexOf(carTransform)] = (nextCheckpointIndex + 1) % checkpointList.Count;
+            
         }
         else
         {
