@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UIRaceController : MonoBehaviour
@@ -14,92 +14,116 @@ public class UIRaceController : MonoBehaviour
     public GameObject textCurrentLap;
 
     public PlayerManager UpdateUIForPlayer;
-    
-    private float currentLapTime;
-    private float lastLapTime;
-    private float bestLapTime;
-    private int currentLap = -1;
 
-    public GameObject CountDown;
-    public AudioSource GetReady;
-    public AudioSource GoAudio;
-    public GameObject[] Cars = new GameObject[4];
-    
+    private float _currentLapTime;
+    private float _lastLapTime;
+    private float _bestLapTime;
+    private int _currentLap = -1;
+
+    [FormerlySerializedAs("CountDown")] public GameObject countDown;
+    [FormerlySerializedAs("GetReady")] public AudioSource getReady;
+    [FormerlySerializedAs("GoAudio")] public AudioSource goAudio;
+    public GameObject[] cars = new GameObject[4];
+    private bool _isUpdateUIForPlayerNull;
+    private TMP_Text _tmpText;
+    private TMP_Text _tmpText1;
+    private TMP_Text _tmpText2;
+    private TMP_Text _tmpText3;
+    private Text _text;
+    private Text _text1;
+    private Text _text2;
+
+    private void Awake()
+    {
+        _text2 = countDown.GetComponent<Text>();
+        _text1 = countDown.GetComponent<Text>();
+        _text = countDown.GetComponent<Text>();
+        _tmpText = textCurrentTime.GetComponent<TMP_Text>();
+        _isUpdateUIForPlayerNull = UpdateUIForPlayer == null;
+        _tmpText3 = textCurrentLap.GetComponent<TMP_Text>();
+        _tmpText2 = textBestLap.GetComponent<TMP_Text>();
+        _tmpText1 = textLastLap.GetComponent<TMP_Text>();
+    }
+
     void Start()
     {
         StartCoroutine(CountStart());
 
-        foreach (GameObject car in Cars)
+        foreach (GameObject car in cars)
         {
             if (car.GetComponent<carControllerVer4>().isPlayer != true)
             {
                 car.GetComponent<AltCarAIController>().enabled = false;
                 car.GetComponent<UIRaceController>().enabled = false;
             }
+
             car.GetComponent<carControllerVer4>().enabled = false;
             car.GetComponent<UIRaceController>().enabled = true;
         }
     }
-    
+
     IEnumerator CountStart()
     {
         yield return new WaitForSeconds(0.3f);
-        CountDown.GetComponent<Text>().text = "3";
-        GetReady.Play();
-        CountDown.SetActive(true);
+        _text.text = "3";
+        getReady.Play();
+        countDown.SetActive(true);
         yield return new WaitForSeconds(1);
-        CountDown.SetActive(false);
-        CountDown.GetComponent<Text>().text = "2";
-        GetReady.Play();
-        CountDown.SetActive(true);
+        countDown.SetActive(false);
+        _text1.text = "2";
+        getReady.Play();
+        countDown.SetActive(true);
         yield return new WaitForSeconds(1);
-        CountDown.SetActive(false);
-        CountDown.GetComponent<Text>().text = "1";
-        GetReady.Play();
-        CountDown.SetActive(true);
+        countDown.SetActive(false);
+        _text2.text = "1";
+        getReady.Play();
+        countDown.SetActive(true);
         yield return new WaitForSeconds(1);
-        CountDown.SetActive(false);
-        GoAudio.Play();
+        countDown.SetActive(false);
 
-        foreach (GameObject car in Cars)
+        foreach (GameObject car in cars)
         {
             if (car.GetComponent<carControllerVer4>().isPlayer != true)
             {
                 car.GetComponent<AltCarAIController>().enabled = true;
             }
+
             car.GetComponent<carControllerVer4>().enabled = true;
         }
-        
+
+        goAudio.Play();
     }
+
     // Update is called once per frame
     void Update()
     {
-        if (UpdateUIForPlayer == null)
+        if (_isUpdateUIForPlayerNull)
         {
             return;
         }
 
-        if (UpdateUIForPlayer.CurrentLapTime != currentLapTime)
+        if (UpdateUIForPlayer.CurrentLapTime != _currentLapTime)
         {
-            currentLapTime = UpdateUIForPlayer.CurrentLapTime;
-            textCurrentTime.GetComponent<TMP_Text>().text = $"{(int) currentLapTime / 60}:{(currentLapTime) % 60:00.000}";
-        }
-        if (UpdateUIForPlayer.LastLapTime != lastLapTime)
-        {
-            lastLapTime = UpdateUIForPlayer.LastLapTime;
-            textLastLap.GetComponent<TMP_Text>().text = $"{(int) lastLapTime / 60}:{(lastLapTime) % 60:00.000}";
-        }
-        if (UpdateUIForPlayer.BestLapTime != bestLapTime)
-        {
-            currentLapTime = UpdateUIForPlayer.BestLapTime;
-            textBestLap.GetComponent<TMP_Text>().text = bestLapTime < 1000000 ? $"{(int) bestLapTime / 60}:{(bestLapTime) % 60:00.000}" : "NONE";
-        }
-        
-        if (UpdateUIForPlayer.CurrentLap != currentLap)
-        {
-            currentLap = UpdateUIForPlayer.CurrentLap;
-            textCurrentLap.GetComponent<TMP_Text>().text = currentLap.ToString();
+            _currentLapTime = UpdateUIForPlayer.CurrentLapTime;
+            _tmpText.text = $"{(int) _currentLapTime / 60}:{(_currentLapTime) % 60:00.000}";
         }
 
+        if (UpdateUIForPlayer.LastLapTime != _lastLapTime)
+        {
+            _lastLapTime = UpdateUIForPlayer.LastLapTime;
+            _tmpText1.text = $"{(int) _lastLapTime / 60}:{(_lastLapTime) % 60:00.000}";
+        }
+
+        if (UpdateUIForPlayer.BestLapTime != _bestLapTime)
+        {
+            _currentLapTime = UpdateUIForPlayer.BestLapTime;
+            _tmpText2.text = _bestLapTime < 1000000
+                ? $"{(int) _bestLapTime / 60}:{(_bestLapTime) % 60:00.000}"
+                : "0:00.00";
+        }
+
+        if (UpdateUIForPlayer.CurrentLap == _currentLap) return;
+        _currentLap = UpdateUIForPlayer.CurrentLap;
+        _tmpText3.text = _currentLap.ToString();
     }
 }

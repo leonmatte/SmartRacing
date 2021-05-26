@@ -2,21 +2,21 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public float BestLapTime { get; private set; } = Mathf.Infinity; 
+    public float BestLapTime { get; private set; } = Mathf.Infinity;
     public float LastLapTime { get; private set; }
     public float CurrentLapTime { get; private set; }
     public int CurrentLap { get; set; }
 
     private float _lapTimer;
     private int _lastCheckPointPassed;
-    
+
     private float _lapTimerTimestamp;
 
     private Transform _checkpointsParent;
     private int _checkpointCount;
     private int _checkpointLayer;
     private carControllerVer4 _carController;
-    
+
     void Awake()
     {
         LastLapTime = 0;
@@ -42,7 +42,7 @@ public class PlayerManager : MonoBehaviour
         BestLapTime = Mathf.Min(LastLapTime, BestLapTime);
         Debug.Log("EndLap - LapTime was " + LastLapTime + " seconds");
     }
-    
+
     void OnTriggerEnter(Collider impactCollider)
     {
         if (impactCollider.gameObject.name == "1")
@@ -66,7 +66,6 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
-        CurrentLapTime = _lapTimerTimestamp > 0 ? Time.time - _lapTimerTimestamp: 0;
+        CurrentLapTime = _lapTimerTimestamp > 0 ? Time.time - _lapTimerTimestamp : 0;
     }
-
 }

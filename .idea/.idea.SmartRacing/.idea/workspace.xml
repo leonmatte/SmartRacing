@@ -21,24 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="809b70c0-c4a8-4d9b-b879-c460cbed4acb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MiniMap/_Prefabs/minMapMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MiniMap/_Prefabs/minMapMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa2.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa3.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa4.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa4.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CheckpointTracker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CheckpointTracker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Countdown.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Countdown.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LapComplete.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LapComplete.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LapTimeManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LapTimeManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.polybrush/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.polybrush/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UIRaceController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UIRaceController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,8 +44,8 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/CheckpointTracker.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Countdown.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/carControllerVer4.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UIRaceController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1siHAKdwkUy3a2kQxyGnho5gGo1" />
@@ -128,6 +112,7 @@
       <workItem from="1621953779615" duration="1234000" />
       <workItem from="1621967650776" duration="5727000" />
       <workItem from="1621997803676" duration="11257000" />
+      <workItem from="1622033853682" duration="800000" />
     </task>
     <servers />
   </component>
