@@ -9,19 +9,26 @@ public class MenuOpciones : MonoBehaviour
     public void Salir()
     {
         //Salir del juego
-        Application.Quit();
+        if (SceneManager.GetActiveScene().name == "Menu inicial")
+        {
+            StartCoroutine(EsperarSalir(0.3f));
+        }
+        else
+        {
+            Application.Quit();
+        }
     }
 
     public void SeleccionarPersonaje()
     {
         //Cambiar a la pantalla donde se selecciona el personaje
-        SceneManager.LoadScene(2,  LoadSceneMode.Single);
+        StartCoroutine(EsperarCambioEscena(2));
     }
 
     public void VolverAlMenuPrincipal()
     {
         //Volver al menú principal
-        SceneManager.LoadScene(0, LoadSceneMode.Single);
+        StartCoroutine(EsperarCambioEscena(0));
         Time.timeScale = 1f;
         //Iniciar audios
         AudioSource[] audios = FindObjectsOfType<AudioSource>();
@@ -33,15 +40,21 @@ public class MenuOpciones : MonoBehaviour
 
     public void CargarOpciones()
     {
-        menu.SetActive(false);
+        if (SceneManager.GetActiveScene().name == "Menu inicial")
+        {
+            StartCoroutine(EsperarCambioEscenaEncima(1));
+        }
+        else 
+        { 
         SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        }
     }
 
     public void RetrocederOpciones()
     {
         if (SceneManager.GetActiveScene().name == "Menu inicial")
         {
-            SceneManager.LoadScene(0, LoadSceneMode.Single);
+            StartCoroutine(EsperarCambioEscena(0));
         }
         else if(SceneManager.GetActiveScene().name == "Mapa1")
         {
@@ -60,6 +73,25 @@ public class MenuOpciones : MonoBehaviour
             SceneManager.UnloadSceneAsync(1);
         }
 
+    }
+
+    public IEnumerator EsperarCambioEscena(int escena)
+    {
+        yield return new WaitForSeconds(0.3f);
+        SceneManager.LoadScene(escena, LoadSceneMode.Single);
+    }
+
+    public IEnumerator EsperarCambioEscenaEncima(int escena)
+    {
+        yield return new WaitForSeconds(0.3f);
+        menu.SetActive(false);
+        SceneManager.LoadScene(escena, LoadSceneMode.Additive);
+    }
+
+    public IEnumerator EsperarSalir(float tiempo)
+    {
+        yield return new WaitForSeconds(tiempo);
+        Application.Quit();
     }
 
 }

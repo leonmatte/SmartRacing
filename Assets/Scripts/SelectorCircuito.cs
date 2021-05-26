@@ -7,21 +7,27 @@ public class SelectorCircuito : MonoBehaviour
 {
     public void CargarMapa1()
     {
-        SceneManager.LoadScene(3, LoadSceneMode.Single);
+        StartCoroutine(EsperarCambioEscena(3));
     }
 
     public void CargarMapa2()
     {
-        SceneManager.LoadScene(4, LoadSceneMode.Single);
+        StartCoroutine(EsperarCambioEscena(4));
     }
 
     public void CargarMapa3()
     {
-        SceneManager.LoadScene(5, LoadSceneMode.Single);
+        StartCoroutine(EsperarCambioEscena(5));
     }
 
     public void CargarMapa4()
     {
-        SceneManager.LoadScene(6, LoadSceneMode.Single);
+        StartCoroutine(EsperarCambioEscena(6));
+    }
+
+    public IEnumerator EsperarCambioEscena(int escena)
+    {
+        yield return new WaitForSeconds(0.3f);
+        SceneManager.LoadScene(escena, LoadSceneMode.Single);
     }
 }

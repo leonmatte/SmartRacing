@@ -7,21 +7,21 @@ public class CambioEscenas : MonoBehaviour
 {
     public void SeleccionModoDeJuego()
     {
-        StartCoroutine(EsperarCambioEscena(0.3f, 7));
+        StartCoroutine(EsperarCambioEscena(7));
     }
     public void VolverAlMenu()
     {
-        StartCoroutine(EsperarCambioEscena(0.3f, 0));
+        StartCoroutine(EsperarCambioEscena(0));
     }
 
     public void SeleccionMapa()
     {
-        StartCoroutine(EsperarCambioEscena(0.3f, 8));
+        StartCoroutine(EsperarCambioEscena(8));
     }
 
-    public IEnumerator EsperarCambioEscena(float tiempo, int escena)
+    public IEnumerator EsperarCambioEscena(int escena)
     {
-        yield return new WaitForSeconds(tiempo);
+        yield return new WaitForSeconds(0.3f);
         SceneManager.LoadScene(escena, LoadSceneMode.Single);
     }
 
