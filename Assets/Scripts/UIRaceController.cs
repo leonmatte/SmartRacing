@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class UIRaceController : MonoBehaviour
 {
-    public GameObject UIRacePanel;
+    [FormerlySerializedAs("UIRacePanel")] public GameObject uiRacePanel;
 
     public GameObject textCurrentTime;
     public GameObject textLastLap;
     public GameObject textBestLap;
     public GameObject textCurrentLap;
 
-    public PlayerManager UpdateUIForPlayer;
+    [FormerlySerializedAs("UpdateUIForPlayer")] public PlayerManager updateUIForPlayer;
 
     private float _currentLapTime;
     private float _lastLapTime;
@@ -23,7 +23,7 @@ public class UIRaceController : MonoBehaviour
     [FormerlySerializedAs("CountDown")] public GameObject countDown;
     [FormerlySerializedAs("GetReady")] public AudioSource getReady;
     [FormerlySerializedAs("GoAudio")] public AudioSource goAudio;
-    public GameObject[] cars = new GameObject[4];
+    public GameObject[] cars = new GameObject[5];
     private bool _isUpdateUIForPlayerNull;
     private TMP_Text _tmpText;
     private TMP_Text _tmpText1;
@@ -39,7 +39,7 @@ public class UIRaceController : MonoBehaviour
         _text1 = countDown.GetComponent<Text>();
         _text = countDown.GetComponent<Text>();
         _tmpText = textCurrentTime.GetComponent<TMP_Text>();
-        _isUpdateUIForPlayerNull = UpdateUIForPlayer == null;
+        _isUpdateUIForPlayerNull = updateUIForPlayer == null;
         _tmpText3 = textCurrentLap.GetComponent<TMP_Text>();
         _tmpText2 = textBestLap.GetComponent<TMP_Text>();
         _tmpText1 = textLastLap.GetComponent<TMP_Text>();
@@ -102,28 +102,28 @@ public class UIRaceController : MonoBehaviour
             return;
         }
 
-        if (UpdateUIForPlayer.CurrentLapTime != _currentLapTime)
+        if (updateUIForPlayer.CurrentLapTime != _currentLapTime)
         {
-            _currentLapTime = UpdateUIForPlayer.CurrentLapTime;
+            _currentLapTime = updateUIForPlayer.CurrentLapTime;
             _tmpText.text = $"{(int) _currentLapTime / 60}:{(_currentLapTime) % 60:00.000}";
         }
 
-        if (UpdateUIForPlayer.LastLapTime != _lastLapTime)
+        if (updateUIForPlayer.LastLapTime != _lastLapTime)
         {
-            _lastLapTime = UpdateUIForPlayer.LastLapTime;
+            _lastLapTime = updateUIForPlayer.LastLapTime;
             _tmpText1.text = $"{(int) _lastLapTime / 60}:{(_lastLapTime) % 60:00.000}";
         }
 
-        if (UpdateUIForPlayer.BestLapTime != _bestLapTime)
+        if (updateUIForPlayer.BestLapTime != _bestLapTime)
         {
-            _currentLapTime = UpdateUIForPlayer.BestLapTime;
+            _currentLapTime = updateUIForPlayer.BestLapTime;
             _tmpText2.text = _bestLapTime < 1000000
                 ? $"{(int) _bestLapTime / 60}:{(_bestLapTime) % 60:00.000}"
                 : "0:00.00";
         }
 
-        if (UpdateUIForPlayer.CurrentLap == _currentLap) return;
-        _currentLap = UpdateUIForPlayer.CurrentLap;
+        if (updateUIForPlayer.CurrentLap == _currentLap) return;
+        _currentLap = updateUIForPlayer.CurrentLap;
         _tmpText3.text = _currentLap.ToString();
     }
 }

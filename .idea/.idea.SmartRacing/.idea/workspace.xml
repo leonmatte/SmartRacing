@@ -44,8 +44,8 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/CheckpointTracker.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Countdown.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/carControllerVer4.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UIRaceController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UIRaceController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1siHAKdwkUy3a2kQxyGnho5gGo1" />
@@ -112,7 +112,7 @@
       <workItem from="1621953779615" duration="1234000" />
       <workItem from="1621967650776" duration="5727000" />
       <workItem from="1621997803676" duration="11257000" />
-      <workItem from="1622033853682" duration="800000" />
+      <workItem from="1622033853682" duration="1282000" />
     </task>
     <servers />
   </component>

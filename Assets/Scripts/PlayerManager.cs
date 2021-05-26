@@ -5,7 +5,7 @@ public class PlayerManager : MonoBehaviour
     public float BestLapTime { get; private set; } = Mathf.Infinity;
     public float LastLapTime { get; private set; }
     public float CurrentLapTime { get; private set; }
-    public int CurrentLap { get; set; }
+    public int CurrentLap { get; private set; }
 
     private float _lapTimer;
     private int _lastCheckPointPassed;
@@ -15,9 +15,8 @@ public class PlayerManager : MonoBehaviour
     private Transform _checkpointsParent;
     private int _checkpointCount;
     private int _checkpointLayer;
-    private carControllerVer4 _carController;
 
-    void Awake()
+    private void Awake()
     {
         LastLapTime = 0;
         CurrentLapTime = 0;
@@ -28,7 +27,7 @@ public class PlayerManager : MonoBehaviour
         _checkpointLayer = LayerMask.NameToLayer("Checkpoint");
     }
 
-    void StartLap()
+    private void StartLap()
     {
         Debug.Log("StartLap!");
         CurrentLap++;
@@ -36,7 +35,7 @@ public class PlayerManager : MonoBehaviour
         _lapTimerTimestamp = Time.time;
     }
 
-    void EndLap()
+    private void EndLap()
     {
         LastLapTime = Time.time - _lapTimerTimestamp;
         BestLapTime = Mathf.Min(LastLapTime, BestLapTime);
