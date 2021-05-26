@@ -1,5 +1,6 @@
 using System.Collections;
 using JetBrains.Annotations;
+using Shapes2D;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,7 +26,7 @@ public class PlayerManager : MonoBehaviour
     private Text _text1;
     private Text _text2;
 
-    private void Awake()
+    void Awake()
     {
         _text2 = countDown.GetComponent<Text>();
         _text1 = countDown.GetComponent<Text>();
@@ -39,15 +40,17 @@ public class PlayerManager : MonoBehaviour
         _checkpointLayer = LayerMask.NameToLayer("Checkpoint");
     }
 
-    private void Start()
+    void Start()
     {
         StartCoroutine(CountStart());
         foreach (GameObject car in cars)
         {
-            if (car.GetComponent<carControllerVer4>().isPlayer == false)
+            if (car.GetComponent<AltCarAIController>().enabled)
             {
                 car.GetComponent<AltCarAIController>().enabled = false;
                 car.GetComponent<UIController>().enabled = false;
+                car.GetComponent<carControllerVer4>().enabled = false;
+
             }
 
             car.GetComponent<carControllerVer4>().enabled = false;
@@ -55,7 +58,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private IEnumerator CountStart()
+    IEnumerator CountStart()
     {
         yield return new WaitForSeconds(0.3f);
         _text.text = "3";
@@ -86,7 +89,7 @@ public class PlayerManager : MonoBehaviour
         goAudio.Play();
     }
 
-    private void StartLap()
+    void StartLap()
     {
         Debug.Log("StartLap!");
         CurrentLap++;
@@ -94,7 +97,7 @@ public class PlayerManager : MonoBehaviour
         _lapTimerTimestamp = Time.time;
     }
 
-    private void EndLap()
+    void EndLap()
     {
         LastLapTime = Time.time - _lapTimerTimestamp;
         BestLapTime = Mathf.Min(LastLapTime, BestLapTime);
@@ -122,7 +125,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
         CurrentLapTime = _lapTimerTimestamp > 0 ? Time.time - _lapTimerTimestamp : 0;
     }
