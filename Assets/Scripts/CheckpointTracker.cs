@@ -24,7 +24,7 @@ public class CheckpointTracker : MonoBehaviour
         {
             if (controller.isPlayer)
             {
-                // Implementar LapCounter UI
+               
             }
         }
 
@@ -49,6 +49,10 @@ public class CheckpointTracker : MonoBehaviour
         {
             if (nextCheckpointIndex == 0) // Si el checkpoint es el primero
             {
+                if (controllerList[carTransformList.IndexOf(carTransform)].isPlayer)
+                {
+                  //  raceValuesController.EndTimer();
+                }
                 controllerList[carTransformList.IndexOf(carTransform)].lapCounter++; // Siguiente vuelta
                 print("Coche: " + carTransformList.IndexOf(carTransform) + ", vuelta: " +
                       controllerList[carTransformList.IndexOf(carTransform)].lapCounter);
@@ -73,4 +77,8 @@ public class CheckpointTracker : MonoBehaviour
             print("whutttt " + carTransformList.IndexOf(carTransform));
         }
     }
+    
+    
+    
+    
 }

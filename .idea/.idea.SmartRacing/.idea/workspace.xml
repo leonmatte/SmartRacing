@@ -20,75 +20,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="809b70c0-c4a8-4d9b-b879-c460cbed4acb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/contentModel.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SmartRacing/riderModule.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MiniMap/_Prefabs/minMapMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MiniMap/_Prefabs/minMapMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CarAudio.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CarAudio.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/carControllerVer4.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/carControllerVer4.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CheckpointTracker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CheckpointTracker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Countdown.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Countdown.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LapComplete.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LapComplete.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LapTimeManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LapTimeManager.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.polybrush/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.polybrush/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/EmbedRuntime/MonoPosixHelper.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/EmbedRuntime/MonoPosixHelper.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/2.0/Browsers/Compat.browser" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/2.0/Browsers/Compat.browser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/2.0/DefaultWsdlHelpGenerator.aspx" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/2.0/DefaultWsdlHelpGenerator.aspx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/2.0/machine.config" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/2.0/machine.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/2.0/settings.map" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/2.0/settings.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/2.0/web.config" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/2.0/web.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.0/Browsers/Compat.browser" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.0/Browsers/Compat.browser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.0/DefaultWsdlHelpGenerator.aspx" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.0/DefaultWsdlHelpGenerator.aspx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.0/machine.config" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.0/machine.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.0/settings.map" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.0/settings.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.0/web.config" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.0/web.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.5/Browsers/Compat.browser" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.5/Browsers/Compat.browser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.5/DefaultWsdlHelpGenerator.aspx" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.5/DefaultWsdlHelpGenerator.aspx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.5/machine.config" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.5/machine.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.5/settings.map" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.5/settings.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.5/web.config" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/4.5/web.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/browscap.ini" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/browscap.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/config" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/mconfig/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/MonoBleedingEdge/etc/mono/mconfig/config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche.exe" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/Assembly-CSharp-firstpass.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/Assembly-CSharp-firstpass.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/Assembly-CSharp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/Assembly-CSharp.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/System.Configuration.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/System.Configuration.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/System.EnterpriseServices.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/System.EnterpriseServices.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/Unity.Polybrush.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/Unity.Polybrush.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/Unity.TextMeshPro.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/Unity.TextMeshPro.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/Unity.Timeline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/Unity.Timeline.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/UnityEngine.CoreModule.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/UnityEngine.CoreModule.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/UnityEngine.UI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/UnityEngine.UI.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/UnityEngine.UIElementsModule.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/UnityEngine.UIElementsModule.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/UnityEngine.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Managed/UnityEngine.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Resources/unity_builtin_extra" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/Resources/unity_builtin_extra" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/app.info" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/app.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/boot.config" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/boot.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/globalgamemanagers" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/globalgamemanagers" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/globalgamemanagers.assets" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/globalgamemanagers.assets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/level0" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/level0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/level1" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/level1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/level2" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/level2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/level3" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/level3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/level4" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/level4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/level4.resS" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/level5" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/level5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/level6" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/level6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/resources.assets" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/resources.assets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/sharedassets0.assets" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/sharedassets0.assets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/sharedassets0.resource" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/sharedassets0.resource" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/sharedassets1.assets" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/sharedassets1.assets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/sharedassets2.assets" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/sharedassets2.assets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/sharedassets3.assets" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/sharedassets3.assets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/sharedassets4.assets" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/sharedassets4.assets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/sharedassets5.assets" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/sharedassets5.assets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/sharedassets6.assets" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/Pruebas Coche_Data/sharedassets6.assets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/UnityCrashHandler64.exe" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/UnityCrashHandler64.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PruebaProyecto/UnityPlayer.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PruebaProyecto/UnityPlayer.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,13 +46,19 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CheckpointTracker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CarAudio.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Scripts/CarAudio.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/RaceValuesController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/CheckpointTracker.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Countdown.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/carControllerVer4.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UIRaceController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1siHAKdwkUy3a2kQxyGnho5gGo1" />
@@ -119,6 +72,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.smartKeys_rider" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -170,6 +124,7 @@
       <workItem from="1621847457998" duration="1103000" />
       <workItem from="1621953779615" duration="1234000" />
       <workItem from="1621967650776" duration="5727000" />
+      <workItem from="1621997803676" duration="10986000" />
     </task>
     <servers />
   </component>
