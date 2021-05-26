@@ -1,6 +1,5 @@
 using System.Collections;
 using JetBrains.Annotations;
-using Shapes2D;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +20,7 @@ public class PlayerManager : MonoBehaviour
     public AudioSource getReady;
     public AudioSource goAudio;
     public GameObject[] cars = new GameObject[5];
+    private bool _countDownActive;
 
     private Text _text;
     private Text _text1;
@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour
         _text1 = countDown.GetComponent<Text>();
         _text = countDown.GetComponent<Text>();
         LastLapTime = 0;
-        CurrentLapTime = 0;
+        CurrentLapTime = -3;
         CurrentLap = 0;
         _lastCheckPointPassed = 0;
         _checkpointsParent = GameObject.Find("Checkpoints").transform;
@@ -60,6 +60,7 @@ public class PlayerManager : MonoBehaviour
 
     IEnumerator CountStart()
     {
+        _countDownActive = true;
         yield return new WaitForSeconds(0.3f);
         _text.text = "3";
         getReady.Play();
@@ -76,6 +77,7 @@ public class PlayerManager : MonoBehaviour
         countDown.SetActive(true);
         yield return new WaitForSeconds(1);
         countDown.SetActive(false);
+        _countDownActive = false;
 
         foreach (GameObject car in cars)
         {
@@ -94,7 +96,7 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("StartLap!");
         CurrentLap++;
         _lastCheckPointPassed = 1;
-        _lapTimerTimestamp = Time.time;
+        _lapTimerTimestamp = Time.time ;
     }
 
     void EndLap()
@@ -127,6 +129,9 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
-        CurrentLapTime = _lapTimerTimestamp > 0 ? Time.time - _lapTimerTimestamp : 0;
+        if (_countDownActive == false)
+        {
+            CurrentLapTime = _lapTimerTimestamp > 0 ? Time.time - _lapTimerTimestamp : 0;
+        }
     }
 }
