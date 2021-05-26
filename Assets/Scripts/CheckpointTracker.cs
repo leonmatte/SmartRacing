@@ -8,11 +8,10 @@ public class CheckpointTracker : MonoBehaviour
     [SerializeField] private List<Transform> carTransformList;
     [SerializeField] private List<carControllerVer4> controllerList;
     private int positions;
+
     private List<Checkpoint> checkpointList;
     private List<int> nextCheckpointList;
-    public LapScoreManager LapScoreManager;
-    public TimeController TimeController;
-    
+
     void Awake()
     {
         Transform checkpointsTransform = transform.Find("Checkpoints");
@@ -25,10 +24,8 @@ public class CheckpointTracker : MonoBehaviour
         {
             if (controller.isPlayer)
             {
-                TimeController.enabled = true;
+                // Implementar LapCounter UI
             }
-
-            TimeController.enabled = false;
         }
 
         foreach (Transform checkpoint in checkpointsTransform)
@@ -52,11 +49,6 @@ public class CheckpointTracker : MonoBehaviour
         {
             if (nextCheckpointIndex == 0) // Si el checkpoint es el primero
             {
-                if (controllerList[carTransformList.IndexOf(carTransform)].isPlayer)
-                {
-                    LapScoreManager.EndTimer();
-                    LapScoreManager.CurrentLap++;
-                }
                 controllerList[carTransformList.IndexOf(carTransform)].lapCounter++; // Siguiente vuelta
                 print("Coche: " + carTransformList.IndexOf(carTransform) + ", vuelta: " +
                       controllerList[carTransformList.IndexOf(carTransform)].lapCounter);
@@ -64,7 +56,6 @@ public class CheckpointTracker : MonoBehaviour
                 {
                     controllerList[carTransformList.IndexOf(carTransform)].driving = false; // El coche deja de correr
                     positions++; // Otro coche más ha terminado la carrera
-                    LapScoreManager.position_player++;
                     
                     if (controllerList[carTransformList.IndexOf(carTransform)].isPlayer) // Si el coche que ha terminado la carrera es el jugador
                     {

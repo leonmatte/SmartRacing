@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
@@ -11,12 +10,13 @@ public class Countdown : MonoBehaviour
     public GameObject CountDown;
     public AudioSource GetReady;
     public AudioSource GoAudio;
+    public GameObject LapTimer;
     public GameObject[] Cars = new GameObject[4];
-    private LapScoreManager LapScoreManager;
 
-
-    private void Awake()
+    void Start()
     {
+        StartCoroutine(CountStart());
+
         foreach (GameObject car in Cars)
         {
             if (car.GetComponent<carControllerVer4>().isPlayer != true)
@@ -25,14 +25,20 @@ public class Countdown : MonoBehaviour
             }
             car.GetComponent<carControllerVer4>().enabled = false;
         }
+
+        LapTimer.SetActive(false);
+
+        /*
+        ai_cars[0].GetComponent<AltCarAIController>().enabled = false;
+        ai_cars[1].GetComponent<AltCarAIController>().enabled = false;
+        ai_cars[2].GetComponent<AltCarAIController>().enabled = false;
+        ai_cars[3].GetComponent<AltCarAIController>().enabled = false;
+        LapTimer.SetActive(false);
+
+        */
     }
 
-    void Start()
-    {
-        StartCoroutine(CountStart());
-    }
-    
-    
+
     IEnumerator CountStart()
     {
 
@@ -53,7 +59,7 @@ public class Countdown : MonoBehaviour
         yield return new WaitForSeconds(1);
         CountDown.SetActive(false);
         GoAudio.Play();
-        LapScoreManager.StartTimer();
+        LapTimer.SetActive(true);
 
         foreach (GameObject car in Cars)
         {
@@ -63,10 +69,16 @@ public class Countdown : MonoBehaviour
             }
             car.GetComponent<carControllerVer4>().enabled = true;
         }
-        
-        
-        
+
+        /*
+        GameObject.FindGameObjectWithTag("Player").GetComponent<carControllerVer4>().enabled = true;
+        ai_cars[0].GetComponent<AltCarAIController>().enabled = true;
+        ai_cars[1].GetComponent<AltCarAIController>().enabled = true;
+        ai_cars[2].GetComponent<AltCarAIController>().enabled = true;
+        ai_cars[3].GetComponent<AltCarAIController>().enabled = true;
+        */
+
     }
-    
-    
+
+
 }
