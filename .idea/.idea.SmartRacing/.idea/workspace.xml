@@ -23,6 +23,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MiniMap/_Prefabs/minMapMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MiniMap/_Prefabs/minMapMat.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa3.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa4.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa4.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/CheckpointTracker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CheckpointTracker.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Countdown.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Countdown.cs.meta" beforeDir="false" />
@@ -124,7 +127,7 @@
       <workItem from="1621847457998" duration="1103000" />
       <workItem from="1621953779615" duration="1234000" />
       <workItem from="1621967650776" duration="5727000" />
-      <workItem from="1621997803676" duration="10986000" />
+      <workItem from="1621997803676" duration="11257000" />
     </task>
     <servers />
   </component>
