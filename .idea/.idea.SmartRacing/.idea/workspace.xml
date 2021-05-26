@@ -21,7 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="809b70c0-c4a8-4d9b-b879-c460cbed4acb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Ground.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Ground.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,7 +113,7 @@
       <workItem from="1621953779615" duration="1234000" />
       <workItem from="1621967650776" duration="5727000" />
       <workItem from="1621997803676" duration="11257000" />
-      <workItem from="1622033853682" duration="7865000" />
+      <workItem from="1622033853682" duration="11586000" />
     </task>
     <servers />
   </component>

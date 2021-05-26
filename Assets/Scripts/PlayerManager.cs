@@ -32,8 +32,8 @@ public class PlayerManager : MonoBehaviour
         _text1 = countDown.GetComponent<Text>();
         _text = countDown.GetComponent<Text>();
         LastLapTime = 0;
-        CurrentLapTime = -3;
-        CurrentLap = 0;
+        CurrentLapTime = 0;
+        CurrentLap = -1;
         _lastCheckPointPassed = 0;
         _checkpointsParent = GameObject.Find("Checkpoints").transform;
         _checkpointCount = _checkpointsParent.childCount;
@@ -78,6 +78,7 @@ public class PlayerManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         countDown.SetActive(false);
         _countDownActive = false;
+        StartLap();
 
         foreach (GameObject car in cars)
         {
@@ -96,7 +97,7 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("StartLap!");
         CurrentLap++;
         _lastCheckPointPassed = 1;
-        _lapTimerTimestamp = Time.time ;
+        _lapTimerTimestamp = Time.time - LastLapTime ;
     }
 
     void EndLap()
@@ -104,6 +105,7 @@ public class PlayerManager : MonoBehaviour
         LastLapTime = Time.time - _lapTimerTimestamp;
         BestLapTime = Mathf.Min(LastLapTime, BestLapTime);
         Debug.Log("EndLap - LapTime was " + LastLapTime + " seconds");
+        _lapTimerTimestamp = Time.time - LastLapTime ;
     }
 
     void OnTriggerEnter(Collider impactCollider)
