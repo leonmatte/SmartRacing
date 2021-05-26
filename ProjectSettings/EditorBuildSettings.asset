@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SeleccionCircuito.unity
     guid: e5f0429c8b4a2af4db54ba6f50acdde4
+  - enabled: 1
+    path: Assets/Scenes/Controles.unity
+    guid: 31af0ef95f4fc5b43a1d214b849dc818
   m_configObjects: {}

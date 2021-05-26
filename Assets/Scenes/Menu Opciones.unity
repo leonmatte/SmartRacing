@@ -2175,7 +2175,7 @@ GameObject:
   - component: {fileID: 781312181}
   - component: {fileID: 781312182}
   m_Layer: 5
-  m_Name: SliderMusica
+  m_Name: SliderBrillo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2196,7 +2196,7 @@ RectTransform:
   - {fileID: 540101896}
   - {fileID: 42484410}
   m_Father: {fileID: 2039196256}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2248,12 +2248,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 196949239}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 0.9
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1427883880}
+        m_TargetAssemblyTypeName: MenuAjustes, Assembly-CSharp
+        m_MethodName: ChangeSliderBrillo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &797127546
 GameObject:
   m_ObjectHideFlags: 0
@@ -3243,7 +3255,7 @@ GameObject:
   - component: {fileID: 1156067994}
   - component: {fileID: 1156067993}
   m_Layer: 5
-  m_Name: TextoEfectosSonido
+  m_Name: TextoBrillo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3261,11 +3273,11 @@ RectTransform:
   m_LocalScale: {x: 0.9773997, y: 0.9773997, z: 0.9773997}
   m_Children: []
   m_Father: {fileID: 2039196256}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -173.82, y: -123}
+  m_AnchoredPosition: {x: -169.99, y: -123}
   m_SizeDelta: {x: 161.7661, y: 27.9865}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1156067993
@@ -3288,7 +3300,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Efectos de sonido
+  m_text: Brillo
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3351,7 +3363,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -83.074814, w: 0}
+  m_margin: {x: 0, y: 0, z: 2.3034134, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3377,7 +3389,6 @@ GameObject:
   - component: {fileID: 1167277616}
   - component: {fileID: 1167277615}
   - component: {fileID: 1167277617}
-  - component: {fileID: 1167277618}
   m_Layer: 5
   m_Name: Resoluciones
   m_TagString: Untagged
@@ -3511,19 +3522,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_AlphaFadeSpeed: 0.15
---- !u!114 &1167277618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167277613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e921bf11e0a83e447be275410fa8ea82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: a66f0481436a64247bdbfc2abaa60ab9, type: 3}
 --- !u!1 &1201334588
 GameObject:
   m_ObjectHideFlags: 0
@@ -3622,7 +3620,7 @@ GameObject:
   - component: {fileID: 1204401250}
   - component: {fileID: 1204401251}
   m_Layer: 5
-  m_Name: SliderEfectosSonido
+  m_Name: SliderVolumen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3643,7 +3641,7 @@ RectTransform:
   - {fileID: 1918464672}
   - {fileID: 2092709644}
   m_Father: {fileID: 2039196256}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3700,7 +3698,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1427883880}
+        m_TargetAssemblyTypeName: MenuAjustes, Assembly-CSharp
+        m_MethodName: ChangeSliderVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1313783568
 GameObject:
   m_ObjectHideFlags: 0
@@ -3921,6 +3931,11 @@ MonoBehaviour:
   Toggle: {fileID: 616090540}
   resolutionDropdown: {fileID: 1167277617}
   dropdown_calidad: {fileID: 797127548}
+  SliderVolumen: {fileID: 1204401251}
+  SliderValueVolumen: 0
+  SliderBrillo: {fileID: 781312182}
+  SliderValueBrillo: 0
+  panelBrillo: {fileID: 1886042829}
 --- !u!1 &1460053655
 GameObject:
   m_ObjectHideFlags: 0
@@ -3933,7 +3948,7 @@ GameObject:
   - component: {fileID: 1460053658}
   - component: {fileID: 1460053657}
   m_Layer: 5
-  m_Name: TextoMusica
+  m_Name: TextoVolumen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3951,7 +3966,7 @@ RectTransform:
   m_LocalScale: {x: 0.9773997, y: 0.9773997, z: 0.9773997}
   m_Children: []
   m_Father: {fileID: 2039196256}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4370,6 +4385,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1880405196}
   m_CullTransparentMesh: 1
+--- !u!1 &1886042828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1886042831}
+  - component: {fileID: 1886042830}
+  - component: {fileID: 1886042829}
+  m_Layer: 5
+  m_Name: PanelBrillo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1886042829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886042828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.49803922}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1886042830
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886042828}
+  m_CullTransparentMesh: 1
+--- !u!224 &1886042831
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886042828}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2039196256}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -4.4388123, y: 0}
+  m_SizeDelta: {x: 129.6117, y: 56.8159}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1918464671
 GameObject:
   m_ObjectHideFlags: 0
@@ -4474,13 +4564,14 @@ RectTransform:
   - {fileID: 616090539}
   - {fileID: 637186386}
   - {fileID: 217333008}
-  - {fileID: 781312181}
   - {fileID: 1460053656}
   - {fileID: 1204401250}
   - {fileID: 1156067992}
+  - {fileID: 781312181}
   - {fileID: 797127547}
   - {fileID: 114847167}
   - {fileID: 1167277614}
+  - {fileID: 1886042831}
   m_Father: {fileID: 229447407}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

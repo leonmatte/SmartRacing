@@ -13,6 +13,15 @@ public class MenuAjustes : MonoBehaviour
     public TMP_Dropdown dropdown_calidad;
     private int calidad;
 
+    //Slider que controlan volumen audios
+    public Slider SliderVolumen;
+    public float SliderValueVolumen;
+
+    //Slider que controla el brillo
+    public Slider SliderBrillo;
+    public float SliderValueBrillo;
+    public Image panelBrillo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +42,14 @@ public class MenuAjustes : MonoBehaviour
             Toggle.isOn = false;
         }
         RevisarResolucion();
+
+        //Controlar volumen
+        SliderVolumen.value = PlayerPrefs.GetFloat("VolumenAudio", 0.5f);
+        AudioListener.volume = SliderVolumen.value;
+
+        //Controlar brillo
+        SliderBrillo.value = PlayerPrefs.GetFloat("brillo", 0.5f);
+        panelBrillo.color = new Color(panelBrillo.color.r, panelBrillo.color.g, panelBrillo.color.b, SliderBrillo.value);
     }
 
     //Calidad de juego con guardado
@@ -82,5 +99,21 @@ public class MenuAjustes : MonoBehaviour
 
         Resolution resolution = resolutions[indiceResolucion];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+    //Controlar volumen musica con sliderMusica
+    public void ChangeSliderVolume(float valorVolumen)
+    {
+        SliderValueVolumen = valorVolumen;
+        PlayerPrefs.SetFloat("VolumenAudio", SliderValueVolumen);
+        AudioListener.volume = SliderVolumen.value;
+    }
+
+    //Controlar brillo con SliderBrillo
+    public void ChangeSliderBrillo(float valorBrillo)
+    {
+        SliderValueBrillo = valorBrillo;
+        PlayerPrefs.SetFloat("brillo", SliderValueBrillo);
+        panelBrillo.color = new Color(panelBrillo.color.r, panelBrillo.color.g, panelBrillo.color.b, SliderBrillo.value);
     }
 }

@@ -220,9 +220,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1365464914}
-        m_TargetAssemblyTypeName: CambioEscenas, Assembly-CSharp
-        m_MethodName: SeleccionModoDeJuego
+      - m_Target: {fileID: 1365464913}
+        m_TargetAssemblyTypeName: MenuOpciones, Assembly-CSharp
+        m_MethodName: CargarControles
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

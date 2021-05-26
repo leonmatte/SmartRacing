@@ -50,6 +50,18 @@ public class MenuOpciones : MonoBehaviour
         }
     }
 
+    public void CargarControles()
+    {
+        if (SceneManager.GetActiveScene().name == "Menu inicial")
+        {
+            StartCoroutine(EsperarCambioEscenaEncima(9));
+        }
+        else
+        {
+            SceneManager.LoadScene(9, LoadSceneMode.Additive);
+        }
+    }
+
     public void RetrocederOpciones()
     {
         if (SceneManager.GetActiveScene().name == "Menu inicial")
@@ -75,6 +87,31 @@ public class MenuOpciones : MonoBehaviour
 
     }
 
+    public void RetrocederControles()
+    {
+        if (SceneManager.GetActiveScene().name == "Menu inicial")
+        {
+            StartCoroutine(EsperarCambioEscena(0));
+        }
+        else if (SceneManager.GetActiveScene().name == "Mapa1")
+        {
+            SceneManager.UnloadSceneAsync(9);
+        }
+        else if (SceneManager.GetActiveScene().name == "Mapa2")
+        {
+            SceneManager.UnloadSceneAsync(9);
+        }
+        else if (SceneManager.GetActiveScene().name == "Mapa3")
+        {
+            SceneManager.UnloadSceneAsync(9);
+        }
+        else if (SceneManager.GetActiveScene().name == "Mapa4")
+        {
+            SceneManager.UnloadSceneAsync(9);
+        }
+
+    }
+
     public IEnumerator EsperarCambioEscena(int escena)
     {
         yield return new WaitForSeconds(0.3f);
@@ -92,6 +129,12 @@ public class MenuOpciones : MonoBehaviour
     {
         yield return new WaitForSeconds(tiempo);
         Application.Quit();
+    }
+
+    public IEnumerator EsperarQuitarEscena(int escena)
+    {
+        yield return new WaitForSeconds(0.3f);
+        SceneManager.UnloadSceneAsync(escena);
     }
 
 }
