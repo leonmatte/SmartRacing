@@ -33,7 +33,7 @@ public class PlayerManager : MonoBehaviour
         _text = countDown.GetComponent<Text>();
         LastLapTime = 0;
         CurrentLapTime = 0;
-        CurrentLap = -1;
+        CurrentLap = 0;
         _lastCheckPointPassed = 0;
         _checkpointsParent = GameObject.Find("Checkpoints").transform;
         _checkpointCount = _checkpointsParent.childCount;
@@ -50,7 +50,6 @@ public class PlayerManager : MonoBehaviour
                 car.GetComponent<AltCarAIController>().enabled = false;
                 car.GetComponent<UIController>().enabled = false;
                 car.GetComponent<carControllerVer4>().enabled = false;
-
             }
 
             car.GetComponent<carControllerVer4>().enabled = false;
@@ -60,7 +59,7 @@ public class PlayerManager : MonoBehaviour
 
     IEnumerator CountStart()
     {
-        _countDownActive = true;
+        _countDownActive = false;
         yield return new WaitForSeconds(0.3f);
         _text.text = "3";
         getReady.Play();
@@ -77,7 +76,7 @@ public class PlayerManager : MonoBehaviour
         countDown.SetActive(true);
         yield return new WaitForSeconds(1);
         countDown.SetActive(false);
-        _countDownActive = false;
+        _countDownActive = true;
         StartLap();
 
         foreach (GameObject car in cars)
@@ -89,15 +88,15 @@ public class PlayerManager : MonoBehaviour
 
             car.GetComponent<carControllerVer4>().enabled = true;
         }
+
         goAudio.Play();
     }
 
     void StartLap()
     {
         Debug.Log("StartLap!");
-        CurrentLap++;
         _lastCheckPointPassed = 1;
-        _lapTimerTimestamp = Time.time - LastLapTime ;
+        _lapTimerTimestamp = Time.time - LastLapTime;
     }
 
     void EndLap()
@@ -105,12 +104,17 @@ public class PlayerManager : MonoBehaviour
         LastLapTime = Time.time - _lapTimerTimestamp;
         BestLapTime = Mathf.Min(LastLapTime, BestLapTime);
         Debug.Log("EndLap - LapTime was " + LastLapTime + " seconds");
-        _lapTimerTimestamp = Time.time - LastLapTime ;
+        CurrentLap++;
     }
 
-    void OnTriggerEnter(Collider impactCollider)
+    void OnTriggerEnter(Collider colission)
     {
-        if (impactCollider.gameObject.name == "1")
+        if (colission.gameObject.layer != _checkpointLayer)
+        {
+            return;
+        }
+
+        if (colission.gameObject.name == "1")
         {
             if (_lastCheckPointPassed == _checkpointCount)
             {
@@ -123,7 +127,7 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
-        if (impactCollider.gameObject.name == (_lastCheckPointPassed + 1).ToString())
+        if (colission.gameObject.name == (_lastCheckPointPassed + 1).ToString())
         {
             _lastCheckPointPassed++;
         }
@@ -131,11 +135,9 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
-        if (_countDownActive == false)
-        {
-            CurrentLapTime = _lapTimerTimestamp > 0 ? Time.time - _lapTimerTimestamp : 0;
-            getReady.volume = 1;
-            goAudio.volume = 1;
-        }
+        if (_countDownActive) return;
+        CurrentLapTime = _lapTimerTimestamp > 0 ? Time.time - _lapTimerTimestamp : 0;
+        getReady.volume = 1;
+        goAudio.volume = 1;
     }
 }
