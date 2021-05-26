@@ -172,7 +172,7 @@ namespace UnityStandardAssets.Vehicles.Car
             // create the new audio source component on the game object and set up its properties
             AudioSource source = gameObject.AddComponent<AudioSource>();
             source.clip = clip;
-            source.volume = 0;
+            source.volume = 1;
             source.loop = true;
 
             // start the clip from a random point
@@ -194,6 +194,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void OnCollisionEnter(Collision other)
         {
+            m_Crash.volume = 1;
             if (!m_Crash.isPlaying)
             {
                 if (m_CarController.GetSpeed() >= 150)

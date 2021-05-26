@@ -55,6 +55,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
         public void PlayAudio()
         {
+            m_AudioSource.volume = 1;
             m_AudioSource.Play();
             PlayingAudio = true;
         }

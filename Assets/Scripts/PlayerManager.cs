@@ -132,6 +132,8 @@ public class PlayerManager : MonoBehaviour
         if (_countDownActive == false)
         {
             CurrentLapTime = _lapTimerTimestamp > 0 ? Time.time - _lapTimerTimestamp : 0;
+            getReady.volume = 1;
+            goAudio.volume = 1;
         }
     }
 }

@@ -45,6 +45,7 @@ public class MenuPausa : MonoBehaviour
         AudioSource[] audios = FindObjectsOfType<AudioSource>();
         foreach (AudioSource a in audios)
         {
+            a.volume = 0;
             a.Play();
         }
     }
