@@ -52,6 +52,16 @@ public class PlayerManager : MonoBehaviour
             _carControllers[i] = cars[i].GetComponent<carControllerVer4>();
             _carAIControllers[i] = cars[i].GetComponent<AltCarAIController>();
         }
+
+        foreach (GameObject car in cars)
+        {
+            if (car.GetComponent<carControllerVer4>().isPlayer)
+            {
+                car.GetComponent<UIController>().enabled = true;
+            }
+
+            car.GetComponent<UIController>().enabled = false;
+        }
     }
 
     void Start()
@@ -107,6 +117,7 @@ public class PlayerManager : MonoBehaviour
 
             if (triggerCollision.gameObject.name == "1" && CurrentLap == 0)
             {
+                CurrentLap = 1;
             }
 
             if (triggerCollision.gameObject.name == (_lastCheckPointPassed + 1).ToString())
