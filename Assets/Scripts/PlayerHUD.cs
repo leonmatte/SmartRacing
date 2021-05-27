@@ -49,6 +49,10 @@ public class PlayerHUD : MonoBehaviour
     private Text _text2;
     private bool _countDownActive;
 
+    private float currentTime = 0f;
+    private float startingTime = 10f;
+
+    [SerializeField] private Text countdownText;
 
     private void Awake()
     {
@@ -86,31 +90,7 @@ public class PlayerHUD : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(CountStart());
-    }
-
-    IEnumerator CountStart()
-    {
-        CarControllerSwitch(false);
-        yield return new WaitForSeconds(0.3f);
-        _text.text = "3";
-        getReady.Play();
-        countDown.SetActive(true);
-        yield return new WaitForSeconds(1);
-        countDown.SetActive(false);
-        _text1.text = "2";
-        getReady.Play();
-        countDown.SetActive(true);
-        yield return new WaitForSeconds(1);
-        countDown.SetActive(false);
-        _text2.text = "1";
-        getReady.Play();
-        countDown.SetActive(true);
-        yield return new WaitForSeconds(1);
-        countDown.SetActive(false);
-        goAudio.Play();
-        _countDownActive = false;
-        CarControllerSwitch(true);
+        currentTime = startingTime;
     }
 
     void OnTriggerEnter(Collider triggerCollision)
@@ -149,6 +129,14 @@ public class PlayerHUD : MonoBehaviour
 
     void Update()
     {
+        currentTime += 1 * Time.deltaTime;
+        countdownText.text = currentTime.ToString("0");
+
+        if (currentTime <= 0)
+        {
+            currentTime = 0;
+        }
+        
         if (_stopwatchActive)
         {
             _currentLapTime += Time.deltaTime;
