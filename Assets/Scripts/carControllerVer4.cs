@@ -62,9 +62,7 @@ public class carControllerVer4 : MonoBehaviour
     public ParticleSystem turboFlames2;
     private CarAudio carAudioController;
     private int counterTurboAudio = 0;
-    private float cooldownSeconds = 20f;
-    private float boostSeconds = 5f;
-    private float elapsedSeconds;
+    public float cooldownSeconds;
     private bool isCooldown = false;
     private float maxTurbo = 2f;
     public float actualTurbo;
@@ -81,7 +79,7 @@ public class carControllerVer4 : MonoBehaviour
         emissionFlames1.enabled = false;
         emissionFlames2.enabled = false;
         carAudioController = GetComponent<CarAudio>();
-
+        cooldownSeconds = 0;
     }
 
     private void FixedUpdate()
@@ -250,7 +248,7 @@ public class carControllerVer4 : MonoBehaviour
                 counterTurboAudio++;
             }
 
-            actualTurbo -= Time.fixedDeltaTime;
+            actualTurbo -= Time.deltaTime;
             emissionFlames1.enabled = true;
             emissionFlames2.enabled = true;
             frontRightWheelCollider.motorTorque = 3 * (verticalInput * motorForce * Time.fixedDeltaTime);
@@ -435,24 +433,16 @@ public class carControllerVer4 : MonoBehaviour
 
     public void UpdateTurboSlider( float maxValor)
     {
-        // elapsedSeconds += Time.fixedDeltaTime;
-        //
-        // if (elapsedSeconds > boostSeconds)
-        // {
-        //     isCooldown = true;
-        //     elapsedSeconds = 0;
-        // }
-        // else if (isCooldown)
-        // {
-        //     if (elapsedSeconds > cooldownSeconds)
-        //     {
-        //         isCooldown = false;
-        //         elapsedSeconds = 0;
-        //     }
-        // }
         float porcentaje;
 
-        actualTurbo += Time.fixedDeltaTime / 5;
+        actualTurbo += Time.deltaTime / 5;
+        cooldownSeconds -= Time.deltaTime;
+        
+        if (cooldownSeconds <= 0)
+        {
+            cooldownSeconds = 0;
+        }
+        
         if (actualTurbo >= maxValor)
         {
             actualTurbo = maxValor;
@@ -463,15 +453,13 @@ public class carControllerVer4 : MonoBehaviour
         if (turboSlider.value <= 0)
         {
             isCooldown = true;
+            cooldownSeconds = 10;
             actualTurbo = 0;
             isTurbo = false;
         }
-        else
+        else if(cooldownSeconds == 0)
         {
             isCooldown = false;
         }
-
-
-
     }
 }
