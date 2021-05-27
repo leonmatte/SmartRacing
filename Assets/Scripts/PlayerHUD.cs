@@ -49,10 +49,12 @@ public class PlayerHUD : MonoBehaviour
     private Text _text2;
     private bool _countDownActive;
 
-    private float currentTime = 0f;
-    private float startingTime = 10f;
+    private int currentTime = 3;
+    private float startingTime = 3f;
 
     [SerializeField] private Text countdownText;
+    
+    private int secondsCountdown = 3;
 
     private void Awake()
     {
@@ -90,7 +92,8 @@ public class PlayerHUD : MonoBehaviour
 
     void Start()
     {
-        currentTime = startingTime;
+        // currentTime = startingTime;
+        StartTimer();
     }
 
     void OnTriggerEnter(Collider triggerCollision)
@@ -129,14 +132,7 @@ public class PlayerHUD : MonoBehaviour
 
     void Update()
     {
-        currentTime += 1 * Time.deltaTime;
-        countdownText.text = currentTime.ToString("0");
-
-        if (currentTime <= 0)
-        {
-            currentTime = 0;
-        }
-        
+        StartCountDown();
         if (_stopwatchActive)
         {
             _currentLapTime += Time.deltaTime;
@@ -203,6 +199,46 @@ public class PlayerHUD : MonoBehaviour
 
                 break;
             }
+        }
+    }
+
+    private void StartTimer()
+    {
+        Invoke("UpdateTimer", 1f);
+    }
+
+    private void UpdateTimer()
+    {
+        secondsCountdown--;
+
+        Invoke("UpdateTimer", 1f);
+    }
+    public void StartCountDown()
+    {
+
+        currentTime = secondsCountdown;
+        countdownText.text = currentTime.ToString("0");
+        
+        if (currentTime <= 3)
+        {
+            //Sonidos??
+        }
+        if (currentTime <= 2)
+        {
+            //Sonidos??
+        }
+        if (currentTime <= 1)
+        {
+            //Sonidos??
+        }
+        if (currentTime <= 0)
+        {
+            countdownText.text = "Go!";
+        }
+        if (currentTime <= -1)
+        {
+            CancelInvoke();
+            countdownText.enabled = false;
         }
     }
 }
