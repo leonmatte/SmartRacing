@@ -121,6 +121,13 @@ public class carControllerVer4 : MonoBehaviour
         roundedSpeed = Mathf.RoundToInt(speed);
         speedText.SetText("Velocidad: " + roundedSpeed + "Km/h");
     }
+    
+    public void StopCompletely()
+    {
+        speed = 0;
+        rigidbodyCar.velocity = new Vector3(0, 0, 0);
+        rigidbodyCar.angularVelocity = new Vector3(0, 0, 0);
+    }
 
     private void HandleWrongWay()
     {
