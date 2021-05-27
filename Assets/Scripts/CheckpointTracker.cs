@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 public class CheckpointTracker : MonoBehaviour
 {
@@ -68,6 +69,8 @@ public class CheckpointTracker : MonoBehaviour
                     if (controllerList[carTransformList.IndexOf(carTransform)].isPlayer) // Si el coche que ha terminado la carrera es el jugador
                     {
                         print("HAS QUEDADO EL " + positions); // Se muestra la posición en que ha terminado
+                        SceneManager.LoadScene(11, LoadSceneMode.Additive);
+                        PlayerPrefs.GetInt("posicionJugador", positions); //Mandar la posición del jugador para recoger en otro script
                     }
                 }
                     
