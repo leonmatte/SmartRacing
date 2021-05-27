@@ -17,11 +17,6 @@ public class MenuAjustes : MonoBehaviour
     public Slider SliderVolumen;
     public float SliderValueVolumen;
 
-    //Slider que controla el brillo
-    public Slider SliderBrillo;
-    public float SliderValueBrillo;
-    public Image panelBrillo;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -46,10 +41,6 @@ public class MenuAjustes : MonoBehaviour
         //Controlar volumen
         SliderVolumen.value = PlayerPrefs.GetFloat("VolumenAudio", 0.5f);
         AudioListener.volume = SliderVolumen.value;
-
-        //Controlar brillo
-        SliderBrillo.value = PlayerPrefs.GetFloat("brillo", 0.5f);
-        panelBrillo.color = new Color(panelBrillo.color.r, panelBrillo.color.g, panelBrillo.color.b, SliderBrillo.value);
     }
 
     //Calidad de juego con guardado
@@ -109,11 +100,4 @@ public class MenuAjustes : MonoBehaviour
         AudioListener.volume = SliderVolumen.value;
     }
 
-    //Controlar brillo con SliderBrillo
-    public void ChangeSliderBrillo(float valorBrillo)
-    {
-        SliderValueBrillo = valorBrillo;
-        PlayerPrefs.SetFloat("brillo", SliderValueBrillo);
-        panelBrillo.color = new Color(panelBrillo.color.r, panelBrillo.color.g, panelBrillo.color.b, SliderBrillo.value);
-    }
 }
