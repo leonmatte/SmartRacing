@@ -52,12 +52,17 @@ namespace UnityStandardAssets.Vehicles.Car
         private AudioSource m_HighDecel; // Source for the high deceleration sounds
         private bool m_StartedSound; // flag for knowing if we have started sounds
         private carControllerVer4 m_CarController; // Reference to car we are controlling
+        
+        private AudioSource turboSource;
+        public AudioClip turboClip;
+        
 
         
         private void Start()
         {
             rigidbodyCar = GetComponent<Rigidbody>();
             m_Crash = gameObject.AddComponent<AudioSource>();
+            turboSource = gameObject.AddComponent<AudioSource>();
         }
 
         private void StartSound()
@@ -190,8 +195,7 @@ namespace UnityStandardAssets.Vehicles.Car
         {
             return (1.0f - value)*from + value*to;
         }
-
-
+        
         private void OnCollisionEnter(Collision other)
         {
             m_Crash.volume = 1;
@@ -208,6 +212,22 @@ namespace UnityStandardAssets.Vehicles.Car
                     m_Crash.Play();  
                 }
             }
+        }
+
+        public void PlayTurboSound()
+        {
+            turboSource.clip = turboClip;
+            
+            if (!turboSource.isPlaying )
+            {
+                turboSource.Play();
+                
+            }
+        }
+
+        public void StopTurboSound()
+        {
+            turboSource.Stop();
         }
     }
 }

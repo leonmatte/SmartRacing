@@ -18,6 +18,7 @@ public class carControllerVer4 : MonoBehaviour
     private float currentbreakForce;
     private bool isBreaking;
     private bool isDrifting;
+    private bool isTurbo;
     private int roundedSpeed;
     private float speed;
     private Rigidbody rigidbodyCar;
@@ -51,12 +52,15 @@ public class carControllerVer4 : MonoBehaviour
     private int m_GearNum;
     private float m_GearFactor;
     [SerializeField] private float m_RevRangeBoundary = 1f;
-    [SerializeField] private float m_SlipLimit;
     public float Revs { get; private set; }
     public float AccelInput { get; private set; }
 
     public GameObject direccionContraria;
-
+    public ParticleSystem turboFlames1;
+    public ParticleSystem turboFlames2;
+    private CarAudio carAudioController;
+    private int counterTurbo = 0;
+    
     private void Start()
     {
         lastCheckpointTransform = transform;
@@ -64,6 +68,12 @@ public class carControllerVer4 : MonoBehaviour
         topSpeedAux = topSpeed;
         lapCounter = 0;
         driving = true;
+        var emissionFlames1 = turboFlames1.emission;
+        var emissionFlames2 = turboFlames2.emission;
+        emissionFlames1.enabled = false;
+        emissionFlames2.enabled = false;
+        carAudioController = GetComponent<CarAudio>();
+
     }
 
     private void FixedUpdate()
@@ -90,6 +100,7 @@ public class carControllerVer4 : MonoBehaviour
             verticalInput = Input.GetAxis(VERTICAL);
             isBreaking = Input.GetKey(KeyCode.Space);
             isDrifting = Input.GetKey(KeyCode.LeftShift);
+            isTurbo = Input.GetKey(KeyCode.RightShift);
         }
     }
 
@@ -139,7 +150,7 @@ public class carControllerVer4 : MonoBehaviour
     public void HandleMotor()
     {
 
-        RearSpeed();
+        ReverseSpeed();
 
         if(frontLeftWheelCollider.rpm <= 1500f && roundedSpeed < topSpeed)
         {
@@ -160,6 +171,7 @@ public class carControllerVer4 : MonoBehaviour
         currentbreakForce = isBreaking ? breakForce : 0f * Time.fixedDeltaTime;
         ApplyBreaking();
         ApplyDrifting();
+        ApplyTurbo();
         AccelInput = verticalInput = Mathf.Clamp(verticalInput, 0, 1);
     }
 
@@ -186,9 +198,6 @@ public class carControllerVer4 : MonoBehaviour
             rearRightWheelCollider.sidewaysFriction = sFriction;
 
         }
-        //Freno de ruedas delanteras
-        //rearLeftWheelCollider.brakeTorque = currentDriftForce;
-        //rearRightWheelCollider.brakeTorque = currentDriftForce;
 
         //Metodo en caso de querer cambiar la adherencia cuando se pise x terreno.
         //WheelHit hit;
@@ -206,6 +215,43 @@ public class carControllerVer4 : MonoBehaviour
         frontLeftWheelCollider.brakeTorque = currentbreakForce;
         rearLeftWheelCollider.brakeTorque = currentbreakForce;
         rearRightWheelCollider.brakeTorque = currentbreakForce;
+    }
+
+    public void ApplyTurbo()
+    {
+        var emissionFlames1 = turboFlames1.emission;
+        var emissionFlames2 = turboFlames2.emission;
+        
+        if (isTurbo)
+        {
+            
+            // turboSource.clip = turboClip;
+            //
+            // if (!turboSource.isPlaying && counterTurbo == 0)
+            // {
+            //     turboSource.Play();
+            //     counterTurbo++;
+            // }
+
+            if (counterTurbo == 0)
+            {
+                carAudioController.PlayTurboSound();
+                counterTurbo++;
+            }
+            emissionFlames1.enabled = true;
+            emissionFlames2.enabled = true;
+            frontRightWheelCollider.motorTorque = 3 * (verticalInput * motorForce * Time.fixedDeltaTime);
+            frontLeftWheelCollider.motorTorque = 3 * (verticalInput * motorForce * Time.fixedDeltaTime);
+            rearLeftWheelCollider.motorTorque = 3 * (verticalInput * motorForce * Time.fixedDeltaTime);
+            rearRightWheelCollider.motorTorque = 3 * (verticalInput * motorForce * Time.fixedDeltaTime);
+        }
+        else
+        {
+            counterTurbo = 0;
+            carAudioController.StopTurboSound();
+            emissionFlames1.enabled = false;
+            emissionFlames2.enabled = false;
+        }
     }
 
     public void HandleSteering()
@@ -246,8 +292,12 @@ public class carControllerVer4 : MonoBehaviour
 
     public void AddDownForce()
     {
-        frontLeftWheelCollider.attachedRigidbody.AddForce(-transform.up*m_Downforce*
-                                                          frontLeftWheelCollider.attachedRigidbody.velocity.magnitude);
+        if (frontLeftWheelCollider.isGrounded || rearRightWheelCollider.isGrounded)
+        {
+            frontLeftWheelCollider.attachedRigidbody.AddForce(-transform.up*m_Downforce*
+                                                              frontLeftWheelCollider.attachedRigidbody.velocity.magnitude);
+        }
+        
     }
 
     public int GetSpeed()
@@ -255,7 +305,7 @@ public class carControllerVer4 : MonoBehaviour
         return roundedSpeed;
     }
 
-    public void RearSpeed()
+    public void ReverseSpeed()
     {
         if (verticalInput == -1)
         {
