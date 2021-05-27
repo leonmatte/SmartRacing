@@ -61,7 +61,7 @@ namespace UnityStandardAssets.Vehicles.Car
         private void Start()
         {
             rigidbodyCar = GetComponent<Rigidbody>();
-            m_Crash = gameObject.AddComponent<AudioSource>();
+            m_Crash = gameObject.AddComponent<AudioSource>(); 
             turboSource = gameObject.AddComponent<AudioSource>();
         }
 
@@ -198,7 +198,8 @@ namespace UnityStandardAssets.Vehicles.Car
         
         private void OnCollisionEnter(Collision other)
         {
-            m_Crash.volume = 1;
+            
+            m_Crash.volume = 0.5f;
             if (!m_Crash.isPlaying)
             {
                 if (m_CarController.GetSpeed() >= 150)
@@ -229,5 +230,7 @@ namespace UnityStandardAssets.Vehicles.Car
         {
             turboSource.Stop();
         }
+        
+        
     }
 }

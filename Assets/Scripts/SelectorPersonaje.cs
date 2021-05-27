@@ -7,6 +7,7 @@ public class SelectorPersonaje : MonoBehaviour
 {
     public GameObject[] personajes;
     public int personajeSeleccionado = 0;
+    private string nombreUsuario; 
 
     public void SiguientePersonaje()
     {
@@ -29,11 +30,18 @@ public class SelectorPersonaje : MonoBehaviour
     public void PersonajeSeleccionado()
     {
         PlayerPrefs.SetInt("personajeSeleccionado", personajeSeleccionado);
+        Debug.Log(nombreUsuario);
+        PlayerPrefs.SetString("Usuario", nombreUsuario);
     }
 
     public void VolverAlMenu()
     {
         StartCoroutine(EsperarCambioEscena(0.3f, 0));
+    }
+
+    public void NombreUsuario(string usuario)
+    {
+        nombreUsuario = usuario;
     }
 
     public IEnumerator EsperarCambioEscena(float tiempo, int escena)

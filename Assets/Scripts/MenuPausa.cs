@@ -8,6 +8,7 @@ public class MenuPausa : MonoBehaviour
     public GameObject PauseMenuUI;
     public GameObject Informacion;
     public GameObject DireccionContraria;
+    public AudioSource musica;
 
     // Update is called once per frame
     void Update()
@@ -45,9 +46,14 @@ public class MenuPausa : MonoBehaviour
         AudioSource[] audios = FindObjectsOfType<AudioSource>();
         foreach (AudioSource a in audios)
         {
-            //a.volume = 0;
+            a.volume = 0;
             a.Play();
         }
+    }
+
+    public void volveReproducir()
+    {
+        musica.volume = 1;
     }
 
 }

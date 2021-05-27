@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 using UnityStandardAssets.Vehicles.Car;
 
 public class carControllerVer4 : MonoBehaviour
@@ -36,6 +37,7 @@ public class carControllerVer4 : MonoBehaviour
     public bool isPlayer;
     private Transform lastCheckpointTransform;
 
+    public Slider turboSlider;
     [SerializeField] private TextMeshProUGUI speedText;
     [SerializeField] private WheelCollider frontLeftWheelCollider;
     [SerializeField] private WheelCollider frontRightWheelCollider;
@@ -59,7 +61,13 @@ public class carControllerVer4 : MonoBehaviour
     public ParticleSystem turboFlames1;
     public ParticleSystem turboFlames2;
     private CarAudio carAudioController;
-    private int counterTurbo = 0;
+    private int counterTurboAudio = 0;
+    private float cooldownSeconds = 20f;
+    private float boostSeconds = 5f;
+    private float elapsedSeconds;
+    private bool isCooldown = false;
+    private float maxTurbo = 2f;
+    public float actualTurbo;
     
     private void Start()
     {
@@ -90,6 +98,7 @@ public class carControllerVer4 : MonoBehaviour
             CalculateRevs();
             GearChanging();
             CheckForWheelSpin();
+            UpdateTurboSlider(maxTurbo);
         }
     }
 
@@ -100,7 +109,10 @@ public class carControllerVer4 : MonoBehaviour
             verticalInput = Input.GetAxis(VERTICAL);
             isBreaking = Input.GetKey(KeyCode.Space);
             isDrifting = Input.GetKey(KeyCode.LeftShift);
-            isTurbo = Input.GetKey(KeyCode.RightShift);
+            if (!isCooldown)
+            {
+                isTurbo = Input.GetKey(KeyCode.RightShift);    
+            }
         }
     }
 
@@ -231,20 +243,13 @@ public class carControllerVer4 : MonoBehaviour
         
         if (isTurbo)
         {
-            
-            // turboSource.clip = turboClip;
-            //
-            // if (!turboSource.isPlaying && counterTurbo == 0)
-            // {
-            //     turboSource.Play();
-            //     counterTurbo++;
-            // }
-
-            if (counterTurbo == 0)
+            if (counterTurboAudio == 0)
             {
                 carAudioController.PlayTurboSound();
-                counterTurbo++;
+                counterTurboAudio++;
             }
+
+            actualTurbo -= Time.fixedDeltaTime;
             emissionFlames1.enabled = true;
             emissionFlames2.enabled = true;
             frontRightWheelCollider.motorTorque = 3 * (verticalInput * motorForce * Time.fixedDeltaTime);
@@ -254,7 +259,7 @@ public class carControllerVer4 : MonoBehaviour
         }
         else
         {
-            counterTurbo = 0;
+            counterTurboAudio = 0;
             carAudioController.StopTurboSound();
             emissionFlames1.enabled = false;
             emissionFlames2.enabled = false;
@@ -425,5 +430,47 @@ public class carControllerVer4 : MonoBehaviour
     public void SetLastCheckpointTransform(Transform transform)
     {
         lastCheckpointTransform = transform;
+    }
+
+    public void UpdateTurboSlider( float maxValor)
+    {
+        // elapsedSeconds += Time.fixedDeltaTime;
+        //
+        // if (elapsedSeconds > boostSeconds)
+        // {
+        //     isCooldown = true;
+        //     elapsedSeconds = 0;
+        // }
+        // else if (isCooldown)
+        // {
+        //     if (elapsedSeconds > cooldownSeconds)
+        //     {
+        //         isCooldown = false;
+        //         elapsedSeconds = 0;
+        //     }
+        // }
+        float porcentaje;
+
+        actualTurbo += Time.fixedDeltaTime / 5;
+        if (actualTurbo >= maxValor)
+        {
+            actualTurbo = maxValor;
+        }
+        porcentaje = actualTurbo / maxValor;
+        turboSlider.value = porcentaje;
+
+        if (turboSlider.value <= 0)
+        {
+            isCooldown = true;
+            actualTurbo = 0;
+            isTurbo = false;
+        }
+        else
+        {
+            isCooldown = false;
+        }
+
+
+
     }
 }
