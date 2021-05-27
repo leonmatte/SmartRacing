@@ -23,6 +23,7 @@ public class carControllerVer4 : MonoBehaviour
     private int roundedSpeed;
     private float speed;
     private Rigidbody rigidbodyCar;
+    private bool reset;
     public int lapCounter;
 
     [SerializeField] public float maxSpeedIA = 250;
@@ -91,7 +92,7 @@ public class carControllerVer4 : MonoBehaviour
             UpdateWheels();
             AddDownForce();
             ShowSpeed();
-            HandleReset();
+            HandleReset(reset);
             HandleWrongWay();
             CalculateRevs();
             GearChanging();
@@ -107,6 +108,7 @@ public class carControllerVer4 : MonoBehaviour
             verticalInput = Input.GetAxis(VERTICAL);
             isBreaking = Input.GetKey(KeyCode.Space);
             isDrifting = Input.GetKey(KeyCode.LeftShift);
+            reset = Input.GetKey(KeyCode.LeftControl);
             if (!isCooldown)
             {
                 isTurbo = Input.GetKey(KeyCode.RightShift);    
@@ -154,9 +156,9 @@ public class carControllerVer4 : MonoBehaviour
         }
     }
 
-    public void HandleReset()
+    public void HandleReset(bool reset)
     {
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (reset)
         {
             rigidbodyCar.velocity = new Vector3(0, 0, 0);
             transform.position = lastCheckpointTransform.position - 3 * Vector3.up;

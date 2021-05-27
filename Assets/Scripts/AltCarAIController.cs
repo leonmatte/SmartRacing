@@ -49,9 +49,16 @@ public class AltCarAIController : MonoBehaviour
         {
             m_CarController.GetInputFromAI(0, 0, true, false, false, false);
         }
-
+        
         else
         {
+            
+           if (Mathf.Abs(transform.rotation.z) >= 0.7f)
+            {
+                print("HEYYYYY");
+                m_CarController.HandleReset(true);
+            }
+            
             Vector3 fwd = transform.forward;
             if (m_Rigidbody.velocity.magnitude > m_CarController.maxSpeedIA * 0.1f)
             {
