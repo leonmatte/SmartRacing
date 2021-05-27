@@ -113,6 +113,7 @@ public class carControllerVer4 : MonoBehaviour
             this.isBreaking = isBreaking;
             this.isDrifting = isDrifting;
         }
+        roundedSpeed = Mathf.RoundToInt(speed);
     }
 
     private void ShowSpeed()
