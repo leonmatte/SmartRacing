@@ -4768,7 +4768,7 @@ ParticleSystem:
   m_GameObject: {fileID: 773587654390515454}
   serializedVersion: 7
   lengthInSec: 2
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
@@ -4832,7 +4832,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -18988,7 +18988,7 @@ ParticleSystem:
   m_GameObject: {fileID: 2156475625446544718}
   serializedVersion: 7
   lengthInSec: 2
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
@@ -19052,7 +19052,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -42353,7 +42353,7 @@ ParticleSystem:
   m_GameObject: {fileID: 3122105329690467645}
   serializedVersion: 7
   lengthInSec: 2
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
@@ -42417,7 +42417,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -61167,7 +61167,7 @@ ParticleSystem:
   m_GameObject: {fileID: 4835277498020893696}
   serializedVersion: 7
   lengthInSec: 2
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
@@ -61231,7 +61231,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -65804,7 +65804,7 @@ ParticleSystem:
   m_GameObject: {fileID: 5382103564328799832}
   serializedVersion: 7
   lengthInSec: 2
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
@@ -65868,7 +65868,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -112798,7 +112798,7 @@ ParticleSystem:
   m_GameObject: {fileID: 7405305218180519430}
   serializedVersion: 7
   lengthInSec: 2
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
@@ -112862,7 +112862,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -117435,7 +117435,7 @@ ParticleSystem:
   m_GameObject: {fileID: 7967683809838612032}
   serializedVersion: 7
   lengthInSec: 2
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
@@ -117499,7 +117499,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -122072,7 +122072,7 @@ ParticleSystem:
   m_GameObject: {fileID: 8027572793802873031}
   serializedVersion: 7
   lengthInSec: 2
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
@@ -122136,7 +122136,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -131382,7 +131382,7 @@ ParticleSystem:
   m_GameObject: {fileID: 8528777274021198249}
   serializedVersion: 7
   lengthInSec: 2
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
@@ -131446,7 +131446,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -145295,7 +145295,7 @@ ParticleSystem:
   m_GameObject: {fileID: 8751130637765876387}
   serializedVersion: 7
   lengthInSec: 2
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
@@ -145359,7 +145359,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -149898,6 +149898,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2050635434012222769}
     m_Modifications:
     - target: {fileID: 2217618053295982621, guid: 3e2365ba77e5ee44f8807d4ca2a50d07, type: 3}
+      propertyPath: turboClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 51783303e6c33db4ca6ed1819c42202f, type: 3}
+    - target: {fileID: 2217618053295982621, guid: 3e2365ba77e5ee44f8807d4ca2a50d07, type: 3}
       propertyPath: engineSoundStyle
       value: 0
       objectReference: {fileID: 0}
@@ -150105,6 +150109,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5728841522911475301, guid: 93bb863d82084d246bee8092340980f8, type: 3}
+      propertyPath: turboClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 51783303e6c33db4ca6ed1819c42202f, type: 3}
+    - target: {fileID: 5728841522911475301, guid: 93bb863d82084d246bee8092340980f8, type: 3}
       propertyPath: engineSoundStyle
       value: 0
       objectReference: {fileID: 0}
@@ -150230,6 +150238,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4102871967510929907, guid: d464f1e63bf9b5c43866d43f291ba279, type: 3}
+      propertyPath: turboClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 51783303e6c33db4ca6ed1819c42202f, type: 3}
+    - target: {fileID: 4102871967510929907, guid: d464f1e63bf9b5c43866d43f291ba279, type: 3}
       propertyPath: engineSoundStyle
       value: 0
       objectReference: {fileID: 0}
@@ -150354,6 +150366,10 @@ PrefabInstance:
       propertyPath: driftAngleThreshold
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 6759409838078575652, guid: 65abbad94d7c3c54ab5d747df65eccdc, type: 3}
+      propertyPath: turboClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 51783303e6c33db4ca6ed1819c42202f, type: 3}
     - target: {fileID: 6759409838078575652, guid: 65abbad94d7c3c54ab5d747df65eccdc, type: 3}
       propertyPath: engineSoundStyle
       value: 0
@@ -150489,6 +150505,10 @@ PrefabInstance:
       propertyPath: m_WheelEffects.Array.data[1]
       value: 
       objectReference: {fileID: 8280678162849568009}
+    - target: {fileID: 7316956051740265395, guid: 1f95d11e5efba424688a0111510e42a8, type: 3}
+      propertyPath: turboClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 51783303e6c33db4ca6ed1819c42202f, type: 3}
     - target: {fileID: 7316956051740265395, guid: 1f95d11e5efba424688a0111510e42a8, type: 3}
       propertyPath: engineSoundStyle
       value: 0
