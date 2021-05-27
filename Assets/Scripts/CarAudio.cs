@@ -228,7 +228,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
         public void StopTurboSound()
         {
-            turboSource.Stop();
+            if(turboSource != null) turboSource.Stop();
         }
         
         
