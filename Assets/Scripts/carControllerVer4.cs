@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.Http.Headers;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityStandardAssets.Vehicles.Car;
 
 public class carControllerVer4 : MonoBehaviour
@@ -68,7 +63,8 @@ public class carControllerVer4 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(isPlayer){
+        if (isPlayer)
+        {
             GetInput();
             HandleMotor();
             HandleSteering();
@@ -85,7 +81,8 @@ public class carControllerVer4 : MonoBehaviour
 
     private void GetInput()
     {
-        if(driving){ 
+        if (driving)
+        {
             horizontalInput = Input.GetAxis(HORIZONTAL);
             verticalInput = Input.GetAxis(VERTICAL);
             isBreaking = Input.GetKey(KeyCode.Space);
@@ -93,7 +90,8 @@ public class carControllerVer4 : MonoBehaviour
         }
     }
 
-    public void GetInputFromAI(float horizontalInput, float verticalInput, bool isBreaking, bool isDrifting, bool inputW, bool inputS)
+    public void GetInputFromAI(float horizontalInput, float verticalInput, bool isBreaking, bool isDrifting,
+        bool inputW, bool inputS)
     {
         if (driving)
         {
@@ -119,7 +117,7 @@ public class carControllerVer4 : MonoBehaviour
             //print("WRONG WAY " + targetAngle);
             direccionContraria.SetActive(true);
         }
-        else 
+        else
         {
             direccionContraria.SetActive(false);
         }
@@ -138,10 +136,9 @@ public class carControllerVer4 : MonoBehaviour
 
     public void HandleMotor()
     {
-
         RearSpeed();
 
-        if(frontLeftWheelCollider.rpm <= 1500f && roundedSpeed < topSpeed)
+        if (frontLeftWheelCollider.rpm <= 1500f && roundedSpeed < topSpeed)
         {
             frontRightWheelCollider.motorTorque = verticalInput * motorForce * Time.fixedDeltaTime;
             frontLeftWheelCollider.motorTorque = verticalInput * motorForce * Time.fixedDeltaTime;
@@ -165,17 +162,14 @@ public class carControllerVer4 : MonoBehaviour
 
     private void ApplyDrifting()
     {
-
         //Si el boton de drifting esta pulsado, cambia la adherencia de las ruedas traseras.
-        if(isDrifting)
+        if (isDrifting)
         {
-
             //Cambiamos el stiffness de Sideways Friction de las ruedas traseras para hacer que el coche derrape
             WheelFrictionCurve sFriction = rearLeftWheelCollider.sidewaysFriction;
             sFriction.stiffness = 1.2f;
             rearLeftWheelCollider.sidewaysFriction = sFriction;
             rearRightWheelCollider.sidewaysFriction = sFriction;
-
         }
         else
         {
@@ -184,7 +178,6 @@ public class carControllerVer4 : MonoBehaviour
             sFriction.stiffness = 2f;
             rearLeftWheelCollider.sidewaysFriction = sFriction;
             rearRightWheelCollider.sidewaysFriction = sFriction;
-
         }
         //Freno de ruedas delanteras
         //rearLeftWheelCollider.brakeTorque = currentDriftForce;
@@ -222,6 +215,7 @@ public class carControllerVer4 : MonoBehaviour
         {
             maxSteerAngle = 5;
         }
+
         currentSteerAngle = maxSteerAngle * horizontalInput;
         frontLeftWheelCollider.steerAngle = currentSteerAngle;
         frontRightWheelCollider.steerAngle = currentSteerAngle;
@@ -246,7 +240,7 @@ public class carControllerVer4 : MonoBehaviour
 
     public void AddDownForce()
     {
-        frontLeftWheelCollider.attachedRigidbody.AddForce(-transform.up*m_Downforce*
+        frontLeftWheelCollider.attachedRigidbody.AddForce(-transform.up * m_Downforce *
                                                           frontLeftWheelCollider.attachedRigidbody.velocity.magnitude);
     }
 
@@ -269,9 +263,9 @@ public class carControllerVer4 : MonoBehaviour
 
     private void GearChanging()
     {
-        float f = Mathf.Abs(speed/topSpeedAux);
-        float upgearlimit = (1/(float) NoOfGears)*(m_GearNum + 1);
-        float downgearlimit = (1/(float) NoOfGears)*m_GearNum;
+        float f = Mathf.Abs(speed / topSpeedAux);
+        float upgearlimit = (1 / (float) NoOfGears) * (m_GearNum + 1);
+        float downgearlimit = (1 / (float) NoOfGears) * m_GearNum;
 
         if (m_GearNum > 0 && f < downgearlimit)
         {
@@ -286,21 +280,22 @@ public class carControllerVer4 : MonoBehaviour
 
     private void CalculateGearFactor()
     {
-        float f = (1/(float) NoOfGears);
+        float f = (1 / (float) NoOfGears);
         // gear factor is a normalised representation of the current speed within the current gear's range of speeds.
         // We smooth towards the 'target' gear factor, so that revs don't instantly snap up or down when changing gear.
-        var targetGearFactor = Mathf.InverseLerp(f*m_GearNum, f*(m_GearNum + 1), Mathf.Abs(roundedSpeed/topSpeedAux));
-        m_GearFactor = Mathf.Lerp(m_GearFactor, targetGearFactor, Time.deltaTime*5f);
+        var targetGearFactor =
+            Mathf.InverseLerp(f * m_GearNum, f * (m_GearNum + 1), Mathf.Abs(roundedSpeed / topSpeedAux));
+        m_GearFactor = Mathf.Lerp(m_GearFactor, targetGearFactor, Time.deltaTime * 5f);
     }
 
     private static float ULerp(float from, float to, float value)
     {
-        return (1.0f - value)*from + value*to;
+        return (1.0f - value) * from + value * to;
     }
 
     private static float CurveFactor(float factor)
     {
-        return 1 - (1 - factor)*(1 - factor);
+        return 1 - (1 - factor) * (1 - factor);
     }
 
     private void CalculateRevs()
@@ -308,7 +303,7 @@ public class carControllerVer4 : MonoBehaviour
         // calculate engine revs (for display / sound)
         // (this is done in retrospect - revs are not used in force/power calculations)
         CalculateGearFactor();
-        var gearNumFactor = m_GearNum/(float) NoOfGears;
+        var gearNumFactor = m_GearNum / (float) NoOfGears;
         var revsRangeMin = ULerp(0f, m_RevRangeBoundary, CurveFactor(gearNumFactor));
         var revsRangeMax = ULerp(m_RevRangeBoundary, 1f, gearNumFactor);
         Revs = ULerp(revsRangeMin, revsRangeMax, m_GearFactor);
@@ -322,7 +317,7 @@ public class carControllerVer4 : MonoBehaviour
     private void CheckForWheelSpin()
     {
         WheelCollider[] m_WheelColliders = {rearLeftWheelCollider, rearRightWheelCollider};
-        
+
         // loop through all wheels
         for (int i = 0; i < 2; i++)
         {
@@ -337,8 +332,8 @@ public class carControllerVer4 : MonoBehaviour
                 if (!AnySkidSoundPlaying())
                 {
                     m_WheelEffects[i].PlayAudio();
-                    
                 }
+
                 m_WheelEffects[i].EmitTyreSmoke();
                 continue;
             }
@@ -348,6 +343,7 @@ public class carControllerVer4 : MonoBehaviour
             {
                 m_WheelEffects[i].StopAudio();
             }
+
             // end the trail generation
             m_WheelEffects[i].EndSkidTrail();
         }
@@ -362,9 +358,10 @@ public class carControllerVer4 : MonoBehaviour
                 return true;
             }
         }
+
         return false;
     }
-    
+
     public void SetLastCheckpointTransform(Transform transform)
     {
         lastCheckpointTransform = transform;
