@@ -1,9 +1,21 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHUD : MonoBehaviour
 {
+    //UI CONTROLLER Variables
+    public GameObject uiRacePanel;
+    public GameObject textCurrentTime;
+    public GameObject textLastLap;
+    public GameObject textBestLap;
+    public GameObject textCurrentLap;
+    private TMP_Text _tmpText;
+    private TMP_Text _tmpText1;
+    private TMP_Text _tmpText2;
+    private TMP_Text _tmpText3;
+
     //Time internal values
     private float _currentLapTime;
     private float _lastLapTime;
@@ -46,6 +58,12 @@ public class PlayerHUD : MonoBehaviour
         _text2 = countDown.GetComponent<Text>();
         _text1 = countDown.GetComponent<Text>();
         _text = countDown.GetComponent<Text>();
+
+        _tmpText = textCurrentTime.GetComponent<TMP_Text>();
+        _tmpText3 = textCurrentLap.GetComponent<TMP_Text>();
+        _tmpText2 = textBestLap.GetComponent<TMP_Text>();
+        _tmpText1 = textLastLap.GetComponent<TMP_Text>();
+
         _countDownActive = true;
 
         for (int i = 0; i < 4; i++)
@@ -90,8 +108,8 @@ public class PlayerHUD : MonoBehaviour
         yield return new WaitForSeconds(1);
         countDown.SetActive(false);
         goAudio.Play();
-        CarControllerSwitch(true);
         _countDownActive = false;
+        CarControllerSwitch(true);
     }
 
     void OnTriggerEnter(Collider triggerCollision)
@@ -108,7 +126,10 @@ public class PlayerHUD : MonoBehaviour
 
             if (_currentLap == 0 || _lastCheckPointPassed == _checkpointCount)
             {
-                StartLap();
+                if (!_countDownActive)
+                {
+                    StartLap();
+                }
             }
 
             if (triggerCollision.gameObject.name == "1" && _currentLap == 0)
@@ -132,8 +153,15 @@ public class PlayerHUD : MonoBehaviour
             _currentLapTime += Time.deltaTime;
         }
 
-        //TimeSpan time = TimeSpan.FromSeconds(_currentLapTime);
-        //Curre.text = time.ToString(@"mm\:ss\:fff");
+        _tmpText.text = $"{(int) _currentLapTime / 60}:{(_currentLapTime) % 60:00.000}";
+
+        _tmpText1.text = $"{(int) _lastLapTime / 60}:{(_lastLapTime) % 60:00.000}";
+
+
+        _tmpText2.text = _bestLapTime < 1000000
+            ? $"{(int) _bestLapTime / 60}:{(_bestLapTime) % 60:00.000}"
+            : "0:00.00";
+        _tmpText3.text = _currentLap.ToString();
     }
 
     void StartLap()
