@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -33,6 +34,7 @@ public class PlayerHUD : MonoBehaviour
     public GameObject[] cars = new GameObject[5];
     private readonly carControllerVer4[] _carControllers = new carControllerVer4[5];
     private readonly AltCarAIController[] _carAIControllers = new AltCarAIController[5];
+    private GameObject _carPlayer;
 
     //Player Saved Scores
     private int _counter;
@@ -47,7 +49,8 @@ public class PlayerHUD : MonoBehaviour
     private Text _text2;
     private bool _countDownActive;
 
-    void Awake()
+
+    private void Awake()
     {
         _lastLapTime = 0;
         _currentLapTime = 0;
@@ -58,14 +61,7 @@ public class PlayerHUD : MonoBehaviour
         _text2 = countDown.GetComponent<Text>();
         _text1 = countDown.GetComponent<Text>();
         _text = countDown.GetComponent<Text>();
-
-        _tmpText = textCurrentTime.GetComponent<TMP_Text>();
-        _tmpText3 = textCurrentLap.GetComponent<TMP_Text>();
-        _tmpText2 = textBestLap.GetComponent<TMP_Text>();
-        _tmpText1 = textLastLap.GetComponent<TMP_Text>();
-
-        _countDownActive = true;
-
+        
         for (int i = 0; i < 4; i++)
         {
             _carControllers[i] = cars[i].GetComponent<carControllerVer4>();
@@ -76,11 +72,16 @@ public class PlayerHUD : MonoBehaviour
         {
             if (car.GetComponent<carControllerVer4>().isPlayer)
             {
-                car.GetComponent<UIController>().enabled = true;
+                _carPlayer = car;
             }
-
-            car.GetComponent<UIController>().enabled = false;
         }
+        
+        _tmpText = textCurrentTime.GetComponent<TMP_Text>();
+        _tmpText3 = textCurrentLap.GetComponent<TMP_Text>();
+        _tmpText2 = textBestLap.GetComponent<TMP_Text>();
+        _tmpText1 = textLastLap.GetComponent<TMP_Text>();
+
+        _countDownActive = true;
     }
 
     void Start()
@@ -114,32 +115,32 @@ public class PlayerHUD : MonoBehaviour
 
     void OnTriggerEnter(Collider triggerCollision)
     {
-        while (_currentLap <= 3)
+        if (triggerCollision.gameObject.name == _carPlayer.gameObject.name)
         {
-            _counter++;
-            if (triggerCollision.gameObject.name != "1") continue;
-            if (_lastCheckPointPassed == _checkpointCount)
+            while (_currentLap <= 3)
             {
-                EndLap();
-                lapTimes[(_counter - 1)] = _bestLapTime;
-            }
+                _counter++;
+                if (triggerCollision.gameObject.name != "1") continue;
+                if (_lastCheckPointPassed == _checkpointCount)
+                {
+                    EndLap();
+                    lapTimes[(_counter - 1)] = _bestLapTime;
+                }
 
-            if (_currentLap == 0 || _lastCheckPointPassed == _checkpointCount)
-            {
-                if (!_countDownActive)
+                if (_currentLap == 0 || _lastCheckPointPassed == _checkpointCount)
                 {
                     StartLap();
                 }
-            }
 
-            if (triggerCollision.gameObject.name == "1" && _currentLap == 0)
-            {
-                _currentLap = 1;
-            }
+                if (triggerCollision.gameObject.name == "1" && _currentLap == 0)
+                {
+                    _currentLap = 1;
+                }
 
-            if (triggerCollision.gameObject.name == (_lastCheckPointPassed + 1).ToString())
-            {
-                _lastCheckPointPassed++;
+                if (triggerCollision.gameObject.name == (_lastCheckPointPassed + 1).ToString())
+                {
+                    _lastCheckPointPassed++;
+                }
             }
         }
 
@@ -156,7 +157,6 @@ public class PlayerHUD : MonoBehaviour
         _tmpText.text = $"{(int) _currentLapTime / 60}:{(_currentLapTime) % 60:00.000}";
 
         _tmpText1.text = $"{(int) _lastLapTime / 60}:{(_lastLapTime) % 60:00.000}";
-
 
         _tmpText2.text = _bestLapTime < 1000000
             ? $"{(int) _bestLapTime / 60}:{(_bestLapTime) % 60:00.000}"
@@ -188,7 +188,10 @@ public class PlayerHUD : MonoBehaviour
             {
                 foreach (carControllerVer4 controller in _carControllers)
                 {
-                    controller.enabled = true;
+                    if (controller.isPlayer)
+                    {
+                        controller.enabled = true;
+                    }
                 }
 
                 foreach (AltCarAIController aiController in _carAIControllers)
