@@ -1,23 +1,22 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class UIController : MonoBehaviour
 {
-    [FormerlySerializedAs("UIRacePanel")] public GameObject uiRacePanel;
+    public GameObject uiRacePanel;
 
     public GameObject textCurrentTime;
     public GameObject textLastLap;
     public GameObject textBestLap;
     public GameObject textCurrentLap;
 
-    [FormerlySerializedAs("UpdateUIForPlayer")] public PlayerManager updateUIForPlayer;
+    public PlayerManager updateUIForPlayer;
 
     private float _currentLapTime;
     private float _lastLapTime;
     private float _bestLapTime;
-    private int _currentLap = -1;
-    
+    private int _currentLap = 1;
+
     private bool _isUpdateUIForPlayerNull;
     private TMP_Text _tmpText;
     private TMP_Text _tmpText1;
