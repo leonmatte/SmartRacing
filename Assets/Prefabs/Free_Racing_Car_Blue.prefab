@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 1425487184389303806}
   - component: {fileID: 7316956051740265395}
   - component: {fileID: 5498474117139406841}
+  - component: {fileID: 2276431757793456744}
   m_Layer: 0
   m_Name: Free_Racing_Car_Blue
   m_TagString: Untagged
@@ -352,6 +353,7 @@ MonoBehaviour:
   topSpeed: 250
   driving: 0
   isPlayer: 0
+  turboSlider: {fileID: 0}
   speedText: {fileID: 0}
   frontLeftWheelCollider: {fileID: 6008855930759022440}
   frontRightWheelCollider: {fileID: 6832046637248456104}
@@ -367,8 +369,11 @@ MonoBehaviour:
   rearLeftWheelTransform: {fileID: 4584708022615555834}
   rearRightWheelTransform: {fileID: 2398464561153615127}
   m_RevRangeBoundary: 1
-  m_SlipLimit: 0
   direccionContraria: {fileID: 0}
+  turboFlames1: {fileID: 0}
+  turboFlames2: {fileID: 0}
+  cooldownSeconds: 0
+  actualTurbo: 0
 --- !u!114 &1425487184389303806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,9 +401,7 @@ MonoBehaviour:
   m_StopWhenTargetReached: 0
   m_ReachTargetThreshold: 2
   driftAngleThreshold: 0
-  driftSpeedThreshold: 0
   brakeAngleThreshold: 0
-  brakeSpeedThreshold: 0
   raycastPoint: {fileID: 2602316498825888703}
   raycastLength: 0.5
   mask:
@@ -417,6 +420,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   engineSoundStyle: 1
+  crashClipStrong: {fileID: 0}
+  crashClipSoft: {fileID: 0}
   lowAccelClip: {fileID: 8300000, guid: c4d8928c75c21af43998193f0f038429, type: 3}
   lowDecelClip: {fileID: 8300000, guid: 5699dddcce16c4543b95951c4ce0e092, type: 3}
   highAccelClip: {fileID: 8300000, guid: 03e3bd08a6e70684dbe299a3e185fdd2, type: 3}
@@ -429,6 +434,7 @@ MonoBehaviour:
   dopplerLevel: 1
   useDoppler: 1
   camera: {fileID: 0}
+  turboClip: {fileID: 0}
 --- !u!114 &5498474117139406841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,6 +455,25 @@ MonoBehaviour:
   progressStyle: 0
   pointToPointThreshold: 4
   target: {fileID: 0}
+--- !u!114 &2276431757793456744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311492772187016057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf9db670c1df4bb2843b82560ce5409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: cda915e01ca58f24692cd35ee9874f7a, type: 3}
+  size: {x: 10, y: 10}
+  rotateWithObject: 1
+  upAxis: {x: 0, y: 1, z: 0}
+  initialIconRotation: 0
+  clampIconInBorder: 1
+  clampDistance: 100
 --- !u!1 &838430585298985018
 GameObject:
   m_ObjectHideFlags: 0

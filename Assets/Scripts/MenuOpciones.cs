@@ -34,7 +34,12 @@ public class MenuOpciones : MonoBehaviour
         AudioSource[] audios = FindObjectsOfType<AudioSource>();
         foreach (AudioSource a in audios)
         {
+            a.volume = 0;
             a.Play();
+            if (SceneManager.GetActiveScene().name == "Menu inicial")
+            {
+                a.volume = 1;
+            }
         }
     }
 
