@@ -41,12 +41,6 @@ public class PlayerHUD : MonoBehaviour
     public float[] lapTimes = new float[3];
 
     //COUNTDOWN
-    public GameObject countDown;
-    public AudioSource getReady;
-    public AudioSource goAudio;
-    private Text _text;
-    private Text _text1;
-    private Text _text2;
     private bool _countDownActive;
 
     private float currentTime = 0f;
@@ -62,10 +56,7 @@ public class PlayerHUD : MonoBehaviour
         _lastCheckPointPassed = 0;
         _checkpointsParent = GameObject.Find("Checkpoints").transform;
         _checkpointCount = _checkpointsParent.childCount;
-        _text2 = countDown.GetComponent<Text>();
-        _text1 = countDown.GetComponent<Text>();
-        _text = countDown.GetComponent<Text>();
-        
+
         for (int i = 0; i < 4; i++)
         {
             _carControllers[i] = cars[i].GetComponent<carControllerVer4>();
@@ -135,6 +126,7 @@ public class PlayerHUD : MonoBehaviour
         if (currentTime <= 0)
         {
             currentTime = 0;
+            countdownText.enabled = false;
         }
         
         if (_stopwatchActive)

@@ -4,19 +4,15 @@ using UnityEngine;
 public class UIController : MonoBehaviour
 {
     public GameObject uiRacePanel;
-
     public GameObject textCurrentTime;
     public GameObject textLastLap;
     public GameObject textBestLap;
     public GameObject textCurrentLap;
-
     public PlayerManager updateUIForPlayer;
-
     private float _currentLapTime;
     private float _lastLapTime;
     private float _bestLapTime;
     private int _currentLap = 1;
-
     private bool _isUpdateUIForPlayerNull;
     private TMP_Text _tmpText;
     private TMP_Text _tmpText1;
@@ -59,7 +55,7 @@ public class UIController : MonoBehaviour
             _bestLapTime = updateUIForPlayer.BestLapTime;
             _tmpText2.text = _bestLapTime < 1000000
                 ? $"{(int) _bestLapTime / 60}:{(_bestLapTime) % 60:00.000}"
-                : "0:00.00";
+                : "0:00.000";
         }
 
         if (updateUIForPlayer.CurrentLap == _currentLap) return;
