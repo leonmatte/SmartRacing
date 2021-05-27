@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CheckpointTracker : MonoBehaviour
 {
@@ -58,7 +60,9 @@ public class CheckpointTracker : MonoBehaviour
                       controllerList[carTransformList.IndexOf(carTransform)].lapCounter);
                 if (controllerList[carTransformList.IndexOf(carTransform)].lapCounter > 3) // Si el coche ha completado las tres vueltas
                 {
+                    controllerList[carTransformList.IndexOf(carTransform)].GetInputFromAI(Random.Range(-1f, 1f), 0, true, true, false, false);
                     controllerList[carTransformList.IndexOf(carTransform)].driving = false; // El coche deja de correr
+                    
                     positions++; // Otro coche más ha terminado la carrera
                     
                     if (controllerList[carTransformList.IndexOf(carTransform)].isPlayer) // Si el coche que ha terminado la carrera es el jugador
