@@ -1,5 +1,7 @@
+using System.Collections;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -19,10 +21,18 @@ public class PlayerManager : MonoBehaviour
 
     public float[] lapTimes = new float[3];
 
-    private GameObject _carPlayer;
-    private carControllerVer4 _carControllerVer4;
+    public GameObject countDown;
+    public AudioSource getReady;
+    public AudioSource goAudio;
 
-    private bool _carControllerEnabled;
+    private readonly carControllerVer4[] _carControllers = new carControllerVer4[5];
+    private readonly AltCarAIController[] _carAIControllers = new AltCarAIController[5];
+
+    private Text _text;
+    private Text _text1;
+    private Text _text2;
+
+    private bool _countDownActive = true;
 
     void Awake()
     {
@@ -30,45 +40,47 @@ public class PlayerManager : MonoBehaviour
         CurrentLapTime = 0;
         CurrentLap = 0;
         _lastCheckPointPassed = 0;
-        _carControllerEnabled = false;
         _checkpointsParent = GameObject.Find("Checkpoints").transform;
         _checkpointCount = _checkpointsParent.childCount;
         _checkpointLayer = LayerMask.NameToLayer("Checkpoint");
+        _text2 = countDown.GetComponent<Text>();
+        _text1 = countDown.GetComponent<Text>();
+        _text = countDown.GetComponent<Text>();
 
-        foreach (GameObject car in cars)
+        for (int i = 0; i < 4; i++)
         {
-            if (car.GetComponent<carControllerVer4>().isPlayer)
-            {
-                _carPlayer = car;
-            }
-        }
-        
-        _carControllerVer4 = _carPlayer.GetComponent<carControllerVer4>();
-        
-        foreach (GameObject car in cars)
-        {
-            if (car.GetComponent<carControllerVer4>().isPlayer)
-            {
-                car.GetComponent<carControllerVer4>().enabled = true;
-            }
-            car.GetComponent<AltCarAIController>().enabled = true;
-            car.GetComponent<carControllerVer4>().enabled = true;
+            _carControllers[i] = cars[i].GetComponent<carControllerVer4>();
+            _carAIControllers[i] = cars[i].GetComponent<AltCarAIController>();
         }
     }
 
-    void StartLap()
+    void Start()
     {
-        Debug.Log("StartLap!");
-        _lastCheckPointPassed = 1;
-        _lapTimerTimestamp = Time.time - LastLapTime;
+        StartCoroutine(CountStart());
     }
 
-    void EndLap()
+    IEnumerator CountStart()
     {
-        LastLapTime = Time.time - _lapTimerTimestamp;
-        BestLapTime = Mathf.Min(LastLapTime, BestLapTime);
-        Debug.Log("EndLap - LapTime was " + LastLapTime + " seconds");
-        CurrentLap++;
+        CarControllerSwitch(false);
+        yield return new WaitForSeconds(0.3f);
+        _text.text = "3";
+        getReady.Play();
+        countDown.SetActive(true);
+        yield return new WaitForSeconds(1);
+        countDown.SetActive(false);
+        _text1.text = "2";
+        getReady.Play();
+        countDown.SetActive(true);
+        yield return new WaitForSeconds(1);
+        countDown.SetActive(false);
+        _text2.text = "1";
+        getReady.Play();
+        countDown.SetActive(true);
+        yield return new WaitForSeconds(1);
+        countDown.SetActive(false);
+        goAudio.Play();
+        CarControllerSwitch(true);
+        _countDownActive = false;
     }
 
     void OnTriggerEnter(Collider triggerCollision)
@@ -95,7 +107,6 @@ public class PlayerManager : MonoBehaviour
 
             if (triggerCollision.gameObject.name == "1" && CurrentLap == 0)
             {
-                _carControllerEnabled = true;
             }
 
             if (triggerCollision.gameObject.name == (_lastCheckPointPassed + 1).ToString())
@@ -104,22 +115,64 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
-        foreach (GameObject car in cars)
-        {
-            if (car.GetComponent<carControllerVer4>().isPlayer)
-            {
-                car.GetComponent<carControllerVer4>().enabled = false;
-            }
-            car.GetComponent<AltCarAIController>().enabled = false;
-            car.GetComponent<carControllerVer4>().enabled = false;
-        }
+        CarControllerSwitch(false);
     }
 
     void Update()
     {
-        if (_carControllerEnabled)
+        if (!_countDownActive)
         {
             CurrentLapTime = _lapTimerTimestamp > 0 ? Time.time - _lapTimerTimestamp : 0;
+        }
+    }
+
+    void StartLap()
+    {
+        Debug.Log("StartLap!");
+        _lastCheckPointPassed = 1;
+        _lapTimerTimestamp = Time.time - LastLapTime;
+    }
+
+    void EndLap()
+    {
+        LastLapTime = Time.time - _lapTimerTimestamp;
+        BestLapTime = Mathf.Min(LastLapTime, BestLapTime);
+        Debug.Log("EndLap - LapTime was " + LastLapTime + " seconds");
+        CurrentLap++;
+    }
+
+    void CarControllerSwitch(bool active)
+    {
+        switch (active)
+        {
+            case true:
+            {
+                foreach (carControllerVer4 controller in _carControllers)
+                {
+                    controller.enabled = true;
+                }
+
+                foreach (AltCarAIController aiController in _carAIControllers)
+                {
+                    aiController.enabled = true;
+                }
+
+                break;
+            }
+            case false:
+            {
+                foreach (carControllerVer4 controller in _carControllers)
+                {
+                    controller.enabled = false;
+                }
+
+                foreach (AltCarAIController aiController in _carAIControllers)
+                {
+                    aiController.enabled = false;
+                }
+
+                break;
+            }
         }
     }
 }
