@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Reflection;
+using UnityEngine.SceneManagement;
 [ExecuteInEditMode]
 public class MiniMapController : MonoBehaviour {
 	//public bool isRadialMask = false;
@@ -27,8 +28,11 @@ public class MiniMapController : MonoBehaviour {
 	public GameObject[] cocheSeleccionado;
 	private void Start()
 	{
-		int personajeSeleccionado = PlayerPrefs.GetInt("personajeSeleccionado");
-		target = cocheSeleccionado[personajeSeleccionado].transform;
+		if (SceneManager.GetActiveScene().name != "Contrarreloj")
+		{
+			int personajeSeleccionado = PlayerPrefs.GetInt("personajeSeleccionado");
+			target = cocheSeleccionado[personajeSeleccionado].transform;
+		}
 	}
 	
 	//UI related variables
