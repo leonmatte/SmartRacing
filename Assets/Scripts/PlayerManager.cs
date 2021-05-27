@@ -16,21 +16,26 @@ public class PlayerManager : MonoBehaviour
     private int _checkpointCount;
     [UsedImplicitly] private int _checkpointLayer;
 
+    public GameObject[] cars = new GameObject[5];
+    private int _counter;
+
+    public float[] lapTimes = new float[3];
+
     public GameObject countDown;
     public AudioSource getReady;
     public AudioSource goAudio;
-    public GameObject[] cars = new GameObject[5];
-    private bool _countDownActive;
+
+    private readonly carControllerVer4[] _carControllers = new carControllerVer4[5];
+    private readonly AltCarAIController[] _carAIControllers = new AltCarAIController[5];
 
     private Text _text;
     private Text _text1;
     private Text _text2;
 
+    private bool _countDownActive = true;
+
     void Awake()
     {
-        _text2 = countDown.GetComponent<Text>();
-        _text1 = countDown.GetComponent<Text>();
-        _text = countDown.GetComponent<Text>();
         LastLapTime = 0;
         CurrentLapTime = 0;
         CurrentLap = 0;
@@ -38,28 +43,35 @@ public class PlayerManager : MonoBehaviour
         _checkpointsParent = GameObject.Find("Checkpoints").transform;
         _checkpointCount = _checkpointsParent.childCount;
         _checkpointLayer = LayerMask.NameToLayer("Checkpoint");
+        _text2 = countDown.GetComponent<Text>();
+        _text1 = countDown.GetComponent<Text>();
+        _text = countDown.GetComponent<Text>();
+
+        for (int i = 0; i < 4; i++)
+        {
+            _carControllers[i] = cars[i].GetComponent<carControllerVer4>();
+            _carAIControllers[i] = cars[i].GetComponent<AltCarAIController>();
+        }
+
+        foreach (GameObject car in cars)
+        {
+            if (car.GetComponent<carControllerVer4>().isPlayer)
+            {
+                car.GetComponent<UIController>().enabled = true;
+            }
+
+            car.GetComponent<UIController>().enabled = false;
+        }
     }
 
     void Start()
     {
         StartCoroutine(CountStart());
-        foreach (GameObject car in cars)
-        {
-            if (car.GetComponent<AltCarAIController>().enabled)
-            {
-                car.GetComponent<AltCarAIController>().enabled = false;
-                car.GetComponent<UIController>().enabled = false;
-                car.GetComponent<carControllerVer4>().enabled = false;
-            }
-
-            car.GetComponent<carControllerVer4>().enabled = false;
-            car.GetComponent<UIController>().enabled = true;
-        }
     }
 
     IEnumerator CountStart()
     {
-        _countDownActive = false;
+        CarControllerSwitch(false);
         yield return new WaitForSeconds(0.3f);
         _text.text = "3";
         getReady.Play();
@@ -76,20 +88,49 @@ public class PlayerManager : MonoBehaviour
         countDown.SetActive(true);
         yield return new WaitForSeconds(1);
         countDown.SetActive(false);
-        _countDownActive = true;
-        StartLap();
+        goAudio.Play();
+        CarControllerSwitch(true);
+        _countDownActive = false;
+    }
 
-        foreach (GameObject car in cars)
+    void OnTriggerEnter(Collider triggerCollision)
+    {
+        while (CurrentLap <= 3)
         {
-            if (car.GetComponent<carControllerVer4>().isPlayer != true)
+            _counter++;
+            if (triggerCollision.gameObject.layer != _checkpointLayer)
             {
-                car.GetComponent<AltCarAIController>().enabled = true;
+                return;
             }
 
-            car.GetComponent<carControllerVer4>().enabled = true;
+            if (triggerCollision.gameObject.name != "1") continue;
+            if (_lastCheckPointPassed == _checkpointCount)
+            {
+                EndLap();
+                lapTimes[(_counter - 1)] = BestLapTime;
+            }
+
+            if (triggerCollision.gameObject.name == "1" && CurrentLap == 0 || _lastCheckPointPassed == _checkpointCount)
+            {
+                StartLap();
+                CurrentLap++;
+            }
+
+            if (triggerCollision.gameObject.name == (_lastCheckPointPassed + 1).ToString())
+            {
+                _lastCheckPointPassed++;
+            }
         }
 
-        goAudio.Play();
+        CarControllerSwitch(false);
+    }
+
+    void Update()
+    {
+        if (!_countDownActive)
+        {
+            CurrentLapTime += _lapTimerTimestamp > 0 ? Time.time - _lapTimerTimestamp : 0;
+        }
     }
 
     void StartLap()
@@ -107,37 +148,38 @@ public class PlayerManager : MonoBehaviour
         CurrentLap++;
     }
 
-    void OnTriggerEnter(Collider colission)
+    void CarControllerSwitch(bool active)
     {
-        if (colission.gameObject.layer != _checkpointLayer)
+        switch (active)
         {
-            return;
-        }
-
-        if (colission.gameObject.name == "1")
-        {
-            if (_lastCheckPointPassed == _checkpointCount)
+            case true:
             {
-                EndLap();
-            }
+                foreach (carControllerVer4 controller in _carControllers)
+                {
+                    controller.enabled = true;
+                }
 
-            if (CurrentLap == 0 || _lastCheckPointPassed == _checkpointCount)
+                foreach (AltCarAIController aiController in _carAIControllers)
+                {
+                    aiController.enabled = true;
+                }
+
+                break;
+            }
+            case false:
             {
-                StartLap();
+                foreach (carControllerVer4 controller in _carControllers)
+                {
+                    controller.enabled = false;
+                }
+
+                foreach (AltCarAIController aiController in _carAIControllers)
+                {
+                    aiController.enabled = false;
+                }
+
+                break;
             }
         }
-
-        if (colission.gameObject.name == (_lastCheckPointPassed + 1).ToString())
-        {
-            _lastCheckPointPassed++;
-        }
-    }
-
-    void Update()
-    {
-        if (_countDownActive) return;
-        CurrentLapTime = _lapTimerTimestamp > 0 ? Time.time - _lapTimerTimestamp : 0;
-        getReady.volume = 1;
-        goAudio.volume = 1;
     }
 }
