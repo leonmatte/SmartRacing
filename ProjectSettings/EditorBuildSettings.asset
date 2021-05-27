@@ -38,4 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Contrarreloj.unity
     guid: 2225d6f663e727542b28f6e0ec1f9ada
+  - enabled: 1
+    path: Assets/Scenes/FinalCarrera.unity
+    guid: 86d8f12e9e6c5f04da1c9d0841b2a928
   m_configObjects: {}

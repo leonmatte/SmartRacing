@@ -69,6 +69,13 @@ public class CheckpointTracker : MonoBehaviour
                     if (controllerList[carTransformList.IndexOf(carTransform)].isPlayer) // Si el coche que ha terminado la carrera es el jugador
                     {
                         print("HAS QUEDADO EL " + positions); // Se muestra la posición en que ha terminado
+                        Time.timeScale = 0f;
+                        AudioSource[] audios = FindObjectsOfType<AudioSource>();
+                        foreach (AudioSource a in audios)
+                        {
+                            a.Pause();
+                        }
+                        Cursor.visible = true;
                         SceneManager.LoadScene(11, LoadSceneMode.Additive);
                         PlayerPrefs.GetInt("posicionJugador", positions); //Mandar la posición del jugador para recoger en otro script
                     }
