@@ -149925,6 +149925,14 @@ PrefabInstance:
       propertyPath: m_WheelEffects.Array.data[1]
       value: 
       objectReference: {fileID: 1431056100020821225}
+    - target: {fileID: 4515842207890374755, guid: 3e2365ba77e5ee44f8807d4ca2a50d07, type: 3}
+      propertyPath: brakeAngleThreshold
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515842207890374755, guid: 3e2365ba77e5ee44f8807d4ca2a50d07, type: 3}
+      propertyPath: driftAngleThreshold
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4515842208154898494, guid: 3e2365ba77e5ee44f8807d4ca2a50d07, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -150092,6 +150100,14 @@ PrefabInstance:
       propertyPath: m_WheelEffects.Array.data[1]
       value: 
       objectReference: {fileID: 834590550160197860}
+    - target: {fileID: 4037513710403697038, guid: 93bb863d82084d246bee8092340980f8, type: 3}
+      propertyPath: brakeAngleThreshold
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037513710403697038, guid: 93bb863d82084d246bee8092340980f8, type: 3}
+      propertyPath: driftAngleThreshold
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5728841522911475301, guid: 93bb863d82084d246bee8092340980f8, type: 3}
       propertyPath: turboClip
       value: 
@@ -150213,6 +150229,14 @@ PrefabInstance:
       propertyPath: m_WheelEffects.Array.data[1]
       value: 
       objectReference: {fileID: 3839721217382024362}
+    - target: {fileID: 2967730000864797027, guid: d464f1e63bf9b5c43866d43f291ba279, type: 3}
+      propertyPath: brakeAngleThreshold
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2967730000864797027, guid: d464f1e63bf9b5c43866d43f291ba279, type: 3}
+      propertyPath: driftAngleThreshold
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4102871967510929907, guid: d464f1e63bf9b5c43866d43f291ba279, type: 3}
       propertyPath: turboClip
       value: 
@@ -150334,6 +150358,14 @@ PrefabInstance:
       propertyPath: m_WheelEffects.Array.data[1]
       value: 
       objectReference: {fileID: 4440465519620250061}
+    - target: {fileID: 4981966951224900679, guid: 65abbad94d7c3c54ab5d747df65eccdc, type: 3}
+      propertyPath: brakeAngleThreshold
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4981966951224900679, guid: 65abbad94d7c3c54ab5d747df65eccdc, type: 3}
+      propertyPath: driftAngleThreshold
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6759409838078575652, guid: 65abbad94d7c3c54ab5d747df65eccdc, type: 3}
       propertyPath: turboClip
       value: 
@@ -150393,6 +150425,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2050635434012222769}
     m_Modifications:
+    - target: {fileID: 1425487184389303806, guid: 1f95d11e5efba424688a0111510e42a8, type: 3}
+      propertyPath: brakeAngleThreshold
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1425487184389303806, guid: 1f95d11e5efba424688a0111510e42a8, type: 3}
+      propertyPath: driftAngleThreshold
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4625363050973915204, guid: 1f95d11e5efba424688a0111510e42a8, type: 3}
       propertyPath: m_Name
       value: Free_Racing_Car_Blue
@@ -150440,6 +150480,10 @@ PrefabInstance:
     - target: {fileID: 4625363050973915205, guid: 1f95d11e5efba424688a0111510e42a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5498474117139406841, guid: 1f95d11e5efba424688a0111510e42a8, type: 3}
+      propertyPath: lookAheadForTargetOffset
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5715189182420309926, guid: 1f95d11e5efba424688a0111510e42a8, type: 3}
       propertyPath: turboFlames1
