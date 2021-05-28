@@ -100,12 +100,12 @@ public class CheckpointTracker : MonoBehaviour
                         .isPlayer) // Si el coche que ha terminado la carrera es el jugador
                     {
                         print("HAS QUEDADO EL " + positions); // Se muestra la posición en que ha terminado
-                        Time.timeScale = 0f;
-                        AudioSource[] audios = FindObjectsOfType<AudioSource>();
-                        foreach (AudioSource a in audios)
-                        {
-                            a.Pause();
-                        }
+                        // Time.timeScale = 0f;
+                        // AudioSource[] audios = FindObjectsOfType<AudioSource>();
+                        // foreach (AudioSource a in audios)
+                        // {
+                        //     a.Pause();
+                        // }
 
                         Cursor.visible = true;
                         SceneManager.LoadScene(11, LoadSceneMode.Additive);
@@ -153,8 +153,23 @@ public class CheckpointTracker : MonoBehaviour
     void EndLap()
     {
         _stopwatchActive = false;
-        _lastLapTime = Time.time - _lapTimerTimestamp;
-        _bestLapTime = Mathf.Min(_lastLapTime, _bestLapTime);
+        
+        if (_currentLap == 0)
+        {
+            _lastLapTime = 0;
+        }
+        else
+        {
+            _lastLapTime = _currentLapTime;    
+        }
+        if (_bestLapTime == 0)
+        {
+            _bestLapTime = _lastLapTime;
+        }
+        else
+        {
+            _bestLapTime = Mathf.Min(_lastLapTime, _bestLapTime);    
+        }
         _currentLapTime = 0;
     }
 }
