@@ -125,6 +125,7 @@ public class carControllerVer4 : MonoBehaviour
             this.isBreaking = isBreaking;
             this.isDrifting = isDrifting;
         }
+        speed = rigidbodyCar.velocity.magnitude * 3.6f;
         roundedSpeed = Mathf.RoundToInt(speed);
     }
 
@@ -147,7 +148,6 @@ public class carControllerVer4 : MonoBehaviour
         float targetAngle = transform.eulerAngles.y - lastCheckpointTransform.eulerAngles.y;
         if (Mathf.Abs(targetAngle) > 135 && Mathf.Abs(targetAngle) < 225)
         {
-            //print("WRONG WAY " + targetAngle);
             direccionContraria.SetActive(true);
         }
         else 
@@ -163,7 +163,6 @@ public class carControllerVer4 : MonoBehaviour
             rigidbodyCar.velocity = new Vector3(0, 0, 0);
             transform.position = lastCheckpointTransform.position - 3 * Vector3.up;
             transform.rotation = lastCheckpointTransform.rotation;
-            print("OW");
         }
     }
 

@@ -55,7 +55,6 @@ public class AltCarAIController : MonoBehaviour
             
            if (Mathf.Abs(transform.rotation.z) >= 0.7f)
             {
-                print("HEYYYYY");
                 m_CarController.HandleReset(true);
             }
             
