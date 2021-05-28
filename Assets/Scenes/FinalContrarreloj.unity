@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 56963123}
   - component: {fileID: 56963122}
   m_Layer: 5
-  m_Name: TextoJugador1
+  m_Name: TextoUsuario
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Jugador 1
+  m_text: 'Usuario
 
 '
   m_isRightToLeft: 0
@@ -276,7 +276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &113394817
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1294,6 +1294,7 @@ GameObject:
   - component: {fileID: 1690085898}
   - component: {fileID: 1690085897}
   - component: {fileID: 1690085896}
+  - component: {fileID: 1690085900}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1382,6 +1383,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1690085900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690085895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 218f0a5046f01184da1b7cb25e10480f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menu: {fileID: 0}
 --- !u!1 &1705152554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,7 +1493,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1690085900}
         m_TargetAssemblyTypeName: MenuOpciones, Assembly-CSharp
         m_MethodName: VolverAlMenuPrincipal
         m_Mode: 1
@@ -1809,7 +1823,7 @@ GameObject:
   - component: {fileID: 2046278063}
   - component: {fileID: 2046278062}
   m_Layer: 5
-  m_Name: TextoJugador2
+  m_Name: TextoIA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1854,7 +1868,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Jugador2
+  m_text: IA
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
