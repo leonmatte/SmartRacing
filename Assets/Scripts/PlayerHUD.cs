@@ -32,6 +32,8 @@ public class PlayerHUD : MonoBehaviour
 
     //Cars and controllers
     public GameObject[] cars = new GameObject[5];
+    private readonly carControllerVer4[] _carControllers = new carControllerVer4[5];
+    private readonly AltCarAIController[] _carAIControllers = new AltCarAIController[5];
     private GameObject _carPlayer;
 
     //Player Saved Scores
@@ -39,15 +41,14 @@ public class PlayerHUD : MonoBehaviour
     public float[] lapTimes = new float[3];
 
     //COUNTDOWN
+    [SerializeField] private Text countdownText;
     public GameObject countDown;
     private bool _countDownActive;
-
     private int currentTime = 3;
     private float startingTime = 3f;
-
-    [SerializeField] private Text countdownText;
     
     private int secondsCountdown = 3;
+    private bool isCountDownFinish = false;
 
     private void Awake()
     {
@@ -57,6 +58,13 @@ public class PlayerHUD : MonoBehaviour
         _lastCheckPointPassed = 0;
         _checkpointsParent = GameObject.Find("Checkpoints").transform;
         _checkpointCount = _checkpointsParent.childCount;
+        
+        for (int i = 0; i < 5; i++)
+        {
+            _carControllers[i] = cars[i].GetComponent<carControllerVer4>();
+            _carAIControllers[i] = cars[i].GetComponent<AltCarAIController>();
+        }
+
 
         foreach (GameObject car in cars)
         {
@@ -78,6 +86,7 @@ public class PlayerHUD : MonoBehaviour
     void Start()
     {
         // currentTime = startingTime;
+        CarControllerSwitch(false);
         StartTimer();
     }
 
@@ -103,7 +112,11 @@ public class PlayerHUD : MonoBehaviour
 
     void Update()
     {
-        StartCountDown();
+        if (!isCountDownFinish)
+        {
+            StartCountDown();    
+        }
+        
         if (_stopwatchActive)
         {
             _currentLapTime += Time.deltaTime;
@@ -135,6 +148,59 @@ public class PlayerHUD : MonoBehaviour
         _currentLapTime = 0;
         _currentLap++;
     }
+    
+    void CarControllerSwitch(bool active)
+    {
+        switch (active)
+        {
+            case true:
+            {
+                foreach (carControllerVer4 controller in _carControllers)
+                {
+                    // if (controller.isPlayer)
+                    // {
+                    controller.enabled = true;
+                    // }
+                    if (!controller.isPlayer)
+                    {
+                        // foreach (AltCarAIController aiController in _carAIControllers)
+                        // {
+                        //
+                        //     aiController.enabled = true;
+                        // }
+                        AltCarAIController aiController = controller.gameObject.GetComponent<AltCarAIController>();
+                        aiController.enabled = true;
+                    }
+                }
+
+                // foreach (AltCarAIController aiController in _carAIControllers)
+                // {
+                //     
+                //     aiController.enabled = true;
+                // }
+
+                break;
+            }
+            case false:
+            {
+                foreach (carControllerVer4 controller in _carControllers)
+                {
+                    controller.enabled = false;
+                    
+                    AltCarAIController aiController = controller.gameObject.GetComponent<AltCarAIController>();
+                    aiController.enabled = false;
+                }
+
+                // foreach (AltCarAIController aiController in _carAIControllers)
+                // {
+                //     aiController.enabled = false;
+                // }
+
+                break;
+            }
+        }
+    }
+
 
     private void StartTimer()
     {
@@ -149,30 +215,39 @@ public class PlayerHUD : MonoBehaviour
     }
     public void StartCountDown()
     {
-
-        currentTime = secondsCountdown;
-        countdownText.text = currentTime.ToString("0");
         
-        if (currentTime <= 3)
+        currentTime = secondsCountdown;
+        if (countdownText != null)
         {
-            //Sonidos??
-        }
-        if (currentTime <= 2)
-        {
-            //Sonidos??
-        }
-        if (currentTime <= 1)
-        {
-            //Sonidos??
-        }
-        if (currentTime <= 0)
-        {
-            countdownText.text = "Go!";
-        }
-        if (currentTime <= -1)
-        {
-            CancelInvoke();
-            countdownText.enabled = false;
+            countdownText.text = currentTime.ToString("0");
+
+            if (currentTime <= 3)
+            {
+                //Sonidos??
+            }
+
+            if (currentTime <= 2)
+            {
+                //Sonidos??
+            }
+
+            if (currentTime <= 1)
+            {
+                //Sonidos??
+            }
+
+            if (currentTime <= 0)
+            {
+                countdownText.text = "Go!";
+            }
+
+            if (currentTime <= -1)
+            {
+                isCountDownFinish = true;
+                CancelInvoke();
+                countdownText.enabled = false;
+                CarControllerSwitch(true);
+            }
         }
     }
 }
