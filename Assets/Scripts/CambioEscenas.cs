@@ -19,11 +19,6 @@ public class CambioEscenas : MonoBehaviour
         StartCoroutine(EsperarCambioEscena(8));
     }
 
-    public void Contrarreloj()
-    {
-        StartCoroutine(EsperarCambioEscena(10));
-    }
-
     public IEnumerator EsperarCambioEscena(int escena)
     {
         yield return new WaitForSeconds(0.3f);
