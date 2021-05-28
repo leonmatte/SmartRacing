@@ -20,8 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="809b70c0-c4a8-4d9b-b879-c460cbed4acb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CheckpointTracker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CheckpointTracker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/contentModel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SmartRacing/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SmartRacing/riderModule.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,19 +44,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CheckpointTracker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CarAudio.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/MenuPausa.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/CarAudio.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/carControllerVer4.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Checkpoint.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerHUD.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/CountDown.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/CheckpointTracker.cs" />
-      </list>
-    </option>
   </component>
   <component name="ProjectId" id="1siHAKdwkUy3a2kQxyGnho5gGo1" />
   <component name="ProjectViewState">
@@ -84,8 +72,9 @@
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -93,8 +82,9 @@
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -124,6 +114,7 @@
       <workItem from="1622121023555" duration="1267000" />
       <workItem from="1622119550855" duration="7288000" />
       <workItem from="1622204289041" duration="4012000" />
+      <workItem from="1622218458589" duration="4000" />
     </task>
     <servers />
   </component>
