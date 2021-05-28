@@ -93,7 +93,7 @@ public class carControllerVer4 : MonoBehaviour
             AddDownForce();
             ShowSpeed();
             HandleReset(reset);
-            HandleWrongWay();
+            if(driving) HandleWrongWay();
             CalculateRevs();
             GearChanging();
             CheckForWheelSpin();
