@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http.Headers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityStandardAssets.Vehicles.Car;
@@ -268,17 +269,20 @@ public class carControllerVer4 : MonoBehaviour
 
     public void HandleSteering()
     {
-        if (roundedSpeed < 60)
+        if (isPlayer || SceneManager.GetActiveScene().name != "Contrarreloj")
         {
-            maxSteerAngle = 30;
-        }
-        else if (roundedSpeed > 60 && roundedSpeed < 120)
-        {
-            maxSteerAngle = 15;
-        }
-        else if (roundedSpeed > 120)
-        {
-            maxSteerAngle = 5;
+            if (roundedSpeed < 60)
+            {
+                maxSteerAngle = 30;
+            }
+            else if (roundedSpeed > 60 && roundedSpeed < 120)
+            {
+                maxSteerAngle = 15;
+            }
+            else if (roundedSpeed > 120)
+            {
+                maxSteerAngle = 5;
+            }
         }
         currentSteerAngle = maxSteerAngle * horizontalInput;
         frontLeftWheelCollider.steerAngle = currentSteerAngle;
