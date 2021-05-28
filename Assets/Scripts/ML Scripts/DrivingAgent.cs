@@ -40,8 +40,6 @@ public class DrivingAgent : Agent
         controller.StopCompletely();
         errorCount = 0;
         beginningEpisode = true;
-        
-        
     }
     
     
@@ -49,10 +47,10 @@ public class DrivingAgent : Agent
     public override void CollectObservations(VectorSensor sensor)
     {
         sensor.AddObservation(Vector3.Dot(transform.forward, targetTransform.forward));
-        AddReward(-0.001f);
+        AddReward(-0.001f); //Para que el coche intente ir un poco más rápido
     }
 
-    public override void OnActionReceived(ActionBuffers actions)
+    public override void OnActionReceived(ActionBuffers actions) // Interpretación de las decisiones tomadas
     {
         float accel = actions.ContinuousActions[0];
         float steer = actions.ContinuousActions[1];
@@ -62,7 +60,7 @@ public class DrivingAgent : Agent
         
     }
 
-    public override void Heuristic(in ActionBuffers actionsOut)
+    public override void Heuristic(in ActionBuffers actionsOut) // "Override" de las decisiones del modelo. Para testing y grabación de demos
     {
         ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
         ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
@@ -76,18 +74,16 @@ public class DrivingAgent : Agent
         if (other.gameObject.layer == 3) // Layer 3 = Capa "Wall"
         {
             AddReward(-1f); // Al colisionar se castiga al modelo con -1
-            errorCount++;
+             
+             //Código para automatizar el ciclo de episodios
+             
+            /*errorCount++;
             if (errorCount >= 5)
             {
                 EndEpisode();
-            }
+            }*/
+            
         }
-        /*else if (other.gameObject.layer == 6)
-        {
-            Physics.IgnoreCollision(other.gameObject.GetComponentInChildren<BoxCollider>(), gameObject.GetComponentInChildren<BoxCollider>());
-            // En caso de colisionar contra otro coche, se ignora la colisión.
-            // Para entrenar con muchos coches a la vez y para que actúe como coche fantasma en la carrera contrarreloj
-        }*/
     }
 
     
@@ -100,8 +96,8 @@ public class DrivingAgent : Agent
             // Por cada frame que el modelo siga colisionando con un muro,
             // se añade un pequeño castigo más
 
-            errorCount += 0.01f;
-            if(errorCount >= 5) EndEpisode(); 
+           /* errorCount += 0.01f;
+            if(errorCount >= 5) EndEpisode(); */
         }
     }
 

@@ -79,8 +79,7 @@ public class CheckpointTracker : MonoBehaviour
                         SceneManager.LoadScene(11, LoadSceneMode.Additive);
                         PlayerPrefs.GetInt("posicionJugador", positions); //Mandar la posición del jugador para recoger en otro script
                     }
-                }
-                    
+                }   
             }
             print("Lessgooo " + carTransformList.IndexOf(carTransform));
             nextCheckpointList[carTransformList.IndexOf(carTransform)] = (nextCheckpointIndex + 1) % checkpointList.Count;
