@@ -198,21 +198,24 @@ namespace UnityStandardAssets.Vehicles.Car
         
         private void OnCollisionEnter(Collision other)
         {
-            
-            m_Crash.volume = 0.5f;
-            if (!m_Crash.isPlaying)
+            if (turboSource != null)
             {
-                if (m_CarController.GetSpeed() >= 150)
+                m_Crash.volume = 0.5f;
+                if (!m_Crash.isPlaying)
                 {
-                    m_Crash.clip = crashClipStrong;
-                    m_Crash.Play();    
-                }
-                else
-                {
-                    m_Crash.clip = crashClipSoft;
-                    m_Crash.Play();  
+                    if (m_CarController.GetSpeed() >= 150)
+                    {
+                        m_Crash.clip = crashClipStrong;
+                        m_Crash.Play();    
+                    }
+                    else
+                    {
+                        m_Crash.clip = crashClipSoft;
+                        m_Crash.Play();  
+                    }
                 }
             }
+            
         }
 
         public void PlayTurboSound()
