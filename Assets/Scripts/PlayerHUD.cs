@@ -32,8 +32,6 @@ public class PlayerHUD : MonoBehaviour
 
     //Cars and controllers
     public GameObject[] cars = new GameObject[5];
-    private readonly carControllerVer4[] _carControllers = new carControllerVer4[5];
-    private readonly AltCarAIController[] _carAIControllers = new AltCarAIController[5];
     private GameObject _carPlayer;
 
     //Player Saved Scores
@@ -42,11 +40,6 @@ public class PlayerHUD : MonoBehaviour
 
     //COUNTDOWN
     public GameObject countDown;
-    public AudioSource getReady;
-    public AudioSource goAudio;
-    private Text _text;
-    private Text _text1;
-    private Text _text2;
     private bool _countDownActive;
 
     private int currentTime = 3;
@@ -64,15 +57,6 @@ public class PlayerHUD : MonoBehaviour
         _lastCheckPointPassed = 0;
         _checkpointsParent = GameObject.Find("Checkpoints").transform;
         _checkpointCount = _checkpointsParent.childCount;
-        _text2 = countDown.GetComponent<Text>();
-        _text1 = countDown.GetComponent<Text>();
-        _text = countDown.GetComponent<Text>();
-        
-        for (int i = 0; i < 4; i++)
-        {
-            _carControllers[i] = cars[i].GetComponent<carControllerVer4>();
-            _carAIControllers[i] = cars[i].GetComponent<AltCarAIController>();
-        }
 
         foreach (GameObject car in cars)
         {
@@ -88,6 +72,7 @@ public class PlayerHUD : MonoBehaviour
         _tmpText1 = textLastLap.GetComponent<TMP_Text>();
 
         _countDownActive = true;
+        
     }
 
     void Start()
@@ -102,32 +87,18 @@ public class PlayerHUD : MonoBehaviour
         {
             while (_currentLap <= 3)
             {
-                _counter++;
                 if (triggerCollision.gameObject.name != "1") continue;
-                if (_lastCheckPointPassed == _checkpointCount)
-                {
-                    EndLap();
-                    lapTimes[(_counter - 1)] = _bestLapTime;
-                }
-
                 if (_currentLap == 0 || _lastCheckPointPassed == _checkpointCount)
                 {
                     StartLap();
                 }
-
-                if (triggerCollision.gameObject.name == "1" && _currentLap == 0)
-                {
-                    _currentLap = 1;
-                }
-
+                
                 if (triggerCollision.gameObject.name == (_lastCheckPointPassed + 1).ToString())
                 {
                     _lastCheckPointPassed++;
                 }
             }
         }
-
-        CarControllerSwitch(false);
     }
 
     void Update()
@@ -150,6 +121,7 @@ public class PlayerHUD : MonoBehaviour
 
     void StartLap()
     {
+        EndLap();
         _stopwatchActive = true;
         _lastCheckPointPassed = 1;
         _lapTimerTimestamp = Time.time - _lastLapTime;
@@ -162,44 +134,6 @@ public class PlayerHUD : MonoBehaviour
         _bestLapTime = Mathf.Min(_lastLapTime, _bestLapTime);
         _currentLapTime = 0;
         _currentLap++;
-    }
-
-    void CarControllerSwitch(bool active)
-    {
-        switch (active)
-        {
-            case true:
-            {
-                foreach (carControllerVer4 controller in _carControllers)
-                {
-                    if (controller.isPlayer)
-                    {
-                        controller.enabled = true;
-                    }
-                }
-
-                foreach (AltCarAIController aiController in _carAIControllers)
-                {
-                    aiController.enabled = true;
-                }
-
-                break;
-            }
-            case false:
-            {
-                foreach (carControllerVer4 controller in _carControllers)
-                {
-                    controller.enabled = false;
-                }
-
-                foreach (AltCarAIController aiController in _carAIControllers)
-                {
-                    aiController.enabled = false;
-                }
-
-                break;
-            }
-        }
     }
 
     private void StartTimer()
