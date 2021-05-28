@@ -120,6 +120,7 @@ public class CheckpointTracker : MonoBehaviour
                         PlayerPrefs.SetInt("posicionJugador",
                             positions); //Mandar la posición del jugador para recoger en otro script
                         PlayerPrefs.SetString("mejorTiempo", _tmpText2.text);
+                        PlayerPrefs.SetString("mapa", SceneManager.GetActiveScene().name);
                         PlayerPrefs.Save();
                     }
                 }

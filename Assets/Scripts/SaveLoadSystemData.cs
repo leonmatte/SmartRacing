@@ -6,7 +6,13 @@ using UnityEngine;
 
 public static class SaveLoadSystemData
 {
-    public static void SaveData(PlayerData player, String path, String fileName)
+    [Serializable]
+    class Wrapper
+    {
+        public PlayerData[] playersData;
+    }
+    
+    public static void SaveData(PlayerData [] players, String path, String fileName)
     {
         String fullPath = Application.persistentDataPath + "/" + path + "/";
         bool checkFolderExists = Directory.Exists(fullPath);
@@ -15,19 +21,20 @@ public static class SaveLoadSystemData
             Directory.CreateDirectory(fullPath);
         }
 
-        String json = JsonUtility.ToJson(player);
+        Wrapper wrapper = new Wrapper {playersData = players};
+        String json = JsonUtility.ToJson(wrapper);
         File.WriteAllText(fullPath + fileName + ".json", json);
         Debug.Log("Save data ok." + fullPath);
     }
 
-    public static PlayerData LoadData(String path, String fileName)
+    public static PlayerData [] LoadData(String path, String fileName)
     {
-        String fullPath = Application.persistentDataPath + "/" + path + "/";
+        String fullPath = Application.persistentDataPath + "/" + path + "/" + fileName + ".json";
         if (File.Exists(fullPath))
         {
             String textJson = File.ReadAllText(fullPath);
-            PlayerData player = JsonUtility.FromJson<PlayerData>(textJson);
-            return player;
+            Wrapper wrapper = JsonUtility.FromJson<Wrapper>(textJson);
+            return wrapper.playersData;
         }
         else
         {

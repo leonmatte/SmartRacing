@@ -1742,12 +1742,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b09238bc2538e242a8eb5a03e4de2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstPosition: {fileID: 1709275933}
-  secondPosition: {fileID: 542769253}
-  firstPlayer: {fileID: 1502361319}
-  secondPlayer: {fileID: 1040940586}
-  firstTime: {fileID: 1946285663}
-  secondTime: {fileID: 849536465}
+  positionsText:
+  - {fileID: 1709275933}
+  - {fileID: 542769253}
+  - {fileID: 1194780660}
+  - {fileID: 1551931792}
+  - {fileID: 2102629085}
+  playersText:
+  - {fileID: 1502361319}
+  - {fileID: 1040940586}
+  - {fileID: 1172923650}
+  - {fileID: 677165602}
+  - {fileID: 373328776}
+  timesText:
+  - {fileID: 1946285663}
+  - {fileID: 849536465}
+  - {fileID: 1768485508}
+  - {fileID: 985356835}
+  - {fileID: 1949863621}
 --- !u!1 &1551931790
 GameObject:
   m_ObjectHideFlags: 0

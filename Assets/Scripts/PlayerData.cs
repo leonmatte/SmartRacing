@@ -1,16 +1,16 @@
 using System;
+using UnityEngine;
 
 [System.Serializable]
 public class PlayerData
 {
-    private String name;
-    private int position;
-    private String bestLapTime;
+    [SerializeField] private String name;
+    [SerializeField] private String bestLapTime;
 
-    public PlayerData(string name, int position, String bestLapTime)
+    public PlayerData(string name, String bestLapTime)
     {
         this.name = name;
-        this.position = position;
+        
         this.bestLapTime = bestLapTime;
     }
 
@@ -19,14 +19,10 @@ public class PlayerData
     {
         return name;
     }
-
-    public int GetPosition()
-    {
-        return position;
-    }
-
+    
     public String GetBestLapTime()
     {
         return bestLapTime;
     }
+    
 }
