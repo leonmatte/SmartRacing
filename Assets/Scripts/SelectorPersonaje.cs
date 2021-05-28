@@ -32,6 +32,7 @@ public class SelectorPersonaje : MonoBehaviour
         PlayerPrefs.SetInt("personajeSeleccionado", personajeSeleccionado);
         Debug.Log(nombreUsuario);
         PlayerPrefs.SetString("Usuario", nombreUsuario);
+        PlayerPrefs.Save();
     }
 
     public void VolverAlMenu()

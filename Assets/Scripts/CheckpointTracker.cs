@@ -108,9 +108,19 @@ public class CheckpointTracker : MonoBehaviour
                         // }
 
                         Cursor.visible = true;
-                        SceneManager.LoadScene(11, LoadSceneMode.Additive);
-                        PlayerPrefs.GetInt("posicionJugador",
+                        if (SceneManager.GetActiveScene().name == "Contrarreloj")
+                        {
+                            SceneManager.LoadScene(12, LoadSceneMode.Additive);
+                        }
+                        else
+                        {
+                            SceneManager.LoadScene(11, LoadSceneMode.Additive);
+                        }
+                        
+                        PlayerPrefs.SetInt("posicionJugador",
                             positions); //Mandar la posición del jugador para recoger en otro script
+                        PlayerPrefs.SetString("mejorTiempo", _tmpText2.text);
+                        PlayerPrefs.Save();
                     }
                 }
             }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public static class SaveLoad 
+public static class SaveLoadSystemData
 {
     public static void SaveData(PlayerData player, String path, String fileName)
     {
