@@ -11,6 +11,7 @@ public class CargadorNivel : MonoBehaviour
     public void Contrarreloj()
     {
         StartCoroutine(CargarAsync(10));
+        Cursor.visible = false;
     }
 
     IEnumerator CargarAsync(int escena)
