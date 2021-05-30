@@ -89,6 +89,10 @@ public class MenuOpciones : MonoBehaviour
         {
             SceneManager.UnloadSceneAsync(1);
         }
+        else if (SceneManager.GetActiveScene().name == "Contrarreloj")
+        {
+            SceneManager.UnloadSceneAsync(1);
+        }
 
     }
 
@@ -114,7 +118,10 @@ public class MenuOpciones : MonoBehaviour
         {
             SceneManager.UnloadSceneAsync(9);
         }
-
+        else if (SceneManager.GetActiveScene().name == "Contrarreloj")
+        {
+            SceneManager.UnloadSceneAsync(9);
+        }
     }
 
     public IEnumerator EsperarCambioEscena(int escena)
