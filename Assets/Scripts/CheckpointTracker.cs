@@ -95,17 +95,19 @@ public class CheckpointTracker : MonoBehaviour
                     controllerList[carTransformList.IndexOf(carTransform)].driving = false; // El coche deja de correr
 
                     positions++; // Otro coche más ha terminado la carrera
+                    
+                    
+
+                    if (!controllerList[carTransformList.IndexOf(carTransform)].isPlayer && SceneManager.GetActiveScene().name == "Contrarreloj")
+                    {
+                        PlayerPrefs.SetFloat("mejorTiempoIA", _bestLapTime + _currentLapTime );
+                        PlayerPrefs.Save();
+                    }
 
                     if (controllerList[carTransformList.IndexOf(carTransform)]
                         .isPlayer) // Si el coche que ha terminado la carrera es el jugador
                     {
                         print("HAS QUEDADO EL " + positions); // Se muestra la posición en que ha terminado
-                        // Time.timeScale = 0f;
-                        // AudioSource[] audios = FindObjectsOfType<AudioSource>();
-                        // foreach (AudioSource a in audios)
-                        // {
-                        //     a.Pause();
-                        // }
 
                         Cursor.visible = true;
                         if (SceneManager.GetActiveScene().name == "Contrarreloj")
@@ -120,7 +122,12 @@ public class CheckpointTracker : MonoBehaviour
                         PlayerPrefs.SetInt("posicionJugador",
                             positions); //Mandar la posición del jugador para recoger en otro script
                         PlayerPrefs.SetString("mejorTiempo", _tmpText2.text);
+                        PlayerPrefs.SetFloat("mejorTiempoContrarreloj", _bestLapTime);
                         PlayerPrefs.SetString("mapa", SceneManager.GetActiveScene().name);
+                        if (positions == 1)
+                        {
+                            PlayerPrefs.DeleteKey("mejorTiempoIA");
+                        }
                         PlayerPrefs.Save();
                     }
                 }
