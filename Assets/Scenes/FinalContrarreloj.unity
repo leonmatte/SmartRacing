@@ -1412,6 +1412,8 @@ MonoBehaviour:
   positionsText:
   - {fileID: 1493528805}
   - {fileID: 1770847075}
+  ganar: {fileID: 113394816}
+  perder: {fileID: 1914488046}
 --- !u!1 &1705152554
 GameObject:
   m_ObjectHideFlags: 0
