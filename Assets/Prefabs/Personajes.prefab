@@ -149905,6 +149905,10 @@ PrefabInstance:
       propertyPath: engineSoundStyle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4515842206236590552, guid: 3e2365ba77e5ee44f8807d4ca2a50d07, type: 3}
+      propertyPath: far clip plane
+      value: 1500
+      objectReference: {fileID: 0}
     - target: {fileID: 4515842207890374754, guid: 3e2365ba77e5ee44f8807d4ca2a50d07, type: 3}
       propertyPath: turboFlames1
       value: 
@@ -150032,6 +150036,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2050635434012222769}
     m_Modifications:
+    - target: {fileID: 4037513709062083536, guid: 93bb863d82084d246bee8092340980f8, type: 3}
+      propertyPath: far clip plane
+      value: 1500
+      objectReference: {fileID: 0}
     - target: {fileID: 4037513709184741532, guid: 93bb863d82084d246bee8092340980f8, type: 3}
       propertyPath: m_Name
       value: Free_Racing_Car_Red
@@ -150209,6 +150217,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2967730000730291908, guid: d464f1e63bf9b5c43866d43f291ba279, type: 3}
+      propertyPath: far clip plane
+      value: 1500
+      objectReference: {fileID: 0}
     - target: {fileID: 2967730000864797020, guid: d464f1e63bf9b5c43866d43f291ba279, type: 3}
       propertyPath: turboFlames1
       value: 
@@ -150290,6 +150302,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2050635434012222769}
     m_Modifications:
+    - target: {fileID: 4981966949971810134, guid: 65abbad94d7c3c54ab5d747df65eccdc, type: 3}
+      propertyPath: far clip plane
+      value: 1500
+      objectReference: {fileID: 0}
     - target: {fileID: 4981966951077223426, guid: 65abbad94d7c3c54ab5d747df65eccdc, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -150432,6 +150448,10 @@ PrefabInstance:
     - target: {fileID: 1425487184389303806, guid: 1f95d11e5efba424688a0111510e42a8, type: 3}
       propertyPath: driftAngleThreshold
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625363050682669174, guid: 1f95d11e5efba424688a0111510e42a8, type: 3}
+      propertyPath: far clip plane
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 4625363050973915204, guid: 1f95d11e5efba424688a0111510e42a8, type: 3}
       propertyPath: m_Name
